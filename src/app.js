@@ -10,8 +10,7 @@ const app = express()
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
-app.use('/dist', express.static(appRoot + '/public'))
+app.use(express.static(__dirname + '/../dist'))
 
 app.get('/', (req, res) => {
   res.sendFile(appRoot.resolve('/dist/index.html'))
