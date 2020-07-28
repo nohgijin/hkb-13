@@ -27,6 +27,9 @@ export default class Calendar {
     let brfMonthLastWeek = bfrMonth.getLastWeek()
     let curMonthWeeks = curMonth.getWeeks()
     let afrMonthFirstWeek = afrMonth.getFirstWeek()
+    brfMonthLastWeek.forEach((date) => (date.disable = true))
+    afrMonthFirstWeek.forEach((date) => (date.disable = true))
+
     for (let index = 0; index < curMonthWeeks.length; index++) {
       const curMonthWeek = curMonthWeeks[index]
       if (index == 0 && curMonthWeek.length < 7) {
