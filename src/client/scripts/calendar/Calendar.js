@@ -1,5 +1,7 @@
 import { Month } from './Month'
 import { Day } from './Day'
+import {} from '@/client/styles/components/calendar.scss'
+import { CALENDAR } from '../../utils/constants'
 
 export default class Calendar {
   constructor(year, month) {
@@ -38,9 +40,23 @@ export default class Calendar {
   }
 
   setElements() {
+    this.template = `
+    <thead class='${CALENDAR.DAY}'>
+      <tr>
+        <th>일</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+      </tr>
+    </thead>
+    `
+    this.template += `<tbody>`
     this.$month = document.querySelector('.month')
     this.$calendar = document.querySelector('.calendar')
-    this.$month.innerHTML = this.month
+    this.$month.innerText = this.month+'월'
     this.weeks.forEach((week) => {
       let weekTemplate = `<tr>`
       week.forEach((day) => {
@@ -50,10 +66,11 @@ export default class Calendar {
       weekTemplate += `</tr>`
       this.template += weekTemplate
     })
+    this.template += `</tbody>`
     this.$calendar.innerHTML = this.template
   }
 }
 
-new Calendar(2020, 7)
+new Calendar(2020, 12)
 
 export { Calendar }
