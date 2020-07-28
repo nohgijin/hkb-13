@@ -1,11 +1,25 @@
-import { Month } from './month'
+import Month from './Month'
+import Day from './Day'
 
-class Calendar {
+export default class Calendar {
   constructor(year, month) {
+    this.$calendar = ''
+    this.year = year
+    this.month = month
     this.weeks = []
-    let bfrMonth = new Month(year, month - 1)
-    let curMonth = new Month(year, month)
-    let afrMonth = new Month(year, month + 1)
+
+    this.init()
+  }
+
+  init() {
+    this.setWeeks()
+    this.setElements()
+  }
+
+  setWeeks() {
+    let bfrMonth = new Month(this.year, this.month - 1)
+    let curMonth = new Month(this.year, this.month)
+    let afrMonth = new Month(this.year, this.month + 1)
     let brfMonthLastWeek = bfrMonth.getLastWeek()
     let curMonthWeeks = curMonth.getWeeks()
     let afrMonthFirstWeek = afrMonth.getFirstWeek()
@@ -20,8 +34,22 @@ class Calendar {
       }
     }
   }
+
+  setElements() {
+    this.$calendar = document.querySelector('#calendar')
+    this.weeks.forEach((week) => {
+      let weekTemplate = `<tr>`
+      week.forEach((day) => {
+        let today = new Day(day)
+        weekTemplate += `<td>${today.template}</td>`
+      })
+      weekTemplate += `</tr>`
+      this.template += weekTemplate
+    })
+    this.$calendar.innerHTML = this.template
+  }
 }
 
 new Calendar(2020, 6)
 
-module.exports = Calendar
+// module.exports = { Calendar }
