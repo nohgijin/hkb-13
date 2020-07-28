@@ -1,0 +1,44 @@
+{
+  "name": "hkb-13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm-run-all --parallel start:client start:server",
+    "start:client": "webpack --watch",
+    "start:server": "nodemon src/app.js",
+    "build:": "webpack --mode=production --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woowa-techcamp-2020/hkb-13.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woowa-techcamp-2020/hkb-13/issues"
+  },
+  "homepage": "https://github.com/woowa-techcamp-2020/hkb-13#readme",
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
+    "css-loader": "^4.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "morgan": "^1.10.0",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "sass-loader": "^9.0.2",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
