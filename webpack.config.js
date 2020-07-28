@@ -8,6 +8,12 @@ const config = {
     path: path.resolve(__dirname, './dist'),
     filename: 'build.js',
   },
+  resolve: {
+    extensions: ['.js', '.scss'],
+    alias: {
+      '@': path.join(__dirname, 'src'),
+    },
+  },
   module: {
     rules: [
       {
