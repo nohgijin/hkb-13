@@ -24,6 +24,13 @@ class Month {
       this.weeks.push(week)
       if (date >= nextMonthFirstDate) break
     }
+    this.init()
+  }
+
+  init() {
+    this.getWeeks()
+    this.getFirstWeek()
+    this.getLastWeek()
   }
 
   getWeeks() {
