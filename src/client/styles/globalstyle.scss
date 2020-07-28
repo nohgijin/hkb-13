@@ -1,7 +1,6 @@
 @import './fonts.scss';
 
 @import './components/formModal.scss';
-@import './components/header.scss';
 @import './components/navigation.scss';
 @import './components/reportsList.scss';
 @import './components/svgs.scss';
@@ -20,10 +19,27 @@
   --super-light-blue: #f5f5f7;
   --baemint: #10b3ad;
   --red: #f64646;
+
   --orange: #f72269;
+  --orange-back: rgba(247, 35, 105, 0.1);
+
   --blue: #0091fa;
+  --blue-back: rgba(0, 145, 250, 0.1);
+
+  --purple: #9585f7;
+  --purple-back: rgba(149, 133, 247, 0.1);
+
+  --green: #27ae60;
+  --green-back: rgba(39, 174, 96, 0.1);
+
   --gray: #808082;
   --light-gray: #acacac;
+
+  --navy: #34495e;
+  --navy-back: rgba(52, 73, 94, 0.1);
+
+  --yellow: #f1c40f;
+  --yellow-back: rgba(241, 196, 15, 0.1);
 
   // Radius
   --large-radius: 20px;

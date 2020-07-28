@@ -10,34 +10,120 @@
       margin: var(--section-margin) 0;
 
       .daily-reports {
-        margin: var(--row-margin) 0;
-        padding: var(--padding);
-        background-color: var(--white);
-        border-radius: var(--medium-radius);
+        margin-bottom: 20px;
+        // padding: var(--padding);
+        // background-color: var(--white);
+        // border-radius: var(--medium-radius);
 
-        .row {
+        .report-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          height: 40px;
-          border-bottom: 1px solid var(--light-gray);
+          font-size: 14px;
+          color: var(--light-gray);
+          margin-bottom: 8px;
 
-          .category {
-            width: 80px;
-            text-align: center;
+          .daily-total {
+            display: flex;
+
+            .plus,
+            .minus {
+              width: 100px;
+              text-align: right;
+            }
+
+            .plus {
+              color: var(--blue);
+            }
+
+            .minus {
+              margin-left: 8px;
+              color: var(--orange);
+            }
           }
+        }
 
-          .description {
-            width: 240px;
-          }
+        .report-body {
+          background-color: var(--white);
+          border-radius: var(--small-radius);
+          padding: 10px 17px;
+          box-shadow: var(--todo-shadow);
 
-          .payment {
-            width: 80px;
-            text-align: center;
-          }
+          .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
 
-          .price {
-            width: 160px;
+            height: 50px;
+
+            .icon.category-icon {
+              font-size: 20px;
+              display: block;
+              width: 40px;
+              height: 40px;
+              line-height: 40px;
+              text-align: center;
+              border-radius: var(--small-radius);
+
+              color: var(--navy);
+              background-color: rgba(0, 145, 250, 0.1);
+              // background: var(--light-blue);
+
+              &.shop {
+                color: var(--orange);
+                background-color: var(--orange-back);
+              }
+
+              &.food {
+                color: var(--green);
+                background-color: var(--green-back);
+              }
+
+              &.transport {
+                color: var(--purple);
+                background-color: var(--purple-back);
+              }
+
+              &.money {
+                color: var(--blue);
+                background-color: var(--blue-back);
+              }
+
+              &.culture {
+                color: var(--yellow);
+                background-color: var(--yellow-back);
+              }
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            .category {
+              width: 80px;
+              text-align: center;
+            }
+
+            .description {
+              width: 240px;
+            }
+
+            .payment {
+              width: 100px;
+              color: #888;
+              text-align: center;
+            }
+
+            .price {
+              width: 160px;
+              text-align: right;
+              color: var(--blue);
+
+              &.minus {
+                color: var(--red);
+              }
+            }
           }
         }
       }

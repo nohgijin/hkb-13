@@ -1,38 +1,53 @@
 .app {
-  .navigation {
-    margin: 0 auto;
-    margin-top: 20px;
-    max-width: var(--width);
-    min-width: var(--width);
-
+  .month-selector {
     display: flex;
-    flex-direction: column;
-    // justify-content: space-between;
-    // align-items: center;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    font-size: 20px;
+    background-color: var(--white);
 
-    .month-selector {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 60px;
+    .left,
+    .right {
+      margin: 12px;
     }
+  }
 
-    .page-selector {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: var(--light-gray);
-      height: 40px;
+  .page-selector {
+    position: sticky;
+    top: 0;
+    display: flex;
+    padding: 0 250px;
+    height: 50px;
+    background: #3498db;
+    border-radius: 0;
+
+    button {
+      color: var(--white);
+      font-size: 14px;
+      flex: 1;
+      height: 100%;
       border-radius: var(--large-radius);
+      transition: transform 200ms;
 
-      button {
-        // width: 200px;
-        flex: 1;
-        height: 40px;
-        border-radius: var(--large-radius);
+      &:not(.selected):hover {
+        transform: scale(1.05);
+      }
 
-        &.selected {
+      &.selected {
+        position: relative;
+        font-size: 16px;
+        font-weight: 600;
+
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          height: 4px;
           background-color: white;
+          bottom: 0px;
+          left: 50px;
+          right: 50px;
         }
       }
     }
