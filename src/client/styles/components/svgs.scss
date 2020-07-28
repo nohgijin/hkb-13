@@ -1,0 +1,41 @@
+.pie {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+
+  path {
+    box-shadow: var(--baemin-shadow);
+    transition: transform 200ms;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.pie2 {
+  margin: 0 auto;
+  transform: rotate(-90deg);
+  background: #ddd;
+  border-radius: 50%;
+  display: block;
+
+  circle {
+    transition: stroke-dasharray 3s ease;
+  }
+
+  .circle1 {
+    fill: #ddd;
+    stroke: #0074d9;
+    stroke-width: 25;
+    stroke-dasharray: 110;
+  }
+
+  .circle2 {
+    fill: #ddd;
+    stroke: #ffe2ab;
+    stroke-width: 25;
+    // stroke-dasharray: 40 calc((20 * 158) / 100);
+    stroke-dasharray: 60 158;
+  }
+}

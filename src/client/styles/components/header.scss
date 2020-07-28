@@ -1,0 +1,15 @@
+.app {
+  .header {
+    color: var(--white);
+    background-color: var(--baemint);
+
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      font-weight: 500;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.app {
+  .navigation {
+    margin: 0 auto;
+    margin-top: 20px;
+    max-width: var(--width);
+    min-width: var(--width);
+
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    // align-items: center;
+
+    .month-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+    }
+
+    .page-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--light-gray);
+      height: 40px;
+      border-radius: var(--large-radius);
+
+      button {
+        // width: 200px;
+        flex: 1;
+        height: 40px;
+        border-radius: var(--large-radius);
+
+        &.selected {
+          background-color: white;
+        }
+      }
+    }
+  }
+}
