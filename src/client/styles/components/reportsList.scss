@@ -1,0 +1,46 @@
+.app {
+  .reports-page {
+    width: var(--width);
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .list-section {
+      margin: var(--section-margin) 0;
+
+      .daily-reports {
+        margin: var(--row-margin) 0;
+        padding: var(--padding);
+        background-color: var(--white);
+        border-radius: var(--medium-radius);
+
+        .row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 40px;
+          border-bottom: 1px solid var(--light-gray);
+
+          .category {
+            width: 80px;
+            text-align: center;
+          }
+
+          .description {
+            width: 240px;
+          }
+
+          .payment {
+            width: 80px;
+            text-align: center;
+          }
+
+          .price {
+            width: 160px;
+          }
+        }
+      }
+    }
+  }
+}

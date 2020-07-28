@@ -1,0 +1,115 @@
+.modal-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+
+  display: none;
+
+  .modal {
+    width: 420px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: var(--baemin-shadow);
+    border-radius: var(--medium-radius);
+    overflow: hidden;
+    background-color: var(--white);
+    padding: 40px;
+    position: relative;
+
+    .icon.close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+
+    .report-form {
+      $row-height: 32px;
+      .row {
+        width: 100%;
+        height: 50px;
+        margin: var(--row-margin) 0;
+
+        display: flex;
+        justify-content: space-between;
+
+        .name {
+          width: 120px;
+        }
+
+        .content {
+          width: 100%;
+        }
+      }
+
+      .inex-selector {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .income-btn,
+        .expense-btn {
+          width: 49%;
+          // flex: 1;
+          height: $row-height;
+          border: 1px solid var(--baemint);
+          color: var(--baemint);
+          border-radius: var(--small-radius);
+
+          &.selected {
+            color: var(--white);
+            background-color: var(--baemint);
+          }
+        }
+      }
+
+      .day-selector,
+      .category-selector,
+      .payment-selector,
+      .price-input,
+      .content-input {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 20px;
+      }
+
+      .payment-selector,
+      .content-input {
+        margin-right: 0;
+      }
+
+      // .price-input,
+      // .content-input {
+      //   input {
+      //     width: 240px;
+      //   }
+      // }
+
+      input,
+      select {
+        height: $row-height;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid var(--light-gray);
+        outline: none;
+      }
+
+      .submit-btn {
+        height: 40px;
+        width: 100%;
+        margin-top: 20px;
+        color: var(--white);
+        text-align: center;
+        background-color: var(--baemint);
+        border-radius: var(--small-radius);
+      }
+    }
+  }
+}
