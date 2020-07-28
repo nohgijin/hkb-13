@@ -8,6 +8,12 @@ const config = {
     path: path.resolve(__dirname, './dist'),
     filename: 'build.js',
   },
+  resolve: {
+    extensions: ['.js', '.scss'],
+    alias: {
+      '@': path.join(__dirname, 'src'),
+    },
+  },
   module: {
     rules: [
       {
@@ -18,6 +24,7 @@ const config = {
       {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        exclude: /node_modules/,
       },
     ],
   },
