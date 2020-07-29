@@ -1,4 +1,4 @@
-import { CALENDAR } from '../../utils/constants'
+import { CALENDAR_CLASS } from '../../utils/constants'
 
 export default class Day {
   constructor({ date, income, expense, disable }) {
@@ -17,9 +17,9 @@ export default class Day {
   setElements() {
     this.template = `
     <div class='${this.disable ? 'disable' : ''}'>
-      <div class='${CALENDAR.DATE}'>${this.date}</div>
-      <div class='${CALENDAR.INCOME}'>${this.income}</div>
-      <div class='${CALENDAR.EXPENSE}'>${this.expense}</div>
+      <div class='${CALENDAR_CLASS.DATE}'>${this.date}</div>
+      <div class='${CALENDAR_CLASS.INCOME}'>${this.income}</div>
+      <div class='${CALENDAR_CLASS.EXPENSE}'>${this.expense}</div>
     </div>
     `
   }

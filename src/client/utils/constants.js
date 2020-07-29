@@ -14,9 +14,14 @@ export const EXPENSE_CATEGORY = {
   UNDEF: '미분류',
 }
 
-export const CALENDAR = {
+export const CALENDAR_CLASS = {
   DAY: 'day',
   DATE: 'date',
   INCOME: 'income',
   EXPENSE: 'expense',
+}
+
+export const MONTH_SELECTOR_ID = {
+  LEFT: 'left',
+  RIGHT: 'right',
 }
