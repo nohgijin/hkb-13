@@ -108,6 +108,4 @@ export default class Calendar {
   }
 }
 
-new Calendar(2020, 12)
-
 export { Calendar }

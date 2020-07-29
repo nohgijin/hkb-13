@@ -1,41 +1,38 @@
-.pie {
-  width: 200px;
-  height: 200px;
-  padding: 10px;
+svg.simple-pie {
+  width: 300px;
+  height: 300px;
 
-  path {
-    box-shadow: var(--baemin-shadow);
-    transition: transform 200ms;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-}
-
-.pie2 {
-  margin: 0 auto;
-  transform: rotate(-90deg);
-  background: #ddd;
   border-radius: 50%;
-  display: block;
+  background: white;
+  transform: rotate(-90deg);
 
   circle {
-    transition: stroke-dasharray 3s ease;
+    fill: none;
+    stroke-width: 32;
+    r: 16;
+    cx: 16;
+    cy: 16;
+    stroke-dasharray: 0 100;
+    transition: stroke-dasharray 500ms ease;
   }
 
-  .circle1 {
-    fill: #ddd;
-    stroke: #0074d9;
-    stroke-width: 25;
-    stroke-dasharray: 110;
-  }
+  &.active circle {
+    &.first {
+      stroke: deeppink;
+      stroke-dasharray: 75 100;
+      z-index: 3;
+    }
 
-  .circle2 {
-    fill: #ddd;
-    stroke: #ffe2ab;
-    stroke-width: 25;
-    // stroke-dasharray: 40 calc((20 * 158) / 100);
-    stroke-dasharray: 60 158;
+    &.second {
+      stroke: #fb3;
+      stroke-dasharray: 50 100;
+      z-index: 2;
+    }
+
+    &.third {
+      stroke: black;
+      stroke-dasharray: 24 100;
+      z-index: 1;
+    }
   }
 }
