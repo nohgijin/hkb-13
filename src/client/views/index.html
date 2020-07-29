@@ -8,14 +8,21 @@
   <body>
     <!-- app -->
     <div class="app">
-      <nav class="month-selector">
-          <button class="left">
-            <i class="icon">arrowtriangle_left_fill</i>
-          </button>
-          <div class="month">6월</div>
-          <button class="right">
-            <i class="icon">arrowtriangle_right_fill</i>
-          </button>
+      <header class="header">
+        <h1 class="title">가계부</h1>
+      </header>
+
+      <nav class="navigation">
+        <div class="month-selector">
+          <button id="left">이전</button>
+          <div class="month"></div>
+          <button id="right">다음</button>
+        </div>
+        <div class="page-selector">
+          <button class="reports-page-btn selected">내역</button>
+          <button class="calendar-page-btn">달력</button>
+          <button class="statistics-page-btn">통계</button>
+        </div>
       </nav>
 
       <nav class="page-selector">
