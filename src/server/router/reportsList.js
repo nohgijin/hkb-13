@@ -3,6 +3,6 @@ const { getReportsListController } = require('../controller/reportsList')
 
 const router = express.Router()
 
-router.get('/api', getReportsListController)
+router.get('/api/board/:boardId/:month/report', getReportsListController)
 
 module.exports = { reportsListRouter: router }
