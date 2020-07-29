@@ -14,8 +14,9 @@ export const EXPENSE_CATEGORY = {
   UNDEF: '미분류',
 }
 
-export const DAY_CLASS = {
+export const CALENDAR = {
   DAY: 'day',
+  DATE: 'date',
   INCOME: 'income',
   EXPENSE: 'expense',
 }
