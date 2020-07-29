@@ -6,62 +6,6 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- modal -->
-    <div class="modal-wrap">
-      <div class="modal">
-        <i class="icon close">xmark</i>
-        <form action="" class="report-form">
-          <!-- 수입과 지출을 어우르는 그 단어가 뭐지? -->
-          <div class="inex-selector row">
-            <div class="name">분류</div>
-            <div class="content">
-              <button class="income-btn selected">수입</button>
-              <button class="expense-btn">지출</button>
-            </div>
-          </div>
-          <div class="day-selector row">
-            <div class="name">날짜</div>
-            <div class="content">
-              <input type="date" />
-            </div>
-          </div>
-          <div class="category-selector row">
-            <div class="name">카테고리</div>
-            <div class="content">
-              <select name="category-select" id="">
-                <option value="salary">월급</option>
-                <option value="pocket-money">용돈</option>
-                <option value="others">기타수입</option>
-              </select>
-            </div>
-          </div>
-          <div class="payment-selector row">
-            <div class="name">결제수단</div>
-            <div class="content">
-              <select name="category-select" id="">
-                <option value="kakao">카카오체크카드</option>
-                <option value="samsung">삼성카드</option>
-                <option value="hyundai">현대카드</option>
-              </select>
-            </div>
-          </div>
-          <div class="price-input row">
-            <div class="name">금액</div>
-            <div class="content">
-              <input type="number" />
-            </div>
-          </div>
-          <div class="content-input row">
-            <div class="name">내용</div>
-            <div class="content">
-              <input type="text" />
-            </div>
-          </div>
-          <button class="submit-btn">확인</button>
-        </form>
-      </div>
-    </div>
-
     <!-- app -->
     <div class="app">
       <header class="header">
@@ -71,7 +15,7 @@
       <nav class="navigation">
         <div class="month-selector">
           <button class="left"></button>
-          <div class="month">6월</div>
+          <div class="month"></div>
           <button class="right"></button>
         </div>
         <div class="page-selector">
@@ -83,96 +27,7 @@
 
       <main class="reports-page">
         <section class="list-section">
-          <div class="daily-reports">
-            <div class="row">
-              <div class="day">6월 16일 화</div>
-              <div class="daily-total">+0원</div>
-            </div>
-            <div class="row">
-              <div class="category">쇼핑/뷰티</div>
-              <div class="description">미용실</div>
-              <div class="payment">현대카드</div>
-              <div class="price">-20,000원</div>
-            </div>
-            <div class="row">
-              <div class="category">월급</div>
-              <div class="description">월급</div>
-              <div class="payment">국민은행</div>
-              <div class="price">+2,750,000원</div>
-            </div>
-          </div>
-          <div class="daily-reports">
-            <div class="row">
-              <div class="day">6월 16일 화</div>
-              <div class="daily-total">+0원</div>
-            </div>
-            <div class="row">
-              <div class="category">쇼핑/뷰티</div>
-              <div class="description">미용실</div>
-              <div class="payment">현대카드</div>
-              <div class="price">-20,000원</div>
-            </div>
-            <div class="row">
-              <div class="category">월급</div>
-              <div class="description">월급</div>
-              <div class="payment">국민은행</div>
-              <div class="price">+2,750,000원</div>
-            </div>
-          </div>
-          <div class="daily-reports">
-            <div class="row">
-              <div class="day">6월 16일 화</div>
-              <div class="daily-total">+0원</div>
-            </div>
-            <div class="row">
-              <div class="category">쇼핑/뷰티</div>
-              <div class="description">미용실</div>
-              <div class="payment">현대카드</div>
-              <div class="price">-20,000원</div>
-            </div>
-            <div class="row">
-              <div class="category">월급</div>
-              <div class="description">월급</div>
-              <div class="payment">국민은행</div>
-              <div class="price">+2,750,000원</div>
-            </div>
-          </div>
-          <div class="daily-reports">
-            <div class="row">
-              <div class="day">6월 16일 화</div>
-              <div class="daily-total">+0원</div>
-            </div>
-            <div class="row">
-              <div class="category">쇼핑/뷰티</div>
-              <div class="description">미용실</div>
-              <div class="payment">현대카드</div>
-              <div class="price">-20,000원</div>
-            </div>
-            <div class="row">
-              <div class="category">월급</div>
-              <div class="description">월급</div>
-              <div class="payment">국민은행</div>
-              <div class="price">+2,750,000원</div>
-            </div>
-          </div>
-          <div class="daily-reports">
-            <div class="row">
-              <div class="day">6월 16일 화</div>
-              <div class="daily-total">+0원</div>
-            </div>
-            <div class="row">
-              <div class="category">쇼핑/뷰티</div>
-              <div class="description">미용실</div>
-              <div class="payment">현대카드</div>
-              <div class="price">-20,000원</div>
-            </div>
-            <div class="row">
-              <div class="category">월급</div>
-              <div class="description">월급</div>
-              <div class="payment">국민은행</div>
-              <div class="price">+2,750,000원</div>
-            </div>
-          </div>
+          <table class="calendar"></table>
         </section>
       </main>
     </div>
