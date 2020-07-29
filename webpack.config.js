@@ -1,7 +1,9 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+/** @type {import('webpack').Configuration} */
 const config = {
   entry: './src/client/index.js',
   output: {
@@ -14,6 +16,7 @@ const config = {
       '@': path.join(__dirname, 'src'),
     },
   },
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
