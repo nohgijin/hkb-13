@@ -1,21 +1,26 @@
 import { Month } from './Month'
 import { Day } from './Day'
 import {} from '@/client/styles/components/calendar.scss'
-import { CALENDAR } from '../../utils/constants'
+import { CALENDAR_CLASS, MONTH_SELECTOR_ID } from '../../utils/constants'
 
 export default class Calendar {
   constructor(year, month) {
     this.$calendar = ''
     this.$month = ''
+    this.$left = ''
+    this.$right = ''
+
     this.year = year
     this.month = month
     this.weeks = []
     this.template = ``
 
     this.init()
+    this.bindEvent()
   }
 
   init() {
+    this.weeks = []
     this.setWeeks()
     this.setElements()
   }
@@ -44,7 +49,7 @@ export default class Calendar {
 
   setElements() {
     this.template = `
-    <thead class='${CALENDAR.DAY}'>
+    <thead class='${CALENDAR_CLASS.DAY}'>
       <tr>
         <th>일</th>
         <th>월</th>
@@ -71,6 +76,35 @@ export default class Calendar {
     })
     this.template += `</tbody>`
     this.$calendar.innerHTML = this.template
+    this.$left = document.querySelector(`#${MONTH_SELECTOR_ID.LEFT}`)
+    this.$right = document.querySelector(`#${MONTH_SELECTOR_ID.RIGHT}`)
+  }
+
+  bindEvent() {
+    this.before = this.beforeMonth.bind(this)
+    this.after = this.nextMonth.bind(this)
+    this.$left.addEventListener('click', this.before)
+    this.$right.addEventListener('click', this.after)
+  }
+
+  beforeMonth() {
+    if (this.month == 1) {
+      this.month = 12
+      this.init()
+      return
+    }
+    this.month -= 1
+    this.init()
+  }
+
+  nextMonth() {
+    if (this.month == 12) {
+      this.month = 1
+      this.init()
+      return
+    }
+    this.month += 1
+    this.init()
   }
 }
 
