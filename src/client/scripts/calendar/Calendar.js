@@ -59,7 +59,7 @@ export default class Calendar {
     this.template += `<tbody>`
     this.$month = document.querySelector('.month')
     this.$calendar = document.querySelector('.calendar')
-    this.$month.innerText = this.month+'월'
+    this.$month.innerText = this.month + '월'
     this.weeks.forEach((week) => {
       let weekTemplate = `<tr>`
       week.forEach((day) => {
@@ -73,7 +73,5 @@ export default class Calendar {
     this.$calendar.innerHTML = this.template
   }
 }
-
-new Calendar(2020, 12)
 
 export { Calendar }
