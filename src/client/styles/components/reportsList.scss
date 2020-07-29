@@ -46,16 +46,22 @@
         .report-body {
           background-color: var(--white);
           border-radius: var(--small-radius);
-          padding: 10px 17px;
+          overflow: hidden;
           box-shadow: var(--todo-shadow);
 
           .row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
-
+            padding: 2px 10px;
+            box-sizing: content-box;
             height: 50px;
+            transition: background-color 200ms;
+            cursor: pointer;
+
+            &:hover {
+              background-color: var(--super-light-blue);
+            }
 
             .icon.category-icon {
               font-size: 20px;
