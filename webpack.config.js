@@ -22,9 +22,12 @@ const config = {
         exclude: /node_modules/,
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-        exclude: /node_modules/,
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf)$/,
+        loader: 'url-loader?limit=100000&name=fonts/Icons/[name].[ext]',
       },
     ],
   },

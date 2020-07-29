@@ -3,65 +3,246 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>HKB</title>
   </head>
   <body>
     <!-- app -->
     <div class="app">
-      <header class="header">
-        <h1 class="title">가계부</h1>
-      </header>
-
-      <nav class="navigation">
-        <div class="month-selector">
-          <button class="left"></button>
-          <div class="month"></div>
-          <button class="right"></button>
-        </div>
-        <div class="page-selector">
-          <button class="reports-page-btn selected">내역</button>
-          <button class="calendar-page-btn">달력</button>
-          <button class="statistics-page-btn">통계</button>
-        </div>
+      <nav class="month-selector">
+          <button class="left">
+            <i class="icon">arrowtriangle_left_fill</i>
+          </button>
+          <div class="month">6월</div>
+          <button class="right">
+            <i class="icon">arrowtriangle_right_fill</i>
+          </button>
       </nav>
+
+      <nav class="page-selector">
+            <button class="reports-page-btn selected">내역</button>
+            <button class="calendar-page-btn">달력</button>
+            <button class="statistics-page-btn">통계</button>
+        </nav>
 
       <main class="reports-page">
         <section class="list-section">
+          <div class="daily-reports">
+            <div class="report-header">
+              <div class="day">6월 16일 화</div>
+              <!-- <div class="daily-total">
+                <div class="plus">+26,000원</div>
+                <div class="minus">-13,000원</div>
+              </div> -->
+            </div>
+            <div class="report-body">
+              <div class="row">
+                <i class="icon category-icon shop" title="쇼핑/뷰티">cart</i>
+                <div class="description">미용실</div>
+                <div class="payment">현대카드</div>
+                <div class="price minus">-20,000원</div>
+              </div>
+              <div class="row">
+                <i class="icon category-icon money" title="월급">money_dollar</i>
+                <div class="description">월급</div>
+                <div class="payment">국민은행</div>
+                <div class="price plus">+2,750,000원</div>
+            </div>
+          </div>
+          </div>
+          <div class="daily-reports">
+            <div class="report-header">
+              <div class="day">6월 15일 화</div>
+              <!-- <div class="daily-total">
+                <div class="plus">+26,000원</div>
+                <div class="minus">-13,000원</div>
+              </div> -->
+            </div>
+            <div class="report-body">
+              <div class="row">
+                <!-- <i class="icon category-icon food" title="식비">poultry_leg</i> -->
+                <i class="icon category-icon food" title="식비">tray</i>
+                <div class="description">BBQ 황금올리브</div>
+                <div class="payment">현대카드</div>
+                <div class="price minus">-20,000원</div>
+              </div>
+              <div class="row">
+                <i class="icon category-icon transport" title="교통">car_fill</i>
+                <div class="description">지난달 교통비</div>
+                <div class="payment">국민은행</div>
+                <div class="price minus">-53,000원</div>
+            </div>
+          </div>
+          </div>
+          <div class="daily-reports">
+            <div class="report-header">
+              <div class="day">6월 14일 화</div>
+              <!-- <div class="daily-total">
+                <div class="plus">+26,000원</div>
+                <div class="minus">-13,000원</div>
+              </div> -->
+            </div>
+            <div class="report-body">
+              <div class="row">
+                <i class="icon category-icon culture" title="문화/여가">film</i>
+                <div class="description">아이언맨3 4D</div>
+                <div class="payment">현대카드</div>
+                <div class="price minus">-40,000원</div>
+              </div>
+              <div class="row">
+                <i class="icon category-icon money" title="월급">money_dollar</i>
+                <div class="description">월급</div>
+                <div class="payment">국민은행</div>
+                <div class="price plus">+2,750,000원</div>
+            </div>
+          </div>
+          </div>
+
+          <div class="daily-reports">
+            <div class="report-header">
+              <div class="day">6월 16일 화</div>
+              <!-- <div class="daily-total">
+                <div class="plus">+26,000원</div>
+                <div class="minus">-13,000원</div>
+              </div> -->
+            </div>
+            <div class="report-body">
+              <div class="row">
+                <i class="icon category-icon shop" title="쇼핑/뷰티">cart</i>
+                <div class="description">미용실</div>
+                <div class="payment">현대카드</div>
+                <div class="price minus">-20,000원</div>
+              </div>
+              <div class="row">
+                <i class="icon category-icon money" title="월급">money_dollar</i>
+                <div class="description">월급</div>
+                <div class="payment">국민은행</div>
+                <div class="price plus">+2,750,000원</div>
+            </div>
+          </div>
+          </div>
+          <div class="daily-reports">
+            <div class="report-header">
+              <div class="day">6월 15일 화</div>
+              <!-- <div class="daily-total">
+                <div class="plus">+26,000원</div>
+                <div class="minus">-13,000원</div>
+              </div> -->
+            </div>
+            <div class="report-body">
+              <div class="row">
+                <!-- <i class="icon category-icon food" title="식비">poultry_leg</i> -->
+                <i class="icon category-icon food" title="식비">tray</i>
+                <div class="description">BBQ 황금올리브</div>
+                <div class="payment">현대카드</div>
+                <div class="price minus">-20,000원</div>
+              </div>
+              <div class="row">
+                <i class="icon category-icon transport" title="교통">car_fill</i>
+                <div class="description">지난달 교통비</div>
+                <div class="payment">국민은행</div>
+                <div class="price minus">-53,000원</div>
+            </div>
+          </div>
+          </div>
+          <div class="daily-reports">
+            <div class="report-header">
+              <div class="day">6월 14일 화</div>
+              <!-- <div class="daily-total">
+                <div class="plus">+26,000원</div>
+                <div class="minus">-13,000원</div>
+              </div> -->
+            </div>
+            <div class="report-body">
+              <div class="row">
+                <i class="icon category-icon culture" title="문화/여가">film</i>
+                <div class="description">아이언맨3 4D</div>
+                <div class="payment">현대카드</div>
+                <div class="price minus">-40,000원</div>
+              </div>
+              <div class="row">
+                <i class="icon category-icon money" title="월급">money_dollar</i>
+                <div class="description">월급</div>
+                <div class="payment">국민은행</div>
+                <div class="price plus">+2,750,000원</div>
+            </div>
+          </div>
+          </div>
+
+          <div class="daily-reports">
+            <div class="report-header">
+              <div class="day">6월 16일 화</div>
+              <!-- <div class="daily-total">
+                <div class="plus">+26,000원</div>
+                <div class="minus">-13,000원</div>
+              </div> -->
+            </div>
+            <div class="report-body">
+              <div class="row">
+                <i class="icon category-icon shop" title="쇼핑/뷰티">cart</i>
+                <div class="description">미용실</div>
+                <div class="payment">현대카드</div>
+                <div class="price minus">-20,000원</div>
+              </div>
+              <div class="row">
+                <i class="icon category-icon money" title="월급">money_dollar</i>
+                <div class="description">월급</div>
+                <div class="payment">국민은행</div>
+                <div class="price plus">+2,750,000원</div>
+            </div>
+          </div>
+          </div>
+          <div class="daily-reports">
+            <div class="report-header">
+              <div class="day">6월 15일 화</div>
+              <!-- <div class="daily-total">
+                <div class="plus">+26,000원</div>
+                <div class="minus">-13,000원</div>
+              </div> -->
+            </div>
+            <div class="report-body">
+              <div class="row">
+                <!-- <i class="icon category-icon food" title="식비">poultry_leg</i> -->
+                <i class="icon category-icon food" title="식비">tray</i>
+                <div class="description">BBQ 황금올리브</div>
+                <div class="payment">현대카드</div>
+                <div class="price minus">-20,000원</div>
+              </div>
+              <div class="row">
+                <i class="icon category-icon transport" title="교통">car_fill</i>
+                <div class="description">지난달 교통비</div>
+                <div class="payment">국민은행</div>
+                <div class="price minus">-53,000원</div>
+            </div>
+          </div>
+          </div>
+          <div class="daily-reports">
+            <div class="report-header">
+              <div class="day">6월 14일 화</div>
+              <!-- <div class="daily-total">
+                <div class="plus">+26,000원</div>
+                <div class="minus">-13,000원</div>
+              </div> -->
+            </div>
+            <div class="report-body">
+              <div class="row">
+                <i class="icon category-icon culture" title="문화/여가">film</i>
+                <div class="description">아이언맨3 4D</div>
+                <div class="payment">현대카드</div>
+                <div class="price minus">-40,000원</div>
+              </div>
+              <div class="row">
+                <i class="icon category-icon money" title="월급">money_dollar</i>
+                <div class="description">월급</div>
+                <div class="payment">국민은행</div>
+                <div class="price plus">+2,750,000원</div>
+            </div>
+          </div>
+          </div>
+          
+          </div>
           <table class="calendar"></table>
         </section>
       </main>
     </div>
   </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>우아한 투두</title>
-  </head>
-  <body>
-    <div class="app">
-      <nav class="navigation">
-        <button class="color-scheme">
-          <i class="icon sun">sun_min_fill</i>
-          <i class="icon moon">moon_fill</i>
-        </button>
-        <h1 class="board-name"></h1>
-        <button class="activity-btn">
-          <i class="icon">today</i>
-        </button>
-      </nav>
-
-      <aside class="activity-jumbo hidden">
-        <div class="activity-header">
-          Activity
-          <button class="activity-close"><i class="icon">xmark</i></button>
-        </div>
-
-        <div class="activity-sidebar"></div>
-      </aside>
-    </div>
-  </body>
-</html> -->
