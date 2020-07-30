@@ -1,11 +1,10 @@
 import { Month } from './Month'
 import { Day } from './Day'
-import {} from '@/client/styles/components/calendar.scss'
+import {} from '../../styles/components/calendar.scss'
 import { CALENDAR_CLASS, MONTH_SELECTOR_ID } from '../../utils/constants'
 
 export default class Calendar {
   constructor(year, month) {
-    this.$calendar = ''
     this.$month = ''
     this.$left = ''
     this.$right = ''
@@ -16,7 +15,7 @@ export default class Calendar {
     this.template = ``
 
     this.init()
-    this.bindEvent()
+    // this.bindEvent()
   }
 
   init() {
@@ -49,22 +48,22 @@ export default class Calendar {
 
   setElements() {
     this.template = `
-    <thead class='${CALENDAR_CLASS.DAY}'>
-      <tr>
-        <th>일</th>
-        <th>월</th>
-        <th>화</th>
-        <th>수</th>
-        <th>목</th>
-        <th>금</th>
-        <th>토</th>
-      </tr>
-    </thead>
-    `
-    this.template += `<tbody>`
-    this.$month = document.querySelector('.month')
-    this.$calendar = document.querySelector('.calendar')
-    this.$month.innerText = this.month + '월'
+    <main class="calendar-page">
+      <section class="calendar-section">
+        <table>
+          <thead class="day">
+            <tr>
+              <th>일</th>
+              <th>월</th>
+              <th>화</th>
+              <th>수</th>
+              <th>목</th>
+              <th>금</th>
+              <th>토</th>
+            </tr>
+          </thead>
+          <tbody>
+  `
     this.weeks.forEach((week) => {
       let weekTemplate = `<tr>`
       week.forEach((day) => {
@@ -74,8 +73,8 @@ export default class Calendar {
       weekTemplate += `</tr>`
       this.template += weekTemplate
     })
-    this.template += `</tbody>`
-    this.$calendar.innerHTML = this.template
+    this.template += `</tbody></table></section></main>`
+
     this.$left = document.querySelector(`#${MONTH_SELECTOR_ID.LEFT}`)
     this.$right = document.querySelector(`#${MONTH_SELECTOR_ID.RIGHT}`)
   }

@@ -1,12 +1,13 @@
 import { generateElement } from '@/client/utils/html-generator'
+import { Calendar } from '../calendar/Calendar'
 
 const notFoundPage = generateElement(`
 <div id="not-found">
-<div class="rain">
-  <div class="otl"><img src="https://baemin.com/img/img-title-error.png" alt="">
-    <p>404 NOT FOUND</p><a href="/reports"><img src="https://baemin.com/img/btn-home.png" alt=""></a>
+  <div class="rain">
+    <div class="otl"><img src="https://baemin.com/img/img-title-error.png" alt="">
+      <p>404 NOT FOUND</p><a href="/reports"><img src="https://baemin.com/img/btn-home.png" alt=""></a>
+    </div>
   </div>
-</div>
 </div>
 `)
 
@@ -227,21 +228,23 @@ const reportsPage = generateElement(`
   </div>
   
   </div>
-  <table class="calendar"></table>
 </section>
 </main>
 `)
-
 const routePage = (e) => {
   const app = document.querySelector('.app')
   const main = document.querySelector('.main')
 
   switch (location.pathname) {
     case '/reports': {
+      console.log(reportsPage)
       app.replaceChild(reportsPage, main)
       break
     }
     case '/calendar': {
+      const calendar = new Calendar(2020, 7)
+      const calendarPage = generateElement(calendar.template)
+      app.replaceChild(calendarPage, main)
       break
     }
     case '/statistics': {
@@ -250,12 +253,7 @@ const routePage = (e) => {
     default: {
       app.innerHTML = ''
       app.appendChild(notFoundPage)
-      // window.location.href = '/reports'
     }
-  }
-
-  if (location.pathname === '/reports') {
-    app.replaceChild(reportsPage, main)
   }
 }
 

@@ -1,67 +1,72 @@
-.calendar {
-  border-collapse: collapse;
-  width: 100%;
-
-  tr,
-  td,
-  th {
-    border: var(--light-gray) 1px solid;
-  }
-
-  th {
-    text-align: left;
-    padding: {
-      left: 5px;
-      top: 2px;
-      bottom: 2px;
+.app {
+  .calendar-page {
+    table {
+      border-collapse: collapse;
+      width: 100%;
     }
-  }
+    
+    tr,
+    td,
+    th {
+      border: var(--light-gray) 1px solid;
+    }
 
-  th:first-child,
-  td:first-child {
-    color: var(--red);
-  }
+    th {
+      text-align: left;
+      padding: {
+        left: 5px;
+        top: 2px;
+        bottom: 2px;
+      }
+    }
 
-  td {
-    position: relative;
-    width: calc(var(--width) / 7);
-    height: calc(var(--width) / 7);
-  }
+    th:first-child,
+    td:first-child {
+      color: var(--red);
+    }
 
-  .date {
-    position: absolute;
-    left: 5px;
-    top: 3px;
-  }
+    td {
+      position: relative;
+      width: calc(var(--width) / 7);
+      height: calc(var(--width) / 7);
+    }
 
-  .income {
-    position: absolute;
-    right: 7px;
-    bottom: 23px;
-    color: var(--blue);
-  }
+    .date {
+      position: absolute;
+      left: 5px;
+      top: 3px;
+    }
 
-  .income:before {
-    content: '+';
-    margin-right: 2px;
-  }
+    .income {
+      position: absolute;
+      right: 7px;
+      bottom: 23px;
+      color: var(--blue);
+    }
 
-  .expense {
-    position: absolute;
-    right: 7px;
-    bottom: 5px;
-    color: var(--baemint);
-  }
+    .income:before {
+      content: '+';
+      margin-right: 2px;
+    }
 
-  .expense:before {
-    content: '-';
-    margin-right: 2px;
-  }
+    .expense {
+      position: absolute;
+      right: 7px;
+      bottom: 5px;
+      color: var(--baemint);
+    }
 
-  .disable {
-    color: var(--light-gray);
-    .income, .expense {
-      display: none;
+    .expense:before {
+      content: '-';
+      margin-right: 2px;
+    }
+
+    .disable {
+      color: var(--light-gray);
+      .income,
+      .expense {
+        display: none;
+      }
     }
   }
 }
