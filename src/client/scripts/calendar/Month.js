@@ -1,13 +1,14 @@
 class Month {
-  constructor(year, month) {
+  constructor(year, month, monthData) {
     this.year = year
     this.month = month
-    this.data = []
-  
+    this.data = monthData
+    this.weeks = []
+    this.init()
+    console.log(this.data)
   }
 
-  async init() {
-    await this.fetchCalendar()
+  init() {
     this.setWeeks()
   }
 
@@ -62,14 +63,6 @@ class Month {
     )
     if (!this.data[idx]) return ''
     return this.data[idx].price
-  }
-
-  async fetchCalendar() {
-    const response = await fetch(`/api/board/1/${this.month}/calendar`, {
-      method: 'GET',
-    })
-    const data = await response.json()
-    this.data = data.calendar
   }
 }
 
