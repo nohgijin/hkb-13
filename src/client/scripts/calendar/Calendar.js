@@ -7,7 +7,6 @@ import { CalendarModel } from '../store/CalendarModel'
 
 export default class Calendar {
   constructor(year, month) {
-    // console.log("hi")
     this.$month = ''
     this.$left = ''
     this.$right = ''
@@ -28,7 +27,6 @@ export default class Calendar {
   }
 
   setWeeks(data) {
-    console.log(data)
     let bfrMonth = new Month(this.year, this.month - 1, data.beforeMonth)
     let curMonth = new Month(this.year, this.month, data.curMonth)
     let afrMonth = new Month(this.year, this.month + 1, data.afterMonth)
@@ -92,27 +90,6 @@ export default class Calendar {
     if (!main) app.append(calendarPage)
     else app.replaceChild(calendarPage, main)
   }
-
-  // bindEvent() {
-  //   this.$left = document.querySelector(`.${MONTH_SELECTOR_CLASS.LEFT}`)
-  //   this.$right = document.querySelector(`.${MONTH_SELECTOR_CLASS.RIGHT}`)
-  //   this.before = this.beforeMonth.bind(this)
-  //   this.after = this.nextMonth.bind(this)
-  //   this.$left.addEventListener('click', this.before)
-  //   this.$right.addEventListener('click', this.after)
-  // }
-
-  // beforeMonth() {
-  //   this.$left.removeEventListener('click', this.before)
-  //   this.$right.removeEventListener('click', this.after)
-  //   this.calendarModel.prevMonth()
-  // }
-
-  // nextMonth() {
-  //   this.$left.removeEventListener('click', this.before)
-  //   this.$right.removeEventListener('click', this.after)
-  //   this.calendarModel.nextMonth()
-  // }
 }
 
 export { Calendar }
