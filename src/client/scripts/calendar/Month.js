@@ -2,15 +2,12 @@ import data from './dummy'
 
 class Month {
   constructor(year, month) {
-    //한 달의 주
     this.weeks = []
     let date = new Date(year, month - 1, 1)
     let nextMonthFirstDate = new Date(year, month, 1)
     while (true) {
-      //한 주의 일
       let week = []
       while (true) {
-        //요일 구하는 함수
         let day = date.getDay()
         week.push({
           year: date.getFullYear(),
@@ -19,9 +16,7 @@ class Month {
           income: this.getIncome(date.getDate()),
           expense: this.getExpense(date.getDate()),
         })
-        //하루 증가
         date = new Date(date.setDate(date.getDate() + 1))
-        //일요일이면 다음주로
         if (day === 6) break
         if (date >= nextMonthFirstDate) break
       }
