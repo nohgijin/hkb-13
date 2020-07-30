@@ -42,6 +42,7 @@ export class NavigationBar extends HTMLElement {
       <button class="left">
         <i class="icon">arrowtriangle_left_fill</i>
       </button>
+      <div class="year"></div>
       <div class="month">6월</div>
       <button class="right">
         <i class="icon">arrowtriangle_right_fill</i>

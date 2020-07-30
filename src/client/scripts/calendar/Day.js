@@ -1,7 +1,8 @@
 import { CALENDAR_CLASS } from '../../utils/constants'
 
 export default class Day {
-  constructor({ date, income, expense, disable }) {
+  constructor({ month, date, income, expense, disable }) {
+    this.month = month
     this.date = date
     this.disable = disable
     this.income = income
