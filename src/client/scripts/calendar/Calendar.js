@@ -2,7 +2,7 @@ import { Month } from './Month'
 import { Day } from './Day'
 import {} from '../../styles/components/calendar.scss'
 import { CALENDAR_CLASS, MONTH_SELECTOR_CLASS } from '../../utils/constants'
-import { generateElement } from '@/client/utils/html-generator'
+import { generateElement } from '@/client/utils/htmlGenerator'
 
 export default class Calendar {
   constructor(year, month) {
@@ -22,7 +22,7 @@ export default class Calendar {
     this.weeks = []
     await this.setWeeks()
     this.setElements()
-    this.bindEvent()
+    // this.bindEvent()
   }
 
   async setWeeks() {
