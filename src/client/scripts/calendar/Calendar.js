@@ -81,7 +81,7 @@ export default class Calendar {
 
     const app = document.querySelector('.app')
     const main = document.querySelector('.main')
-    let calendarPage = generateElement(this.template)
+    const calendarPage = generateElement(this.template)
     app.replaceChild(calendarPage, main)
   }
 

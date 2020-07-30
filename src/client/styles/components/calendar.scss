@@ -4,7 +4,7 @@
       border-collapse: collapse;
       width: 100%;
     }
-    
+
     tr,
     td,
     th {
@@ -45,7 +45,6 @@
     }
 
     .income:before {
-      content: '+';
       margin-right: 2px;
     }
 
@@ -57,7 +56,6 @@
     }
 
     .expense:before {
-      content: '-';
       margin-right: 2px;
     }
 
