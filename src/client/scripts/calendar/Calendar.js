@@ -18,17 +18,20 @@ export default class Calendar {
     this.init()
   }
 
-  init() {
+  async init() {
     this.weeks = []
-    this.setWeeks()
+    await this.setWeeks()
     this.setElements()
     this.bindEvent()
   }
 
-  setWeeks() {
+  async setWeeks() {
     let bfrMonth = new Month(this.year, this.month - 1)
     let curMonth = new Month(this.year, this.month)
     let afrMonth = new Month(this.year, this.month + 1)
+    await bfrMonth.init()
+    await curMonth.init()
+    await afrMonth.init()
     let brfMonthLastWeek = bfrMonth.getLastWeek()
     let curMonthWeeks = curMonth.getWeeks()
     let afrMonthFirstWeek = afrMonth.getFirstWeek()

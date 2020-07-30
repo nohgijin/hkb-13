@@ -1,10 +1,21 @@
-import data from './dummy'
-
 class Month {
   constructor(year, month) {
+    this.year = year
+    this.month = month
+    this.data = []
+  
+  }
+
+  async init() {
+    await this.fetchCalendar()
+    this.setWeeks()
+  }
+
+  setWeeks() {
     this.weeks = []
-    let date = new Date(year, month - 1, 1)
-    let nextMonthFirstDate = new Date(year, month, 1)
+
+    let date = new Date(this.year, this.month - 1, 1)
+    let nextMonthFirstDate = new Date(this.year, this.month, 1)
     while (true) {
       let week = []
       while (true) {
@@ -23,13 +34,6 @@ class Month {
       this.weeks.push(week)
       if (date >= nextMonthFirstDate) break
     }
-    this.init()
-  }
-
-  init() {
-    this.getWeeks()
-    this.getFirstWeek()
-    this.getLastWeek()
   }
 
   getWeeks() {
@@ -45,19 +49,27 @@ class Month {
   }
 
   getIncome(date) {
-    const idx = data.findIndex(
+    const idx = this.data.findIndex(
       (data) => data.date == date && data.type == 'income'
     )
-    if (!data[idx]) return ''
-    return data[idx].price
+    if (!this.data[idx]) return ''
+    return this.data[idx].price
   }
 
   getExpense(date) {
-    const idx = data.findIndex(
+    const idx = this.data.findIndex(
       (data) => data.date == date && data.type == 'expense'
     )
-    if (!data[idx]) return ''
-    return data[idx].price
+    if (!this.data[idx]) return ''
+    return this.data[idx].price
+  }
+
+  async fetchCalendar() {
+    const response = await fetch(`/api/board/1/${this.month}/calendar`, {
+      method: 'GET',
+    })
+    const data = await response.json()
+    this.data = data.calendar
   }
 }
 
