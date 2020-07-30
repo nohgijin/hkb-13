@@ -3,6 +3,7 @@ import { Day } from './Day'
 import {} from '../../styles/components/calendar.scss'
 import { CALENDAR_CLASS, MONTH_SELECTOR_CLASS } from '../../utils/constants'
 import { generateElement } from '@/client/utils/htmlGenerator'
+import { comma } from '@/client/utils/comma'
 import { CalendarModel } from '../store/CalendarModel'
 
 export default class Calendar {
@@ -92,13 +93,15 @@ export default class Calendar {
     const calendarPage = generateElement(this.template)
 
     calendarPage.querySelector('.calendar-income').innerText =
-      '수입' + this.totalIncome
+      '수입 ' + comma(this.totalIncome)
     calendarPage.querySelector('.calendar-expense').innerText =
-      '지출' + this.totalExpense
+      '지출 ' + comma(this.totalExpense)
 
     if (!main) app.append(calendarPage)
     else app.replaceChild(calendarPage, main)
   }
+
+
 }
 
 export { Calendar }
