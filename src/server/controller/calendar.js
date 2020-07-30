@@ -1,5 +1,5 @@
 const {
-  getCalendarList,
+  getCalendar,
 } = require('../model/calendar')
 
 exports.getCalendarController = async (req, res) => {
@@ -11,7 +11,7 @@ exports.getCalendarController = async (req, res) => {
     return
   }
 
-  const calendar = await getCalendarList({ boardId, month })
+  const calendar = await getCalendar({ boardId, month })
 
   res.json({ calendar })
 }

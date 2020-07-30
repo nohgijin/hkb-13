@@ -1,6 +1,6 @@
 const { connection } = require('./connection')
 
-exports.getReportsList = async ({ boardId, month }) => {
+exports.getCalendar = async ({ boardId, month }) => {
   try {
     const [rows] = await connection.execute(
       `
