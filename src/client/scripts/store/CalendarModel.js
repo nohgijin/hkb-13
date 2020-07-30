@@ -21,7 +21,6 @@ class CalendarModel extends Observable {
     }
     this.month -= 1
     await this.getInitialData()
-
   }
 
   async nextMonth() {
@@ -34,33 +33,34 @@ class CalendarModel extends Observable {
     }
     this.month += 1
     await this.getInitialData()
-
   }
 
   async getInitialData() {
-    let response = await fetch(`/api/board/1/${this.month - 1}/calendar`, {
-      method: 'GET',
-    })
-    let data = await response.json()
-    this.beforeMonth = data.calendar
-
-    response = await fetch(`/api/board/1/${this.month}/calendar`, {
-      method: 'GET',
-    })
-    data = await response.json()
-    this.curMonth = data.calendar
-
-    response = await fetch(`/api/board/1/${this.month + 1}/calendar`, {
-      method: 'GET',
-    })
-    data = await response.json()
-    this.afterMonth = data.calendar
+    this.beforeMonth = await this.fetchMonthData(this.year, this.month - 1)
+    this.curMonth = await this.fetchMonthData(this.year, this.month)
+    this.afterMonth = await this.fetchMonthData(this.year, this.month + 1)
 
     this.notify({
       beforeMonth: this.beforeMonth,
       curMonth: this.curMonth,
       afterMonth: this.afterMonth,
     })
+  }
+
+  async fetchMonthData(year, month) {
+    if (month == 0) {
+      year--
+      month = 12
+    }
+    if (month == 13) {
+      year++
+      month = 1
+    }
+    const response = await fetch(`/api/board/1/${year}/${month}/calendar`, {
+      method: 'GET',
+    })
+    const { calendar } = await response.json()
+    return calendar
   }
 }
 
