@@ -23,7 +23,6 @@ export default class Calendar {
     this.weeks = []
     this.setWeeks(data)
     this.setElements()
-    // this.bindEvent()
   }
 
   setWeeks(data) {
