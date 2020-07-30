@@ -78,13 +78,12 @@ export default class Calendar {
     })
     this.template += `</tbody></table></section></main>`
 
-    document.querySelector('.month').innerText = this.month + '월'
     document.querySelector('.year').innerText = this.year + '년'
+    document.querySelector('.month').innerText = this.month + '월'
 
     const app = document.querySelector('.app')
-    const main = document.querySelector('.main')
-    const calendarPage = generateElement(this.template)
-    app.replaceChild(calendarPage, main)
+    let calendarPage = generateElement(this.template)
+    app.append(calendarPage)
   }
 
   bindEvent() {
