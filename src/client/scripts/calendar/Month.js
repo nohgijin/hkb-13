@@ -5,7 +5,6 @@ class Month {
     this.data = monthData
     this.weeks = []
     this.init()
-    console.log(this.data)
   }
 
   init() {
