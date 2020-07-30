@@ -6,7 +6,6 @@ import { generateElement } from '@/client/utils/html-generator'
 
 export default class Calendar {
   constructor(year, month) {
-
     this.$month = ''
     this.$left = ''
     this.$right = ''
@@ -52,19 +51,21 @@ export default class Calendar {
     this.template = `
     <main class="calendar-page main">
       <section class="calendar-section">
-        <table>
-          <thead class="day">
-            <tr>
-              <th>일</th>
-              <th>월</th>
-              <th>화</th>
-              <th>수</th>
-              <th>목</th>
-              <th>금</th>
-              <th>토</th>
-            </tr>
-          </thead>
-          <tbody>
+        <div class="calendar-income">수입 </div>
+        <div class="calendar-expense">지출 </div>
+          <table>
+            <thead class="day">
+              <tr>
+                <th>일</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+              </tr>
+            </thead>
+            <tbody>
   `
     this.weeks.forEach((week) => {
       let weekTemplate = `<tr>`
@@ -77,11 +78,12 @@ export default class Calendar {
     })
     this.template += `</tbody></table></section></main>`
 
-    document.querySelector('.month').innerText=this.month+'월'
+    document.querySelector('.month').innerText = this.month + '월'
+    document.querySelector('.year').innerText = this.year + '년'
 
     const app = document.querySelector('.app')
     const main = document.querySelector('.main')
-    let calendarPage = generateElement(this.template)
+    const calendarPage = generateElement(this.template)
     app.replaceChild(calendarPage, main)
   }
 
@@ -96,8 +98,10 @@ export default class Calendar {
 
   beforeMonth() {
     this.$left.removeEventListener('click', this.before)
+    this.$right.removeEventListener('click', this.after)
     if (this.month == 1) {
       this.month = 12
+      this.year--
       this.init()
       return
     }
@@ -106,9 +110,11 @@ export default class Calendar {
   }
 
   nextMonth() {
+    this.$left.removeEventListener('click', this.before)
     this.$right.removeEventListener('click', this.after)
     if (this.month == 12) {
       this.month = 1
+      this.year++
       this.init()
       return
     }

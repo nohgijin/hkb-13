@@ -237,7 +237,6 @@ const routePage = (e) => {
 
   switch (location.pathname) {
     case '/reports': {
-      console.log(reportsPage)
       app.replaceChild(reportsPage, main)
       break
     }

@@ -1,14 +1,28 @@
 .app {
   .calendar-page {
+    .calendar-income {
+      margin-top: 20px;
+      text-align: center;
+      color: var(--blue);
+    }
+    .calendar-expense {
+      margin-top: 10px;
+      text-align: center;
+      color: var(--baemint);
+    }
+
     table {
       border-collapse: collapse;
-      width: 100%;
+      width: 700px;
+      margin: 0 auto;
+      margin-top: 10px;
+      background-color: var(--white);
     }
-    
+
     tr,
     td,
     th {
-      border: var(--light-gray) 1px solid;
+      border: var(--super-light-gray) 1px solid;
     }
 
     th {
@@ -45,7 +59,6 @@
     }
 
     .income:before {
-      content: '+';
       margin-right: 2px;
     }
 
@@ -57,7 +70,6 @@
     }
 
     .expense:before {
-      content: '-';
       margin-right: 2px;
     }
 
