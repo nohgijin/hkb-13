@@ -1,10 +1,13 @@
 import { Month } from './Month'
 import { Day } from './Day'
 import {} from '../../styles/components/calendar.scss'
-import { CALENDAR_CLASS, MONTH_SELECTOR_ID } from '../../utils/constants'
+import { CALENDAR_CLASS, MONTH_SELECTOR_CLASS } from '../../utils/constants'
+import { generateElement } from '@/client/utils/html-generator'
 
 export default class Calendar {
-  constructor(year, month) {
+  constructor(app, main, year, month) {
+    this.$app = app
+    this.$main = main
     this.$month = ''
     this.$left = ''
     this.$right = ''
@@ -15,13 +18,13 @@ export default class Calendar {
     this.template = ``
 
     this.init()
-    // this.bindEvent()
   }
 
   init() {
     this.weeks = []
     this.setWeeks()
     this.setElements()
+    this.bindEvent()
   }
 
   setWeeks() {
@@ -48,7 +51,7 @@ export default class Calendar {
 
   setElements() {
     this.template = `
-    <main class="calendar-page">
+    <main class="calendar-page main">
       <section class="calendar-section">
         <table>
           <thead class="day">
@@ -75,11 +78,17 @@ export default class Calendar {
     })
     this.template += `</tbody></table></section></main>`
 
-    this.$left = document.querySelector(`#${MONTH_SELECTOR_ID.LEFT}`)
-    this.$right = document.querySelector(`#${MONTH_SELECTOR_ID.RIGHT}`)
+    document.querySelector('.month').innerText=this.month+'월'
+
+    const app = document.querySelector('.app')
+    const main = document.querySelector('.main')
+    let calendarPage = generateElement(this.template)
+    app.replaceChild(calendarPage, main)
   }
 
   bindEvent() {
+    this.$left = document.querySelector(`.${MONTH_SELECTOR_CLASS.LEFT}`)
+    this.$right = document.querySelector(`.${MONTH_SELECTOR_CLASS.RIGHT}`)
     this.before = this.beforeMonth.bind(this)
     this.after = this.nextMonth.bind(this)
     this.$left.addEventListener('click', this.before)
@@ -87,6 +96,7 @@ export default class Calendar {
   }
 
   beforeMonth() {
+    this.$left.removeEventListener('click', this.before)
     if (this.month == 1) {
       this.month = 12
       this.init()
@@ -97,6 +107,7 @@ export default class Calendar {
   }
 
   nextMonth() {
+    this.$right.removeEventListener('click', this.after)
     if (this.month == 12) {
       this.month = 1
       this.init()
