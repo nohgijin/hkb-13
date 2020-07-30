@@ -6,7 +6,6 @@ import { generateElement } from '@/client/utils/html-generator'
 
 export default class Calendar {
   constructor(year, month) {
-
     this.$month = ''
     this.$left = ''
     this.$right = ''
@@ -77,12 +76,11 @@ export default class Calendar {
     })
     this.template += `</tbody></table></section></main>`
 
-    document.querySelector('.month').innerText=this.month+'월'
+    document.querySelector('.month').innerText = this.month + '월'
 
     const app = document.querySelector('.app')
-    const main = document.querySelector('.main')
     let calendarPage = generateElement(this.template)
-    app.replaceChild(calendarPage, main)
+    app.append(calendarPage)
   }
 
   bindEvent() {

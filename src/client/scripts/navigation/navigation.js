@@ -1,18 +1,42 @@
 export class NavigationBar extends HTMLElement {
   constructor() {
     super()
+    this.setElements()
   }
 
   connectedCallback() {
-    this.open()
+    this.initEvents()
   }
 
-  open() {
-    this.classList.add('na')
-    this.render()
+  initEvents() {
+    const pushUrl = (href) => {
+      history.pushState({}, '', href)
+      window.dispatchEvent(new Event('popstate'))
+    }
+
+    const pageNavigators = [
+      {
+        el: this.querySelector('.reports-page-btn'),
+        url: '/reports',
+      },
+      {
+        el: this.querySelector('.calendar-page-btn'),
+        url: '/calendar',
+      },
+      {
+        el: this.querySelector('.statistics-page-btn'),
+        url: '/statistics',
+      },
+    ]
+
+    pageNavigators.forEach((nav) => {
+      nav.el.addEventListener('click', (e) => {
+        if (location.pathname !== nav.url) pushUrl(nav.url)
+      })
+    })
   }
 
-  render() {
+  setElements() {
     this.innerHTML = `
     <nav class="month-selector">
       <button class="left">
