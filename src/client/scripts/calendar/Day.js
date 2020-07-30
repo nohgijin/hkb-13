@@ -4,8 +4,8 @@ export default class Day {
   constructor({ date, income, expense, disable }) {
     this.date = date
     this.disable = disable
-    this.income = 5000
-    this.expense = 3000
+    this.income = income
+    this.expense = expense
 
     this.init()
   }
