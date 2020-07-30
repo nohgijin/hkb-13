@@ -1,16 +1,16 @@
 const { connection } = require('./connection')
 
-exports.getCalendar = async ({ boardId, month }) => {
+exports.getCalendar = async ({ boardId, month, year }) => {
   try {
     const [rows] = await connection.execute(
       `
       SELECT id, DATE_FORMAT(\`date\`, '%d') date, category, \`content\`, paymentMethod, price, \`type\` FROM report
-      WHERE boardId=? AND DATE_FORMAT(\`date\`, '%m') < ? AND DATE_FORMAT(\`date\`, '%m') > ?
+      WHERE boardId=? AND YEAR(date) = ? AND MONTH(date) = ?
       ORDER BY date;
     `,
-      [boardId, month + 1, month - 1]
+      [boardId, year, month]
     )
-
+    
     return rows
   } catch (err) {
     throw err
