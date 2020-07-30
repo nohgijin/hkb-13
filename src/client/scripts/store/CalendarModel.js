@@ -10,31 +10,7 @@ class CalendarModel extends Observable {
     this.afterMonth = []
     this.getData()
   }
-
-  async prevMonth() {
-    if (this.month == 1) {
-      this.month = 12
-      this.year--
-      await this.getData()
-
-      return
-    }
-    this.month -= 1
-    await this.getData()
-  }
-
-  async nextMonth() {
-    if (this.month == 12) {
-      this.month = 1
-      this.year++
-      await this.getData()
-
-      return
-    }
-    this.month += 1
-    await this.getData()
-  }
-
+  
   async getData() {
     this.beforeMonth = await this.fetchMonthData(this.year, this.month - 1)
     this.curMonth = await this.fetchMonthData(this.year, this.month)

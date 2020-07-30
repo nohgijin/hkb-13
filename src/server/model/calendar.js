@@ -10,7 +10,6 @@ exports.getCalendar = async ({ boardId, month, year }) => {
     `,
       [boardId, year, month]
     )
-    
     return rows
   } catch (err) {
     throw err
