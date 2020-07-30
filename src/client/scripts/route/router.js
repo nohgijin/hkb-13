@@ -242,11 +242,9 @@ const routePage = (e) => {
       break
     }
     case '/calendar': {
-      new Calendar(app,main,2020, 7)
-      // const calendarPage = generateElement(calendar.template)
-      // console.log(calendarPage)
-      // calendar.bindEvent()
-      // app.replaceChild(calendarPage, main)
+      let year = new Date().getFullYear()
+      let month = new Date().getMonth() + 1
+      new Calendar(year, month)
       break
     }
     case '/statistics': {

@@ -5,9 +5,8 @@ import { CALENDAR_CLASS, MONTH_SELECTOR_CLASS } from '../../utils/constants'
 import { generateElement } from '@/client/utils/html-generator'
 
 export default class Calendar {
-  constructor(app, main, year, month) {
-    this.$app = app
-    this.$main = main
+  constructor(year, month) {
+
     this.$month = ''
     this.$left = ''
     this.$right = ''
