@@ -7,6 +7,9 @@
     font-size: 20px;
     background-color: var(--white);
 
+    .year {
+      display: flex;
+    }
     .left,
     .right {
       margin: 12px;

@@ -2,13 +2,16 @@
   .calendar-page {
     table {
       border-collapse: collapse;
-      width: 100%;
+      width: 700px;
+      margin: 0 auto;
+      margin-top: 60px;
+      background-color: var(--white);
     }
 
     tr,
     td,
     th {
-      border: var(--light-gray) 1px solid;
+      border: var(--super-light-gray) 1px solid;
     }
 
     th {
