@@ -1,3 +1,5 @@
+import { urlParser } from '@/client/utils/urlParser'
+
 export class NavigationBar extends HTMLElement {
   constructor() {
     super()
@@ -17,21 +19,49 @@ export class NavigationBar extends HTMLElement {
     const pageNavigators = [
       {
         el: this.querySelector('.reports-page-btn'),
-        url: '/reports',
+        page: 'reports',
       },
       {
         el: this.querySelector('.calendar-page-btn'),
-        url: '/calendar',
+        page: 'calendar',
       },
       {
         el: this.querySelector('.statistics-page-btn'),
-        url: '/statistics',
+        page: 'statistics',
       },
     ]
 
     pageNavigators.forEach((nav) => {
       nav.el.addEventListener('click', (e) => {
-        if (location.pathname !== nav.url) pushUrl(nav.url)
+        const result = urlParser(location.pathname)
+        if (!result) return
+
+        const { year, month } = result
+        if (location.pathname !== nav.url)
+          pushUrl(`/${year}/${month}/${nav.page}`)
+      })
+    })
+
+    const calendarArrows = [
+      {
+        el: this.querySelector('.right'),
+        value: 1,
+      },
+      {
+        el: this.querySelector('.left'),
+        value: -1,
+      },
+    ]
+
+    calendarArrows.forEach((arrow) => {
+      arrow.el.addEventListener('click', (e) => {
+        const result = urlParser(location.pathname)
+        if (!result) return
+
+        const { year, month, page } = result
+        const date = new Date(year, month + arrow.value)
+
+        pushUrl(`/${date.getFullYear()}/${date.getMonth()}/${page}`)
       })
     })
   }

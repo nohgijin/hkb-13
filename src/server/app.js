@@ -6,7 +6,7 @@ const appRoot = require('app-root-path')
 const logger = require('morgan')
 const app = express()
 
-const { reportsListRouter } = require('./router')
+const { reportsListRouter, calendarRouter } = require('./router')
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static(appRoot.resolve('/dist')))
 
 app.use(reportsListRouter)
+app.use(calendarRouter)
 
 app.use(function (req, res, next) {
   res.sendFile(appRoot.resolve('/dist/index.html'))

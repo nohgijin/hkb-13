@@ -51,16 +51,6 @@ exports.modifyAReport = async ({
   boardId,
   reportId,
 }) => {
-  console.log(
-    category,
-    date,
-    content,
-    paymentMethod,
-    price,
-    type,
-    boardId,
-    reportId
-  )
   try {
     await connection.execute(
       `

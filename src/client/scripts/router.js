@@ -1,8 +1,12 @@
-import { generateElement } from '@/client/utils/html-generator'
 import { Calendar } from './calendar/Calendar'
 
+import { urlParser } from '@/client/utils/urlParser'
+import { generateElement } from '@/client/utils/htmlGenerator'
+
 import './navigation/navigation'
+
 import './reportsList/reportsList'
+
 import './notFound/notFound'
 
 const render = (elements) => {
@@ -22,31 +26,35 @@ const routePage = (e) => {
     `<navigation-bar class="navigation-bar"></navigation-bar>`
   )
 
+  const results = urlParser(pathname)
+  if (!results) {
+    // render notFound page
+    const notFoundPage = generateElement(`<not-found></not-found>`)
+    render([notFoundPage])
+    return
+  }
+
+  const { year, month, page } = results
+
   // render report page
-  if (pathname === '/reports') {
+  if (page === `reports`) {
     const reportsPage = generateElement(`<reports-list></reports-list>`)
     render([navigationBar, reportsPage])
     return
   }
 
   // render calendar page
-  if (pathname === '/calendar') {
+  if (page === `calendar`) {
     app.prepend(navigationBar)
-    let year = new Date().getFullYear()
-    let month = new Date().getMonth() + 1
     new Calendar(year, month)
     return
   }
 
   // render statistics page
-  if (pathname === '/statistics') {
+  if (page === `statistics`) {
     render([navigationBar])
     return
   }
-
-  // render notFound page
-  const notFoundPage = generateElement(`<not-found></not-found>`)
-  render([notFoundPage])
 }
 
 window.addEventListener('popstate', routePage)
