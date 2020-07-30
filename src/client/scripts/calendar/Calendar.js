@@ -14,6 +14,8 @@ export default class Calendar {
     this.year = year
     this.month = month
     this.weeks = []
+    this.totalExpense = 0
+    this.totalIncome = 0
     this.template = ``
     this.calendarModel = new CalendarModel(this.year, this.month)
     this.calendarModel.subscribe(this.init.bind(this))
@@ -29,10 +31,10 @@ export default class Calendar {
     let bfrMonth = new Month(this.year, this.month - 1, data.beforeMonth)
     let curMonth = new Month(this.year, this.month, data.curMonth)
     let afrMonth = new Month(this.year, this.month + 1, data.afterMonth)
-
     let brfMonthLastWeek = bfrMonth.getLastWeek()
     let curMonthWeeks = curMonth.getWeeks()
     let afrMonthFirstWeek = afrMonth.getFirstWeek()
+
     brfMonthLastWeek.forEach((date) => (date.disable = true))
     afrMonthFirstWeek.forEach((date) => (date.disable = true))
 
@@ -46,6 +48,9 @@ export default class Calendar {
         this.weeks.push(curMonthWeek)
       }
     }
+
+    this.totalIncome = curMonth.getTotalIncome()
+    this.totalExpense = curMonth.getTotalExpense()
   }
 
   setElements() {
@@ -85,6 +90,11 @@ export default class Calendar {
     const app = document.querySelector('.app')
     const main = document.querySelector('.main')
     const calendarPage = generateElement(this.template)
+
+    calendarPage.querySelector('.calendar-income').innerText =
+      '수입' + this.totalIncome
+    calendarPage.querySelector('.calendar-expense').innerText =
+      '지출' + this.totalExpense
 
     if (!main) app.append(calendarPage)
     else app.replaceChild(calendarPage, main)

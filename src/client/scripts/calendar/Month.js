@@ -63,6 +63,26 @@ class Month {
     if (!this.data[idx]) return ''
     return this.data[idx].price
   }
+
+  getTotalIncome() {
+    let totalIncome = 0
+    this.weeks.forEach((week) => {
+      week.forEach((day) => {
+        if (day.income !== '') totalIncome += day.income
+      })
+    })
+    return totalIncome
+  }
+
+  getTotalExpense() {
+    let totalExpense = 0
+    this.weeks.forEach((week) => {
+      week.forEach((day) => {
+        if (day.expense !== '') totalExpense += day.expense
+      })
+    })
+    return totalExpense
+  }
 }
 
 export { Month }
