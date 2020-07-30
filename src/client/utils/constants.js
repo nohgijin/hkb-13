@@ -21,7 +21,7 @@ export const CALENDAR_CLASS = {
   EXPENSE: 'expense',
 }
 
-export const MONTH_SELECTOR_ID = {
+export const MONTH_SELECTOR_CLASS = {
   LEFT: 'left',
   RIGHT: 'right',
 }

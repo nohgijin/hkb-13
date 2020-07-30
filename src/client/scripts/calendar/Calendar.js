@@ -1,11 +1,12 @@
 import { Month } from './Month'
 import { Day } from './Day'
-import {} from '@/client/styles/components/calendar.scss'
-import { CALENDAR_CLASS, MONTH_SELECTOR_ID } from '../../utils/constants'
+import {} from '../../styles/components/calendar.scss'
+import { CALENDAR_CLASS, MONTH_SELECTOR_CLASS } from '../../utils/constants'
+import { generateElement } from '@/client/utils/html-generator'
 
 export default class Calendar {
   constructor(year, month) {
-    this.$calendar = ''
+
     this.$month = ''
     this.$left = ''
     this.$right = ''
@@ -16,13 +17,13 @@ export default class Calendar {
     this.template = ``
 
     this.init()
-    this.bindEvent()
   }
 
   init() {
     this.weeks = []
     this.setWeeks()
     this.setElements()
+    this.bindEvent()
   }
 
   setWeeks() {
@@ -49,22 +50,22 @@ export default class Calendar {
 
   setElements() {
     this.template = `
-    <thead class='${CALENDAR_CLASS.DAY}'>
-      <tr>
-        <th>일</th>
-        <th>월</th>
-        <th>화</th>
-        <th>수</th>
-        <th>목</th>
-        <th>금</th>
-        <th>토</th>
-      </tr>
-    </thead>
-    `
-    this.template += `<tbody>`
-    this.$month = document.querySelector('.month')
-    this.$calendar = document.querySelector('.calendar')
-    this.$month.innerText = this.month + '월'
+    <main class="calendar-page main">
+      <section class="calendar-section">
+        <table>
+          <thead class="day">
+            <tr>
+              <th>일</th>
+              <th>월</th>
+              <th>화</th>
+              <th>수</th>
+              <th>목</th>
+              <th>금</th>
+              <th>토</th>
+            </tr>
+          </thead>
+          <tbody>
+  `
     this.weeks.forEach((week) => {
       let weekTemplate = `<tr>`
       week.forEach((day) => {
@@ -74,13 +75,19 @@ export default class Calendar {
       weekTemplate += `</tr>`
       this.template += weekTemplate
     })
-    this.template += `</tbody>`
-    this.$calendar.innerHTML = this.template
-    this.$left = document.querySelector(`#${MONTH_SELECTOR_ID.LEFT}`)
-    this.$right = document.querySelector(`#${MONTH_SELECTOR_ID.RIGHT}`)
+    this.template += `</tbody></table></section></main>`
+
+    document.querySelector('.month').innerText=this.month+'월'
+
+    const app = document.querySelector('.app')
+    const main = document.querySelector('.main')
+    let calendarPage = generateElement(this.template)
+    app.replaceChild(calendarPage, main)
   }
 
   bindEvent() {
+    this.$left = document.querySelector(`.${MONTH_SELECTOR_CLASS.LEFT}`)
+    this.$right = document.querySelector(`.${MONTH_SELECTOR_CLASS.RIGHT}`)
     this.before = this.beforeMonth.bind(this)
     this.after = this.nextMonth.bind(this)
     this.$left.addEventListener('click', this.before)
@@ -88,6 +95,7 @@ export default class Calendar {
   }
 
   beforeMonth() {
+    this.$left.removeEventListener('click', this.before)
     if (this.month == 1) {
       this.month = 12
       this.init()
@@ -98,6 +106,7 @@ export default class Calendar {
   }
 
   nextMonth() {
+    this.$right.removeEventListener('click', this.after)
     if (this.month == 12) {
       this.month = 1
       this.init()
