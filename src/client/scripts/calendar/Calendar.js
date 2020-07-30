@@ -6,7 +6,6 @@ import { generateElement } from '@/client/utils/html-generator'
 
 export default class Calendar {
   constructor(year, month) {
-
     this.$month = ''
     this.$left = ''
     this.$right = ''
@@ -77,7 +76,8 @@ export default class Calendar {
     })
     this.template += `</tbody></table></section></main>`
 
-    document.querySelector('.month').innerText=this.month+'월'
+    document.querySelector('.month').innerText = this.month + '월'
+    document.querySelector('.year').innerText = this.year + '년'
 
     const app = document.querySelector('.app')
     const main = document.querySelector('.main')
@@ -96,8 +96,10 @@ export default class Calendar {
 
   beforeMonth() {
     this.$left.removeEventListener('click', this.before)
+    this.$right.removeEventListener('click', this.after)
     if (this.month == 1) {
       this.month = 12
+      this.year--
       this.init()
       return
     }
@@ -106,9 +108,11 @@ export default class Calendar {
   }
 
   nextMonth() {
+    this.$left.removeEventListener('click', this.before)
     this.$right.removeEventListener('click', this.after)
     if (this.month == 12) {
       this.month = 1
+      this.year++
       this.init()
       return
     }
