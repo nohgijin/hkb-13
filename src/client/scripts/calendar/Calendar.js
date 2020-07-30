@@ -82,8 +82,11 @@ export default class Calendar {
     document.querySelector('.month').innerText = this.month + '월'
 
     const app = document.querySelector('.app')
-    let calendarPage = generateElement(this.template)
-    app.append(calendarPage)
+    const main = document.querySelector('.main')
+    const calendarPage = generateElement(this.template)
+
+    if (!main) app.append(calendarPage)
+    else app.replaceChild(calendarPage, main)
   }
 
   bindEvent() {
