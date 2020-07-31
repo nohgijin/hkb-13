@@ -39,6 +39,8 @@ const routePage = (e) => {
   // render report page
   if (page === `reports`) {
     const reportsPage = generateElement(`<reports-list></reports-list>`)
+    reportsPage.setAttribute('data-year', year)
+    reportsPage.setAttribute('data-month', month)
     render([navigationBar, reportsPage])
     return
   }

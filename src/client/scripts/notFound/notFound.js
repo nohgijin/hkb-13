@@ -1,10 +1,10 @@
 export class NotFound extends HTMLElement {
   constructor() {
     super()
-    this.setElements()
+    this.initElements()
   }
 
-  setElements() {
+  initElements() {
     this.innerHTML = `
     <div id="not-found">
       <div class="rain">

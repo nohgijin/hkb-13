@@ -3,7 +3,7 @@ import { urlParser } from '@/client/utils/urlParser'
 export class NavigationBar extends HTMLElement {
   constructor() {
     super()
-    this.setElements()
+    this.initElements()
   }
 
   connectedCallback() {
@@ -76,7 +76,7 @@ export class NavigationBar extends HTMLElement {
     })
   }
 
-  setElements() {
+  initElements() {
     this.innerHTML = `
     <nav class="month-selector">
       <button class="left">
