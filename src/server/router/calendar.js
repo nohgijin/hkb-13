@@ -6,6 +6,6 @@ const {
 
 const router = express.Router()
 
-router.get('/api/board/:boardId/:month/calendar', getCalendarController)
+router.get('/api/board/:boardId/:year/:month/calendar', getCalendarController)
 
 module.exports = { calendarRouter: router }

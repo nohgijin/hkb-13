@@ -59,9 +59,19 @@ export class NavigationBar extends HTMLElement {
         if (!result) return
 
         const { year, month, page } = result
-        const date = new Date(year, month + arrow.value)
 
-        pushUrl(`/${date.getFullYear()}/${date.getMonth()}/${page}`)
+        let urlYear = year
+        let urlMonth = month + arrow.value
+
+        if (urlMonth == 13) {
+          urlMonth = 1
+          urlYear++
+        } else if (urlMonth == 0) {
+          urlMonth = 12
+          urlYear--
+        }
+
+        pushUrl(`/${urlYear}/${urlMonth}/${page}`)
       })
     })
   }
@@ -72,8 +82,8 @@ export class NavigationBar extends HTMLElement {
       <button class="left">
         <i class="icon">arrowtriangle_left_fill</i>
       </button>
-      <div class="year">2020년</div>
-      <div class="month">6월</div>
+      <div class="year"></div>
+      <div class="month"></div>
       <button class="right">
         <i class="icon">arrowtriangle_right_fill</i>
       </button>
