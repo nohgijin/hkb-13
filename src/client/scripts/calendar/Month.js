@@ -15,7 +15,7 @@ class Month {
     this.weeks = []
 
     let date = new Date(this.year, this.month - 1, 1)
-    let nextMonthFirstDate = new Date(this.year, this.month, 1)
+    const nextMonthFirstDate = new Date(this.year, this.month, 1)
     while (true) {
       let week = []
       while (true) {

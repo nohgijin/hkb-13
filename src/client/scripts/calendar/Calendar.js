@@ -29,12 +29,12 @@ export default class Calendar {
   }
 
   setWeeks(data) {
-    let bfrMonth = new Month(this.year, this.month - 1, data.beforeMonth)
-    let curMonth = new Month(this.year, this.month, data.curMonth)
-    let afrMonth = new Month(this.year, this.month + 1, data.afterMonth)
-    let brfMonthLastWeek = bfrMonth.getLastWeek()
-    let curMonthWeeks = curMonth.getWeeks()
-    let afrMonthFirstWeek = afrMonth.getFirstWeek()
+    const bfrMonth = new Month(this.year, this.month - 1, data.beforeMonth)
+    const curMonth = new Month(this.year, this.month, data.curMonth)
+    const afrMonth = new Month(this.year, this.month + 1, data.afterMonth)
+    const brfMonthLastWeek = bfrMonth.getLastWeek()
+    const curMonthWeeks = curMonth.getWeeks()
+    const afrMonthFirstWeek = afrMonth.getFirstWeek()
 
     brfMonthLastWeek.forEach((date) => (date.disable = true))
     afrMonthFirstWeek.forEach((date) => (date.disable = true))
@@ -58,8 +58,10 @@ export default class Calendar {
     this.template = `
     <main class="calendar-page main">
       <section class="calendar-section">
-        <div class="calendar-income">수입 </div>
-        <div class="calendar-expense">지출 </div>
+        <input class="income-check" type="checkbox" /> 
+        <label><span class="calendar-income"></span></label>
+        <input class="expense-check" type="checkbox" />
+        <label><span  class="calendar-expense"></span></label>
           <table>
             <thead class="day">
               <tr>
@@ -100,8 +102,6 @@ export default class Calendar {
     if (!main) app.append(calendarPage)
     else app.replaceChild(calendarPage, main)
   }
-
-
 }
 
 export { Calendar }

@@ -1,10 +1,15 @@
 .app {
   .calendar-page {
+    .income-check,
+    .expense-check {
+      text-align: center;
+    }
     .calendar-income {
       margin-top: 20px;
       text-align: center;
       color: var(--blue);
     }
+
     .calendar-expense {
       margin-top: 10px;
       text-align: center;
