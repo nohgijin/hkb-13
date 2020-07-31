@@ -4,10 +4,17 @@
 - [![title](https://img.shields.io/badge/DEVLOPER-노기진-123456)](https://github.com/nohgijin)
 - [![title](https://img.shields.io/badge/DEVLOPER-한규현-123456)](https://github.com/dnacu)
 
+## Project description
+월간 소비 및 지출에 대한 report를 작성하고, 내역 및 월별/카테고리별 통계를 확인할 수 있는 개인 가계부 서비스.
 
-### Documentations
-- [API Document](https://github.com/woowa-techcamp-2020/hkb-13/issues/2)
-- [Postman API Document](https://documenter.getpostman.com/view/8220125/T1Dv6ZKB?version=latest)
+### Observable
+
+### Client Routing
+
+### Passport
+
+### Oauth
+
 
 ## 🧞Quick Start
 ### 1. Clone & Install Packages
@@ -69,6 +76,13 @@ Then, you can access to your server http://localhost:3000/
 - ![title](https://img.shields.io/badge/-Github-181717?&logo=Github&logoColor=white)
 - ![title](https://img.shields.io/badge/-Slack-4A154B?&logo=Slack&logoColor=white)
 - ![title](https://img.shields.io/badge/-Postman-4A154B?&logo=Postman&logoColor=white)
+
+------
+
+### Documentations
+- [API Document](https://github.com/woowa-techcamp-2020/hkb-13/issues/2)
+- [Postman API Document](https://documenter.getpostman.com/view/8220125/T1Dv6ZKB?version=latest)
+
 
 ------
 
