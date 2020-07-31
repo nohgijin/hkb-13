@@ -79,30 +79,31 @@ Then, you can access to your server http://localhost:3000/
     |
     |-- public
     |
-    |-- client  // Frontend
+    |-- src
+    |   |-- client  // Frontend
     |   |
-    |   |-- scripts
-    |   |   |-- calendar
-    |   |   |   ...  // 캘린더 파일 모음
+    |   |   |-- scripts
+    |   |   |   |-- calendar
+    |   |   |   |   ...  // 캘린더 파일 모음
+    |   |   |   |
+    |   |   |   |-- navigation
+    |   |   |   |   ...  // 네이게이션 파일
+    |   |   |   |
+    |   |   |   |-- notFound
+    |   |   |   |   ...  // 오류 파일
+    |   |   |   |
+    |   |   |   |-- reportsList  
+    |   |   |   |   ...  // 거래내역, 통계 파일 모음
+    |   |   |   |
+    |   |   |   |-- store
+    |   |   |   |   ...  // 옵저버 패턴 파일 모음
+    |   |   |   |
     |   |   |
-    |   |   |-- navigation
-    |   |   |   ...  // 네이게이션 파일
-    |   |   |
-    |   |   |-- notFound
-    |   |   |   ...  // 오류 파일
-    |   |   |
-    |   |   |-- reportsList  
-    |   |   |   ...  // 거래내역, 통계 파일 모음
-    |   |   |
-    |   |   |-- store
-    |   |   |   ...  // 옵저버 패턴 파일 모음
-    |   |   |
-    |   |
-    |   |-- styles
-    |   |   |
-    |   |   |-- components
-    |   |   |   ...  // 컴포넌트별 스타일
-    |   |   |
+    |   |   |-- styles
+    |   |   |   |
+    |   |   |   |-- components
+    |   |   |   |   ...  // 컴포넌트별 스타일
+    |   |   |   |
     |   |   |-- utils
     |   |   |   ...  // 공통 사용 함수 모음
     |   |   |
@@ -110,15 +111,15 @@ Then, you can access to your server http://localhost:3000/
     |   |   |   ...  // html 파일
     |   |   |    
     |   |
-    |-- config
-    |   | 
+    |   |-- config
+    |   |
     |   |-- server  // Backend
-    |   |   |
-    |   |   |-- controller
-    |   |   |   ...  // 라우터 요청에 따른 작업 처리
-    |   |   |
-    |   |   |-- model
-    |   |   |   ...  // 데이터베이스 작업 처리
-    |   |   |
-    |   |   |-- router
-    |   |   |
+    |   |   |   |
+    |   |   |   |-- controller
+    |   |   |   |   ...  // 라우터 요청에 따른 작업 처리
+    |   |   |   |
+    |   |   |   |-- model
+    |   |   |   |   ...  // 데이터베이스 작업 처리
+    |   |   |   |
+    |   |   |   |-- router
+    |   |   |   |
