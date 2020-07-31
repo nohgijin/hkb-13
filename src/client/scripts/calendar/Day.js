@@ -1,4 +1,5 @@
 import { CALENDAR_CLASS } from '../../utils/constants'
+import { comma } from '@/client/utils/comma'
 
 export default class Day {
   constructor({ month, date, income, expense, disable }) {
@@ -16,8 +17,8 @@ export default class Day {
   }
 
   setElements() {
-    if (this.income != 0) this.income = '+' + this.income
-    if (this.expense != 0) this.expense = '-' + this.expense
+    if (this.income != 0) this.income = '+' + comma(this.income)
+    if (this.expense != 0) this.expense = '-' + comma(this.expense)
 
     this.template = `
     <div class='${this.disable ? 'disable' : ''}'>

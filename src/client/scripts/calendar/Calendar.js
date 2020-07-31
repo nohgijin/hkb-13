@@ -3,6 +3,8 @@ import { Day } from './Day'
 import {} from '../../styles/components/calendar.scss'
 import { CALENDAR_CLASS, MONTH_SELECTOR_CLASS } from '../../utils/constants'
 import { generateElement } from '@/client/utils/htmlGenerator'
+import { comma } from '@/client/utils/comma'
+import { CalendarModel } from '../store/CalendarModel'
 
 export default class Calendar {
   constructor(year, month) {
@@ -13,28 +15,27 @@ export default class Calendar {
     this.year = year
     this.month = month
     this.weeks = []
+    this.totalExpense = 0
+    this.totalIncome = 0
     this.template = ``
-
-    this.init()
+    this.calendarModel = new CalendarModel(this.year, this.month)
+    this.calendarModel.subscribe(this.init.bind(this))
   }
 
-  async init() {
+  init(data) {
     this.weeks = []
-    await this.setWeeks()
+    this.setWeeks(data)
     this.setElements()
-    // this.bindEvent()
   }
 
-  async setWeeks() {
-    let bfrMonth = new Month(this.year, this.month - 1)
-    let curMonth = new Month(this.year, this.month)
-    let afrMonth = new Month(this.year, this.month + 1)
-    await bfrMonth.init()
-    await curMonth.init()
-    await afrMonth.init()
+  setWeeks(data) {
+    let bfrMonth = new Month(this.year, this.month - 1, data.beforeMonth)
+    let curMonth = new Month(this.year, this.month, data.curMonth)
+    let afrMonth = new Month(this.year, this.month + 1, data.afterMonth)
     let brfMonthLastWeek = bfrMonth.getLastWeek()
     let curMonthWeeks = curMonth.getWeeks()
     let afrMonthFirstWeek = afrMonth.getFirstWeek()
+
     brfMonthLastWeek.forEach((date) => (date.disable = true))
     afrMonthFirstWeek.forEach((date) => (date.disable = true))
 
@@ -48,6 +49,9 @@ export default class Calendar {
         this.weeks.push(curMonthWeek)
       }
     }
+
+    this.totalIncome = curMonth.getTotalIncome()
+    this.totalExpense = curMonth.getTotalExpense()
   }
 
   setElements() {
@@ -88,44 +92,16 @@ export default class Calendar {
     const main = document.querySelector('.main')
     const calendarPage = generateElement(this.template)
 
+    calendarPage.querySelector('.calendar-income').innerText =
+      '수입 ' + comma(this.totalIncome)
+    calendarPage.querySelector('.calendar-expense').innerText =
+      '지출 ' + comma(this.totalExpense)
+
     if (!main) app.append(calendarPage)
     else app.replaceChild(calendarPage, main)
   }
 
-  bindEvent() {
-    this.$left = document.querySelector(`.${MONTH_SELECTOR_CLASS.LEFT}`)
-    this.$right = document.querySelector(`.${MONTH_SELECTOR_CLASS.RIGHT}`)
-    this.before = this.beforeMonth.bind(this)
-    this.after = this.nextMonth.bind(this)
-    this.$left.addEventListener('click', this.before)
-    this.$right.addEventListener('click', this.after)
-  }
 
-  beforeMonth() {
-    this.$left.removeEventListener('click', this.before)
-    this.$right.removeEventListener('click', this.after)
-    if (this.month == 1) {
-      this.month = 12
-      this.year--
-      this.init()
-      return
-    }
-    this.month -= 1
-    this.init()
-  }
-
-  nextMonth() {
-    this.$left.removeEventListener('click', this.before)
-    this.$right.removeEventListener('click', this.after)
-    if (this.month == 12) {
-      this.month = 1
-      this.year++
-      this.init()
-      return
-    }
-    this.month += 1
-    this.init()
-  }
 }
 
 export { Calendar }

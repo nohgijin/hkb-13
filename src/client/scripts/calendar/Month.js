@@ -1,13 +1,13 @@
 class Month {
-  constructor(year, month) {
+  constructor(year, month, monthData) {
     this.year = year
     this.month = month
-    this.data = []
-  
+    this.data = monthData
+    this.weeks = []
+    this.init()
   }
 
-  async init() {
-    await this.fetchCalendar()
+  init() {
     this.setWeeks()
   }
 
@@ -64,12 +64,24 @@ class Month {
     return this.data[idx].price
   }
 
-  async fetchCalendar() {
-    const response = await fetch(`/api/board/1/${this.month}/calendar`, {
-      method: 'GET',
+  getTotalIncome() {
+    let totalIncome = 0
+    this.weeks.forEach((week) => {
+      week.forEach((day) => {
+        if (day.income !== '') totalIncome += day.income
+      })
     })
-    const data = await response.json()
-    this.data = data.calendar
+    return totalIncome
+  }
+
+  getTotalExpense() {
+    let totalExpense = 0
+    this.weeks.forEach((week) => {
+      week.forEach((day) => {
+        if (day.expense !== '') totalExpense += day.expense
+      })
+    })
+    return totalExpense
   }
 }
 
