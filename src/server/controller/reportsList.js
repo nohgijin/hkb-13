@@ -7,6 +7,7 @@ const {
 
 exports.getReportsListController = async (req, res) => {
   const boardId = parseInt(req.params.boardId)
+  const year = parseInt(req.params.year)
   const month = parseInt(req.params.month)
 
   if (!boardId || !month || month < 1 || month > 12) {
@@ -14,7 +15,7 @@ exports.getReportsListController = async (req, res) => {
     return
   }
 
-  const reportsList = await getReportsList({ boardId, month })
+  const reportsList = await getReportsList({ boardId, month, year })
 
   res.json({ reportsList })
 }

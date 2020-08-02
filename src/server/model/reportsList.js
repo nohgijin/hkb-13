@@ -1,14 +1,14 @@
 const { connection } = require('../model/connection')
 
-exports.getReportsList = async ({ boardId, month }) => {
+exports.getReportsList = async ({ boardId, month, year }) => {
   try {
     const [rows] = await connection.execute(
       `
-      SELECT id, DATE_FORMAT(\`date\`, '%d') date, category, \`content\`, paymentMethod, price, \`type\` FROM report
-      WHERE boardId=? AND DATE_FORMAT(\`date\`, '%m') < ? AND DATE_FORMAT(\`date\`, '%m') > ?
+      SELECT id, DATE_FORMAT(\`date\`, '%Y-%m-%d') date, category, \`content\`, paymentMethod, price, \`type\` FROM report
+      WHERE boardId=? AND YEAR(date) = ? AND MONTH(date) = ?
       ORDER BY date;
     `,
-      [boardId, month + 1, month - 1]
+      [boardId, year, month]
     )
 
     return rows

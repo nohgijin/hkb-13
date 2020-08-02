@@ -1,8 +1,10 @@
-import { urlParser } from '@/client/utils/urlParser'
+import { urlParser } from '@/client/utils/parsers'
 
-export class NavigationBar extends HTMLElement {
+class NavigationBar extends HTMLElement {
   constructor() {
     super()
+    this.year = this.getAttribute('data-year')
+    this.month = this.getAttribute('data-month')
     this.initElements()
   }
 
@@ -82,8 +84,8 @@ export class NavigationBar extends HTMLElement {
       <button class="left">
         <i class="icon">arrowtriangle_left_fill</i>
       </button>
-      <div class="year"></div>
-      <div class="month"></div>
+      <div class="year">${this.year}년</div>
+      <div class="month">${this.month}월</div>
       <button class="right">
         <i class="icon">arrowtriangle_right_fill</i>
       </button>
