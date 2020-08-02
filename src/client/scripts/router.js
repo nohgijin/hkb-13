@@ -3,6 +3,7 @@ import { generateElement } from '@/client/utils/htmlGenerator'
 
 import { hkbModel } from '@/client/models/hkbModel'
 
+import { Login } from './login/Login'
 import { ReportsList } from './reportsList/ReportsList'
 import { Calendar } from './calendar/Calendar'
 import { NavigationBar } from './navigation/Navigation'
@@ -19,6 +20,12 @@ const routePage = ({ year, month, page }) => {
   const app = document.querySelector('.app')
   app.innerHTML = ''
 
+  // render login page
+  if (page === `login`) {
+    app.append(new Login().$root)
+    return
+  }
+
   app.append(new NavigationBar(year, month, page).$root)
 
   // render report page
@@ -34,7 +41,7 @@ const routePage = ({ year, month, page }) => {
   }
 
   // render statistics page
-  if (page === `statistics`) {
+  else if (page === `statistics`) {
     return
   }
 }
