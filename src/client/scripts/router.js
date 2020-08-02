@@ -1,12 +1,12 @@
 import { Calendar } from './calendar/Calendar'
 
-import { urlParser } from '@/client/utils/urlParser'
+import { urlParser } from '@/client/utils/parsers'
 import { generateElement } from '@/client/utils/htmlGenerator'
 
+import { hkbModel } from '@/client/models/hkbModel'
+
+import { ReportsList } from './reportsList/reportsList'
 import './navigation/navigation'
-
-import './reportsList/reportsList'
-
 import './notFound/notFound'
 
 const render = (elements) => {
@@ -16,32 +16,22 @@ const render = (elements) => {
   elements.forEach((el) => app.appendChild(el))
 }
 
-const routePage = (e) => {
-  const pathname = location.pathname
-
+const routePage = (urlParams) => {
   const app = document.querySelector('.app')
   app.innerHTML = ''
 
+  const { year, month, page } = urlParams
   const navigationBar = generateElement(
     `<navigation-bar class="navigation-bar"></navigation-bar>`
   )
 
-  const results = urlParser(pathname)
-  if (!results) {
-    // render notFound page
-    const notFoundPage = generateElement(`<not-found></not-found>`)
-    render([notFoundPage])
-    return
-  }
-
-  const { year, month, page } = results
+  navigationBar.setAttribute('data-year', year)
+  navigationBar.setAttribute('data-month', month)
 
   // render report page
   if (page === `reports`) {
-    const reportsPage = generateElement(`<reports-list></reports-list>`)
-    reportsPage.setAttribute('data-year', year)
-    reportsPage.setAttribute('data-month', month)
-    render([navigationBar, reportsPage])
+    app.append(navigationBar)
+    app.append(new ReportsList().$root)
     return
   }
 
@@ -59,5 +49,28 @@ const routePage = (e) => {
   }
 }
 
-window.addEventListener('popstate', routePage)
-window.addEventListener('DOMContentLoaded', routePage)
+sessionStorage.setItem('prevPage', null)
+
+const movePageHandler = () => {
+  const pathname = location.pathname
+
+  const urlParams = urlParser(pathname)
+  if (!urlParams) {
+    // render notFound page
+    const notFoundPage = generateElement(`<not-found></not-found>`)
+    sessionStorage.setItem('prevPage', null)
+    render([notFoundPage])
+    return
+  }
+
+  const prevPage = sessionStorage.getItem('prevPage')
+  if (prevPage !== urlParams.page) {
+    sessionStorage.setItem('prevPage', urlParams.page)
+    routePage(urlParams)
+  }
+
+  hkbModel.getData(urlParams)
+}
+
+window.addEventListener('popstate', movePageHandler)
+window.addEventListener('DOMContentLoaded', movePageHandler)
