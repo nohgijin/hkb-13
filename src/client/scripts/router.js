@@ -5,7 +5,7 @@ import { hkbModel } from '@/client/models/hkbModel'
 
 import { ReportsList } from './reportsList/ReportsList'
 import { Calendar } from './calendar/Calendar'
-import './navigation/navigation'
+import { NavigationBar } from './navigation/Navigation'
 import './notFound/notFound'
 
 const render = (elements) => {
@@ -15,35 +15,27 @@ const render = (elements) => {
   elements.forEach((el) => app.appendChild(el))
 }
 
-const routePage = (urlParams) => {
+const routePage = (page) => {
   const app = document.querySelector('.app')
   app.innerHTML = ''
 
-  const { year, month, page } = urlParams
-  const navigationBar = generateElement(
-    `<navigation-bar class="navigation-bar"></navigation-bar>`
-  )
-
-  navigationBar.setAttribute('data-year', year)
-  navigationBar.setAttribute('data-month', month)
-
   // render report page
   if (page === `reports`) {
-    app.append(navigationBar)
+    app.append(new NavigationBar().$root)
     app.append(new ReportsList().$root)
     return
   }
 
   // render calendar page
   else if (page === `calendar`) {
-    app.append(navigationBar)
+    app.append(new NavigationBar().$root)
     app.append(new Calendar().$root)
     return
   }
 
   // render statistics page
   if (page === `statistics`) {
-    render([navigationBar])
+    app.append(new NavigationBar().$root)
     return
   }
 }
@@ -65,7 +57,7 @@ const movePageHandler = () => {
   const prevPage = sessionStorage.getItem('prevPage')
   if (prevPage !== urlParams.page) {
     sessionStorage.setItem('prevPage', urlParams.page)
-    routePage(urlParams)
+    routePage(urlParams.page)
   }
 
   hkbModel.getData(urlParams)
