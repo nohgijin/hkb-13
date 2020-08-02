@@ -6,7 +6,7 @@
 export const getReportsListAPI = async (params) => {
   const { year, month } = params
 
-  const resposne = await fetch(`/api/board/1/${month}/report`, {
+  const resposne = await fetch(`/api/board/1/${year}/${month}/report`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
