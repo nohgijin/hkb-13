@@ -1,11 +1,10 @@
-
 import { urlParser } from '@/client/utils/parsers'
 import { generateElement } from '@/client/utils/htmlGenerator'
 
 import { hkbModel } from '@/client/models/hkbModel'
 
 import { ReportsList } from './reportsList/ReportsList'
-import {Calendar}  from './calendar/Calendar'
+import { Calendar } from './calendar/Calendar'
 import './navigation/navigation'
 import './notFound/notFound'
 

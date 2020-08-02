@@ -3,11 +3,10 @@ import { Day } from './Day'
 import {} from '../../styles/components/calendar.scss'
 import { generateElement } from '@/client/utils/htmlGenerator'
 import { comma } from '@/client/utils/comma'
-import { CalendarModel } from '../store/CalendarModel'
 import { hkbModel } from '@/client/models/hkbModel'
 
 export class Calendar {
-  constructor(year, month) {
+  constructor() {
     this.$root = generateElement(`<main class="calendar-page"></main>`)
 
     this.weeks = []
@@ -78,7 +77,7 @@ export class Calendar {
     })
 
     $calendarTableBody.innerHTML = weeksTemplate
-  
+
     $calendarTable.appendChild($calendarTableBody)
     $calendar.appendChild($calendarIncome)
     $calendar.appendChild($calendarExpense)
