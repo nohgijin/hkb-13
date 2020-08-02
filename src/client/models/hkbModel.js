@@ -29,9 +29,7 @@ class Model extends Observable {
     if (page === 'reports') {
       const reportsList = await getReportsListAPI({ year, month })
 
-      setTimeout(() => {
-        this.notify({ year, month, reportsList })
-      }, 1000)
+      this.notify({ year, month, reportsList })
     }
   }
 }

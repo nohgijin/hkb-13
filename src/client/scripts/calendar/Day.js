@@ -28,6 +28,10 @@ export default class Day {
     </div>
     `
   }
+
+  getTemplate() {
+    return this.template
+  }
 }
 
 export { Day }

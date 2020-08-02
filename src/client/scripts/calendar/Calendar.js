@@ -1,13 +1,17 @@
 import { Month } from './Month'
 import { Day } from './Day'
 import {} from '../../styles/components/calendar.scss'
-import { CALENDAR_CLASS, MONTH_SELECTOR_CLASS } from '../../utils/constants'
 import { generateElement } from '@/client/utils/htmlGenerator'
 import { comma } from '@/client/utils/comma'
 import { CalendarModel } from '../store/CalendarModel'
+import { hkbModel } from '@/client/models/hkbModel'
 
 export default class Calendar {
   constructor(year, month) {
+    this.$root = generateElement(`<main class="calendar-page"></main>`)
+
+    hkbModel.subscribe(this.render.bind(this))
+
     this.$month = ''
     this.$left = ''
     this.$right = ''
@@ -101,7 +105,43 @@ export default class Calendar {
     else app.replaceChild(calendarPage, main)
   }
 
+  async render({ year, month, calendar }) {
+    if (!calendar) return
 
+    const $calendar = generateElement(
+      `<section class="calendar-section"></section>`
+    )
+    const $calendarIncome = generateElement(
+      `<div class="calendar-income">수입 </div>`
+    )
+    const $calendarExpense = generateElement(
+      `<div class="calendar-expense">지출 </div>`
+    )
+    const $calendarTable = generateElement(`<table></table>`)
+    const $calendarTableHeader = generateElement(
+      `<thead class="day"><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>`
+    )
+    const $calendarTableBody = generateElement(`<tbody></tbody>`)
+
+    this.weeks.forEach((week) => {
+      let weekTemplate = `<tr>`
+      week.forEach((day) => {
+        weekTemplate += `<td>${new Day(day).getTemplate()}</td>`
+      })
+      weekTemplate += `</tr>`
+      $calendarTableBody.appendChild(generateElement(weekTemplate))
+    })
+
+    $calendarTable.appendChild($calendarTableHeader)
+    $calendarTable.appendChild($calendarTableBody)
+
+    $calendar.appendChild($calendarIncome)
+    $calendar.appendChild($calendarExpense)
+    $calendar.appendChild($calendarTable)
+
+    this.$root.innerHTML = ''
+    this.$root.appendChild($calendar)
+  }
 }
 
 export { Calendar }
