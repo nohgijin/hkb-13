@@ -17,8 +17,8 @@ export class ReportsList {
     }`
   }
 
-  render({ year, month, reportsList }) {
-    if (!reportsList) return
+  render({ year, month, page, data: reportsList }) {
+    if (page !== 'reports' || !reportsList) return
 
     const listElm = generateElement(`<section class="list-section"></section>`)
 
