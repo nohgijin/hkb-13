@@ -5,7 +5,7 @@ import { generateElement } from '@/client/utils/htmlGenerator'
 
 import { hkbModel } from '@/client/models/hkbModel'
 
-import { ReportsList } from './reportsList/reportsList'
+import { ReportsList } from './reportsList/ReportsList'
 import './navigation/navigation'
 import './notFound/notFound'
 
