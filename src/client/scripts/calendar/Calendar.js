@@ -6,39 +6,26 @@ import { comma } from '@/client/utils/comma'
 import { CalendarModel } from '../store/CalendarModel'
 import { hkbModel } from '@/client/models/hkbModel'
 
-export default class Calendar {
+export class Calendar {
   constructor(year, month) {
     this.$root = generateElement(`<main class="calendar-page"></main>`)
 
-    hkbModel.subscribe(this.render.bind(this))
-
-    this.$month = ''
-    this.$left = ''
-    this.$right = ''
-
-    this.year = year
-    this.month = month
     this.weeks = []
     this.totalExpense = 0
     this.totalIncome = 0
-    this.template = ``
-    this.calendarModel = new CalendarModel(this.year, this.month)
-    this.calendarModel.subscribe(this.init.bind(this))
+
+    hkbModel.subscribe(this.render.bind(this))
   }
 
-  init(data) {
+  setWeeks({ year, month, calendar }) {
     this.weeks = []
-    this.setWeeks(data)
-    this.setElements()
-  }
+    const bfrMonth = new Month(year, month - 1, [])
+    const curMonth = new Month(year, month, calendar)
+    const afrMonth = new Month(year, month + 1, [])
 
-  setWeeks(data) {
-    let bfrMonth = new Month(this.year, this.month - 1, data.beforeMonth)
-    let curMonth = new Month(this.year, this.month, data.curMonth)
-    let afrMonth = new Month(this.year, this.month + 1, data.afterMonth)
-    let brfMonthLastWeek = bfrMonth.getLastWeek()
-    let curMonthWeeks = curMonth.getWeeks()
-    let afrMonthFirstWeek = afrMonth.getFirstWeek()
+    const brfMonthLastWeek = bfrMonth.getLastWeek()
+    const curMonthWeeks = curMonth.getWeeks()
+    const afrMonthFirstWeek = afrMonth.getFirstWeek()
 
     brfMonthLastWeek.forEach((date) => (date.disable = true))
     afrMonthFirstWeek.forEach((date) => (date.disable = true))
@@ -58,83 +45,41 @@ export default class Calendar {
     this.totalExpense = curMonth.getTotalExpense()
   }
 
-  setElements() {
-    this.template = `
-    <main class="calendar-page main">
-      <section class="calendar-section">
-        <div class="calendar-income">수입 </div>
-        <div class="calendar-expense">지출 </div>
-          <table>
-            <thead class="day">
-              <tr>
-                <th>일</th>
-                <th>월</th>
-                <th>화</th>
-                <th>수</th>
-                <th>목</th>
-                <th>금</th>
-                <th>토</th>
-              </tr>
-            </thead>
-            <tbody>
-  `
-    this.weeks.forEach((week) => {
-      let weekTemplate = `<tr>`
-      week.forEach((day) => {
-        let today = new Day(day)
-        weekTemplate += `<td>${today.template}</td>`
-      })
-      weekTemplate += `</tr>`
-      this.template += weekTemplate
-    })
-    this.template += `</tbody></table></section></main>`
-
-    document.querySelector('.year').innerText = this.year + '년'
-    document.querySelector('.month').innerText = this.month + '월'
-
-    const app = document.querySelector('.app')
-    const main = document.querySelector('.main')
-    const calendarPage = generateElement(this.template)
-
-    calendarPage.querySelector('.calendar-income').innerText =
-      '수입 ' + comma(this.totalIncome)
-    calendarPage.querySelector('.calendar-expense').innerText =
-      '지출 ' + comma(this.totalExpense)
-
-    if (!main) app.append(calendarPage)
-    else app.replaceChild(calendarPage, main)
-  }
-
   async render({ year, month, calendar }) {
     if (!calendar) return
+
+    this.setWeeks({ year, month, calendar })
 
     const $calendar = generateElement(
       `<section class="calendar-section"></section>`
     )
     const $calendarIncome = generateElement(
-      `<div class="calendar-income">수입 </div>`
+      `<div class="calendar-income">${'수입 ' + comma(this.totalIncome)}</div>`
     )
     const $calendarExpense = generateElement(
-      `<div class="calendar-expense">지출 </div>`
+      `<div class="calendar-expense">${
+        '지출 ' + comma(this.totalExpense)
+      }</div>`
     )
-    const $calendarTable = generateElement(`<table></table>`)
-    const $calendarTableHeader = generateElement(
-      `<thead class="day"><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>`
+    const $calendarTable = generateElement(
+      `<table><thead class='day'><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead><tbody></tbody></table>`
     )
-    const $calendarTableBody = generateElement(`<tbody></tbody>`)
 
+    const $calendarTableBody = $calendarTable.querySelector('tbody')
+
+    let weeksTemplate = ''
     this.weeks.forEach((week) => {
       let weekTemplate = `<tr>`
       week.forEach((day) => {
         weekTemplate += `<td>${new Day(day).getTemplate()}</td>`
       })
       weekTemplate += `</tr>`
-      $calendarTableBody.appendChild(generateElement(weekTemplate))
+      weeksTemplate += weekTemplate
     })
 
-    $calendarTable.appendChild($calendarTableHeader)
+    $calendarTableBody.innerHTML = weeksTemplate
+  
     $calendarTable.appendChild($calendarTableBody)
-
     $calendar.appendChild($calendarIncome)
     $calendar.appendChild($calendarExpense)
     $calendar.appendChild($calendarTable)
@@ -143,5 +88,3 @@ export default class Calendar {
     this.$root.appendChild($calendar)
   }
 }
-
-export { Calendar }

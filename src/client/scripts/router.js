@@ -1,4 +1,3 @@
-import { Calendar } from './calendar/Calendar'
 
 import { urlParser } from '@/client/utils/parsers'
 import { generateElement } from '@/client/utils/htmlGenerator'
@@ -6,6 +5,7 @@ import { generateElement } from '@/client/utils/htmlGenerator'
 import { hkbModel } from '@/client/models/hkbModel'
 
 import { ReportsList } from './reportsList/ReportsList'
+import {Calendar}  from './calendar/Calendar'
 import './navigation/navigation'
 import './notFound/notFound'
 
@@ -36,9 +36,9 @@ const routePage = (urlParams) => {
   }
 
   // render calendar page
-  if (page === `calendar`) {
-    app.prepend(navigationBar)
-    new Calendar(year, month)
+  else if (page === `calendar`) {
+    app.append(navigationBar)
+    app.append(new Calendar().$root)
     return
   }
 
