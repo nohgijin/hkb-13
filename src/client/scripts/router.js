@@ -15,27 +15,26 @@ const render = (elements) => {
   elements.forEach((el) => app.appendChild(el))
 }
 
-const routePage = (page) => {
+const routePage = ({ year, month, page }) => {
   const app = document.querySelector('.app')
   app.innerHTML = ''
 
+  app.append(new NavigationBar(year, month, page).$root)
+
   // render report page
   if (page === `reports`) {
-    app.append(new NavigationBar().$root)
     app.append(new ReportsList().$root)
     return
   }
 
   // render calendar page
   else if (page === `calendar`) {
-    app.append(new NavigationBar().$root)
     app.append(new Calendar().$root)
     return
   }
 
   // render statistics page
   if (page === `statistics`) {
-    app.append(new NavigationBar().$root)
     return
   }
 }
@@ -57,7 +56,7 @@ const movePageHandler = () => {
   const prevPage = sessionStorage.getItem('prevPage')
   if (prevPage !== urlParams.page) {
     sessionStorage.setItem('prevPage', urlParams.page)
-    routePage(urlParams.page)
+    routePage(urlParams)
   }
 
   hkbModel.getData(urlParams)
