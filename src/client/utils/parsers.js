@@ -9,3 +9,7 @@ export const urlParser = (path) => {
     page: res[3],
   }
 }
+
+export const parseToLocalMoneyString = (money) => {
+  return String(money).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
+}
