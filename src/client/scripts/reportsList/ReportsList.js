@@ -17,7 +17,7 @@ export class ReportsList {
     }`
   }
 
-  async render({ year, month, reportsList }) {
+  render({ year, month, reportsList }) {
     if (!reportsList) return
 
     const listElm = generateElement(`<section class="list-section"></section>`)
