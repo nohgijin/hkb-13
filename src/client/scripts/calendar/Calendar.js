@@ -44,8 +44,8 @@ export class Calendar {
     this.totalExpense = curMonth.getTotalExpense()
   }
 
-  async render({ year, month, calendar }) {
-    if (!calendar) return
+  async render({ year, month, page, data: calendar }) {
+    if (page !== 'calendar' || !calendar) return
 
     this.setWeeks({ year, month, calendar })
 

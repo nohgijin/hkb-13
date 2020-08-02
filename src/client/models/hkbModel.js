@@ -29,10 +29,10 @@ class Model extends Observable {
     const { year, month, page } = urlParams
     if (page === 'reports') {
       const reportsList = await getReportsListAPI({ year, month })
-      this.notify({ year, month, reportsList })
+      this.notify({ year, month, page, data: reportsList })
     } else if (page === 'calendar') {
       const calendar = await getCalendarAPI({ year, month })
-      this.notify({ year, month, calendar })
+      this.notify({ year, month, page, data: calendar })
     }
   }
 }

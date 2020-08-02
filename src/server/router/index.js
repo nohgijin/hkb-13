@@ -1,4 +1,4 @@
-const { reportsListRouter } = require('./reportsList')
+const { reportRouter } = require('./report')
 const { calendarRouter } = require('./calendar')
 
-module.exports = { reportsListRouter,calendarRouter }
+module.exports = { reportRouter, calendarRouter }

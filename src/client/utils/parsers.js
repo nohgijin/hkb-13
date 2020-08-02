@@ -13,3 +13,15 @@ export const urlParser = (path) => {
 export const parseToLocalMoneyString = (money) => {
   return String(money).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
 }
+
+export const dateParser = (date) => {
+  const regex = /(\d{4})-(\d{2})-(\d{2})/gm
+  const res = regex.exec(date)
+  if (!res) return
+
+  return {
+    year: parseInt(res[1]),
+    month: parseInt(res[2]),
+    day: parseInt(res[3]),
+  }
+}

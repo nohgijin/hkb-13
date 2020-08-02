@@ -1,6 +1,7 @@
 import { reportElm } from './report'
 import { hkbModel } from '@/client/models/hkbModel'
 
+import { dateParser } from '@/client/utils/parsers'
 import { generateElement } from '@/client/utils/htmlGenerator'
 
 export class ReportsList {
@@ -10,15 +11,17 @@ export class ReportsList {
     hkbModel.subscribe(this.render.bind(this))
   }
 
-  getDateString(year, month, date) {
+  getDateString(date) {
+    const { year, month, day } = dateParser(date)
+    const thisYear = new Date().getFullYear()
     const weekdays = ['목', '금', '토', '일', '월', '화', '수']
-    return `${month}월 ${date}일 ${
-      weekdays[new Date(year, month, date).getDay()]
+    return `${thisYear !== year ? year : ''}${month}월 ${day}일 ${
+      weekdays[new Date(date).getDay()]
     }`
   }
 
-  render({ year, month, reportsList }) {
-    if (!reportsList) return
+  render({ page, data: reportsList }) {
+    if (page !== 'reports' || !reportsList) return
 
     const listElm = generateElement(`<section class="list-section"></section>`)
 
@@ -36,7 +39,7 @@ export class ReportsList {
         const dailyReportElm = generateElement(`
           <div class="daily-reports">
             <div class="report-header">
-              <div class="day">${this.getDateString(year, month, date)}</div>
+              <div class="day">${this.getDateString(date)}</div>
             </div>
             <div class="report-body">
               ${reportElm(report)}

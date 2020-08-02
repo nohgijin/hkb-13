@@ -5,7 +5,7 @@ import { hkbModel } from '@/client/models/hkbModel'
 
 import { ReportsList } from './reportsList/ReportsList'
 import { Calendar } from './calendar/Calendar'
-import './navigation/navigation'
+import { NavigationBar } from './navigation/Navigation'
 import './notFound/notFound'
 
 const render = (elements) => {
@@ -15,35 +15,26 @@ const render = (elements) => {
   elements.forEach((el) => app.appendChild(el))
 }
 
-const routePage = (urlParams) => {
+const routePage = ({ year, month, page }) => {
   const app = document.querySelector('.app')
   app.innerHTML = ''
 
-  const { year, month, page } = urlParams
-  const navigationBar = generateElement(
-    `<navigation-bar class="navigation-bar"></navigation-bar>`
-  )
-
-  navigationBar.setAttribute('data-year', year)
-  navigationBar.setAttribute('data-month', month)
+  app.append(new NavigationBar(year, month, page).$root)
 
   // render report page
   if (page === `reports`) {
-    app.append(navigationBar)
     app.append(new ReportsList().$root)
     return
   }
 
   // render calendar page
   else if (page === `calendar`) {
-    app.append(navigationBar)
     app.append(new Calendar().$root)
     return
   }
 
   // render statistics page
   if (page === `statistics`) {
-    render([navigationBar])
     return
   }
 }

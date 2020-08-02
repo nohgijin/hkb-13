@@ -14,4 +14,4 @@ router.post('/api/board/:boardId/report', createAReportController)
 router.put('/api/board/:boardId/report/:reportId', modifyAReportController)
 router.delete('/api/board/:boardId/report/:reportId', removeAReportController)
 
-module.exports = { reportsListRouter: router }
+module.exports = { reportRouter: router }
