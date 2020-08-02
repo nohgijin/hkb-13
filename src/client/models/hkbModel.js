@@ -1,4 +1,5 @@
 import { getReportsListAPI } from '@/client/apis/getReportsListAPI'
+import { getCalendarAPI } from '@/client/apis/getCalendarAPI'
 
 class Observable {
   constructor() {
@@ -28,8 +29,10 @@ class Model extends Observable {
     const { year, month, page } = urlParams
     if (page === 'reports') {
       const reportsList = await getReportsListAPI({ year, month })
-
       this.notify({ year, month, reportsList })
+    } else if (page === 'calendar') {
+      const calendar = await getCalendarAPI({ year, month })
+      this.notify({ year, month, calendar })
     }
   }
 }
