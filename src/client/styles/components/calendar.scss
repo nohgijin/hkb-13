@@ -8,7 +8,7 @@
     .calendar-expense {
       margin-top: 10px;
       text-align: center;
-      color: var(--baemint);
+      color: var(--red);
     }
 
     table {
@@ -66,7 +66,7 @@
       position: absolute;
       right: 7px;
       bottom: 5px;
-      color: var(--baemint);
+      color: var(--red);
     }
 
     .expense:before {
@@ -79,6 +79,14 @@
       .expense {
         display: none;
       }
+    }
+
+    .not-income {
+      display: none;
+    }
+
+    .not-expense {
+      display: none;
     }
   }
 }

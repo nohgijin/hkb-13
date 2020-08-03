@@ -10,10 +10,40 @@ export class Calendar {
     this.$root = generateElement(`<main class="calendar-page"></main>`)
 
     this.weeks = []
+    this.days = []
     this.totalExpense = 0
     this.totalIncome = 0
 
     hkbModel.subscribe(this.render.bind(this))
+  }
+
+  checkEvent() {
+    const incomeChk = this.$root.querySelector('.income-check')
+    const expenseChk = this.$root.querySelector('.expense-check')
+    incomeChk.addEventListener('change', (e) => {
+      const allIncome = this.$root.querySelectorAll('.income')
+      if (e.target.checked) {
+        allIncome.forEach((income) => {
+          income.classList.remove('not-income')
+        })
+      } else {
+        allIncome.forEach((income) => {
+          income.classList.add('not-income')
+        })
+      }
+    })
+    expenseChk.addEventListener('change', (e) => {
+      const allExpense = this.$root.querySelectorAll('.expense')
+      if (e.target.checked) {
+        allExpense.forEach((expense) => {
+          expense.classList.remove('not-expense')
+        })
+      } else {
+        allExpense.forEach((expense) => {
+          expense.classList.add('not-expense')
+        })
+      }
+    })
   }
 
   setWeeks({ year, month, calendar }) {
@@ -53,15 +83,21 @@ export class Calendar {
       `<section class="calendar-section"></section>`
     )
     const $calendarIncome = generateElement(
-      `<div class="calendar-income">${'수입 ' + comma(this.totalIncome)}</div>`
+      `<div class="calendar-income">
+      <input type="checkbox" class="income-check" checked>
+        ${'수입 ' + comma(this.totalIncome)}
+      </div>`
     )
     const $calendarExpense = generateElement(
-      `<div class="calendar-expense">${
-        '지출 ' + comma(this.totalExpense)
-      }</div>`
+      `<div class="calendar-expense">
+      <input type="checkbox" class="expense-check" checked>
+      ${'지출 ' + comma(this.totalExpense)}
+      </div>`
     )
     const $calendarTable = generateElement(
-      `<table><thead class='day'><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead><tbody></tbody></table>`
+      `<table><thead class='day'>
+      <tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>
+      </thead><tbody></tbody></table>`
     )
 
     const $calendarTableBody = $calendarTable.querySelector('tbody')
@@ -70,7 +106,9 @@ export class Calendar {
     this.weeks.forEach((week) => {
       let weekTemplate = `<tr>`
       week.forEach((day) => {
-        weekTemplate += `<td>${new Day(day).getTemplate()}</td>`
+        const objDay = new Day(day)
+        this.days.push(objDay)
+        weekTemplate += `<td>${objDay.getTemplate()}</td>`
       })
       weekTemplate += `</tr>`
       weeksTemplate += weekTemplate
@@ -85,5 +123,7 @@ export class Calendar {
 
     this.$root.innerHTML = ''
     this.$root.appendChild($calendar)
+
+    this.checkEvent()
   }
 }
