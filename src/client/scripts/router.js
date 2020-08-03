@@ -12,7 +12,9 @@ const routePage = () => {
 
   // render login page
   if (pathname === `/login`) {
-    app.append(new Login().$root)
+    const login = new Login()
+    app.append(login.$root)
+    login.loadNaverBtn()
     return
   }
 
