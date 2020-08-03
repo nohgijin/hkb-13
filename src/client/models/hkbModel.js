@@ -1,5 +1,5 @@
-import { getReportsListAPI } from '@/client/apis/getReportsListAPI'
-import { getCalendarAPI } from '@/client/apis/getCalendarAPI'
+import { getReportsListAPI } from '@/client/apis'
+import { getCalendarAPI } from '@/client/apis'
 
 class Observable {
   constructor() {
