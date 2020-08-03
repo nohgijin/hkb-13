@@ -50,17 +50,59 @@
           box-shadow: var(--todo-shadow);
 
           .row {
+            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 2px 10px;
             box-sizing: content-box;
             height: 50px;
-            transition: background-color 200ms;
+            transition: background-color 300ms;
             cursor: pointer;
+
+            .btn-wrap {
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              backdrop-filter: blur(1px);
+              justify-content: flex-end;
+              align-items: center;
+
+              display: none;
+
+              .edit-btn {
+                margin-right: 13px;
+                font-size: 14px;
+                background: white;
+                padding: 3px 7px;
+                color: var(--blue);
+                border-radius: 10px;
+                border: 1px solid var(--blue);
+              }
+
+              .delete-btn {
+                margin-right: 13px;
+                font-size: 14px;
+                color: white;
+                background: var(--red);
+                border: 1px solid var(--red);
+                padding: 3px 7px;
+                border-radius: 10px;
+              }
+
+              .icon {
+                margin-right: 4px;
+              }
+            }
 
             &:hover {
               background-color: var(--super-light-blue);
+
+              .btn-wrap {
+                display: flex;
+              }
             }
 
             .icon.category-icon {

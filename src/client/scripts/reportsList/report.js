@@ -45,6 +45,10 @@ export const reportElm = (data) => {
 
   return `
       <div class="row" data-report-id=${id}>
+        <div class="btn-wrap">
+          <button class="edit-btn"><i class="icon">pencil_circle_fill</i>수정</button>
+          <button class="delete-btn"><i class="icon">xmark_circle_fill</i>삭제</button>
+        </div>
         <i class="icon category-icon ${className}" title="${category}">${iconName}</i>
         <div class="description">${content}</div>
         <div class="payment">${paymentMethod}</div>

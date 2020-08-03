@@ -1,8 +1,3 @@
-/**
- * @async
- * @param { { year, month } } params
- * @returns { reportsList }
- */
 export const getReportsListAPI = async (params) => {
   const { year, month } = params
 
