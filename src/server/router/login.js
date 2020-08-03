@@ -8,7 +8,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const { naverConfig } = require('../../config/naverPassport')
 const { googleConfig } = require('../../config/googlePassport')
 
-const { findUser, createUser, createBoard } = require('../model/login')
+const { findUser, createUser } = require('../model/login')
 
 passport.use(
   new NaverStrategy(
