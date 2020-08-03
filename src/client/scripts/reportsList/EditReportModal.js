@@ -10,6 +10,10 @@ export class EditReportModal {
     this.render()
   }
 
+  setReportState(state) {
+    this.report = { ...this.report, ...state }
+  }
+
   generateTypeSelectForm(type) {
     const typeSelectForm = generateElement(`
       <div class="inex-selector row">
@@ -30,10 +34,9 @@ export class EditReportModal {
 
     const typeBtnClickHandler = (e) => {
       e.preventDefault()
-      this.report = {
-        ...this.report,
+      this.setReportState({
         type: e.target === incomeBtn ? 'income' : 'expense',
-      }
+      })
 
       this.render()
     }
@@ -54,7 +57,7 @@ export class EditReportModal {
     `)
 
     daySelectForm.querySelector('input').addEventListener('change', (e) => {
-      this.report = { ...this.report, date: e.target.value }
+      this.setReportState({ date: e.target.value })
     })
 
     return daySelectForm
@@ -75,7 +78,7 @@ export class EditReportModal {
           ]
 
     if (options.indexOf(category) < 0) {
-      this.report = { ...this.report, category: options[0] }
+      this.setReportState({ category: options[0] })
     }
 
     const categorySelectForm = generateElement(`
@@ -97,7 +100,7 @@ export class EditReportModal {
     categorySelectForm
       .querySelector('select')
       .addEventListener('change', (e) => {
-        this.report = { ...this.report, category: e.target.value }
+        this.setReportState({ category: e.target.value })
       })
 
     return categorySelectForm
@@ -132,7 +135,7 @@ export class EditReportModal {
     paymentSelectForm
       .querySelector('select')
       .addEventListener('change', (e) => {
-        this.report = { ...this.report, paymentMethod: e.target.value }
+        this.setReportState({ paymentMethod: e.target.value })
       })
 
     return paymentSelectForm
@@ -149,7 +152,7 @@ export class EditReportModal {
     `)
 
     priceInputForm.querySelector('input').addEventListener('change', (e) => {
-      this.report = { ...this.report, price: e.target.value }
+      this.setReportState({ price: e.target.value })
     })
 
     return priceInputForm
@@ -166,7 +169,7 @@ export class EditReportModal {
     `)
 
     contentInputForm.querySelector('input').addEventListener('change', (e) => {
-      this.report = { ...this.report, content: e.target.value }
+      this.setReportState({ content: e.target.value })
     })
 
     return contentInputForm
