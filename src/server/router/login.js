@@ -5,8 +5,8 @@ const passport = require('passport')
 const NaverStrategy = require('passport-naver').Strategy
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 
-const { naverConfig } = require('../../config/naverPassport')
 const { googleConfig } = require('../../config/googlePassport')
+const { naverConfig } = require('../../config/naverPassport')
 
 const { findUser, createUser } = require('../model/login')
 
