@@ -53,12 +53,16 @@ export class Calendar {
       `<section class="calendar-section"></section>`
     )
     const $calendarIncome = generateElement(
-      `<div class="calendar-income">${'수입 ' + comma(this.totalIncome)}</div>`
+      `<div class="calendar-income">
+      <input type="checkbox" class="income-check">
+        ${'수입 ' + comma(this.totalIncome)}
+      </div>`
     )
     const $calendarExpense = generateElement(
-      `<div class="calendar-expense">${
-        '지출 ' + comma(this.totalExpense)
-      }</div>`
+      `<div class="calendar-expense">
+      <input type="checkbox" class="expense-check">
+      ${'지출 ' + comma(this.totalExpense)}
+      </div>`
     )
     const $calendarTable = generateElement(
       `<table><thead class='day'><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead><tbody></tbody></table>`
