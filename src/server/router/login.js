@@ -8,7 +8,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const { naverConfig } = require('../../config/naverPassport')
 const { googleConfig } = require('../../config/googlePassport')
 
-const { findUser, createUser } = require('../model/login')
+const { findUser, createUser, createBoard } = require('../model/login')
 
 passport.use(
   new NaverStrategy(
@@ -28,6 +28,7 @@ passport.use(
           name: profile.displayName,
           email: profile.emails[0].value,
           site: profile.provider,
+          image: profile._json.profile_image ? profile._json.profile_image : '',
         })
       }
       return done(false, profile)
@@ -65,6 +66,7 @@ passport.use(
           name: profile.displayName,
           email: profile.emails[0].value,
           site: profile.provider,
+          image: profile.profile_image[0].value,
         })
       }
       return cb(false, profile)
