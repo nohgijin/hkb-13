@@ -13,9 +13,7 @@ passport.use(
       callbackURL: config.CALLBACK_URL,
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log(accessToken)
-      console.log(profile)
-      return done(false,profile)
+      return done(false, profile)
     }
   )
 )
