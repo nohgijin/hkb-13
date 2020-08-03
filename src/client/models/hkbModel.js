@@ -21,16 +21,31 @@ class Observable {
 class Model extends Observable {
   constructor() {
     super()
+
+    const now = new Date()
+    this.data = {
+      year: now.getFullYear(),
+      month: now.getMonth(),
+      page: '',
+    }
   }
 
-  async getData(urlParams) {
-    if (!urlParams) return
+  getDate() {
+    return [this.data.year, this.data.month]
+  }
 
-    const { year, month, page } = urlParams
-    if (page === 'reports') {
+  setData(data) {
+    this.data = { ...this.data, ...data }
+    this.getData()
+  }
+
+  async getData() {
+    const { year, month, page } = this.data
+
+    if (page === '/reports') {
       const reportsList = await getReportsListAPI({ year, month })
       this.notify({ year, month, page, data: reportsList })
-    } else if (page === 'calendar') {
+    } else if (page === '/calendar') {
       const calendar = await getCalendarAPI({ year, month })
       this.notify({ year, month, page, data: calendar })
     }

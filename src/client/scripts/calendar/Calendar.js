@@ -75,7 +75,7 @@ export class Calendar {
   }
 
   async render({ year, month, page, data: calendar }) {
-    if (page !== 'calendar' || !calendar) return
+    if (page !== '/calendar' || !calendar) return
 
     this.setWeeks({ year, month, calendar })
 
