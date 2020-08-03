@@ -21,7 +21,7 @@ export class ReportsList {
   }
 
   render({ page, data: reportsList }) {
-    if (page !== '/reports' || !reportsList) return
+    if (page !== 'reports' || !reportsList) return
 
     const listElm = generateElement(`<section class="list-section"></section>`)
 
