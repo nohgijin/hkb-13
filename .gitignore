@@ -2,3 +2,4 @@ node_modules/*
 dist/*
 
 **/config/index.js
+**/config/naverPassport.js
