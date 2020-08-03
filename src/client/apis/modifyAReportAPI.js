@@ -1,5 +1,5 @@
-export const modifyAReportAPI = async ({ report, reportId }) => {
-  const resposne = await fetch(`/api/board/1/report/${reportId}`, {
+export const modifyAReportAPI = async (report) => {
+  const resposne = await fetch(`/api/board/1/report/${report.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

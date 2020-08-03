@@ -1,4 +1,5 @@
 import { generateElement } from '@/client/utils/htmlGenerator'
+import { modifyAReportAPI } from '@/client/apis'
 
 export class EditReportModal {
   constructor(report, closeModal) {
@@ -173,6 +174,16 @@ export class EditReportModal {
 
   validateForm() {}
 
+  async modifyAReport() {
+    const success = await modifyAReportAPI(this.report)
+
+    if (!success) {
+      alert('수정 실패!')
+    } else {
+      this.closeModal()
+    }
+  }
+
   render() {
     const { category, content, paymentMethod, price, type, date } = this.report
     const modalElm = generateElement(`<div class="modal"></div>`)
@@ -196,6 +207,8 @@ export class EditReportModal {
     )
     submitBtnElm.addEventListener('click', (e) => {
       e.preventDefault()
+
+      this.modifyAReport()
     })
     formElm.append(submitBtnElm)
 
