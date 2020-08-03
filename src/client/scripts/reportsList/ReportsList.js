@@ -1,5 +1,6 @@
 import { reportElm } from './report'
 import { EditReportModal } from './EditReportModal'
+import { AddReportModal } from './AddReportModal'
 import { hkbModel } from '@/client/models/hkbModel'
 
 import { dateParser } from '@/client/utils/parsers'
@@ -24,17 +25,25 @@ export class ReportsList {
   generateAddReportBtnElm(report) {
     const addReportBtnElm = generateElement(`<button>추가</button>`)
     addReportBtnElm.addEventListener('click', (e) => {
-      this.openModal(report)
+      this.openAddModal(report)
     })
     return addReportBtnElm
   }
 
-  openModal(report) {
+  openEditModal(report) {
     this.$formModal = new EditReportModal(
       report,
       this.closeModal.bind(this)
     ).$root
+    this.openModal()
+  }
 
+  openAddModal() {
+    this.$formModal = new AddReportModal(this.closeModal.bind(this)).$root
+    this.openModal()
+  }
+
+  openModal() {
     // modal 바깥을 누르면 꺼지게 하기 위함
     this.$formModal.addEventListener('click', (e) => {
       if (e.target === this.$formModal) this.closeModal()
@@ -66,7 +75,7 @@ export class ReportsList {
       const reportRowElm = generateElement(reportElm(report))
 
       reportRowElm.addEventListener('dblclick', (e) => {
-        this.openModal(report)
+        this.openEditModal(report)
       })
 
       if (prevDate === date && prevReportElm) {

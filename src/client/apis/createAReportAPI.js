@@ -1,4 +1,4 @@
-export const createAReportAPI = async ({ report }) => {
+export const createAReportAPI = async (report) => {
   const resposne = await fetch(`/api/board/1/report`, {
     method: 'POST',
     headers: {
@@ -10,5 +10,6 @@ export const createAReportAPI = async ({ report }) => {
   if (!resposne.ok) return null
 
   const { createdReportId } = await resposne.json()
+
   return createdReportId
 }
