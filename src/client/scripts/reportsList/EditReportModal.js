@@ -36,6 +36,7 @@ export class EditReportModal {
       e.preventDefault()
       this.setReportState({
         type: e.target === incomeBtn ? 'income' : 'expense',
+        category: '',
       })
 
       this.render()
@@ -77,15 +78,12 @@ export class EditReportModal {
             '미분류',
           ]
 
-    if (options.indexOf(category) < 0) {
-      this.setReportState({ category: options[0] })
-    }
-
     const categorySelectForm = generateElement(`
       <div class="category-selector row">
         <div class="name">카테고리</div>
         <div class="content">
           <select name="category-select" id="">
+            <option value='' selected>선택하세요</option>
             ${options
               .map((opt) => {
                 const selected = opt === category ? 'selected' : ''
@@ -100,6 +98,12 @@ export class EditReportModal {
     categorySelectForm
       .querySelector('select')
       .addEventListener('change', (e) => {
+        if (e.target.value) {
+          const contentElm = this.$root.querySelector(
+            '.category-selector .content'
+          )
+          contentElm.removeAttribute('data-err')
+        }
         this.setReportState({ category: e.target.value })
       })
 
@@ -121,6 +125,7 @@ export class EditReportModal {
         <div class="name">결제수단</div>
         <div class="content">
           <select name="category-select" id="">
+            <option value='' selected>선택하세요</option>
             ${options
               .map((opt) => {
                 const selected = opt === paymentMethod ? 'selected' : ''
@@ -135,6 +140,12 @@ export class EditReportModal {
     paymentSelectForm
       .querySelector('select')
       .addEventListener('change', (e) => {
+        if (e.target.value) {
+          const contentElm = this.$root.querySelector(
+            '.payment-selector .content'
+          )
+          contentElm.removeAttribute('data-err')
+        }
         this.setReportState({ paymentMethod: e.target.value })
       })
 
@@ -152,6 +163,10 @@ export class EditReportModal {
     `)
 
     priceInputForm.querySelector('input').addEventListener('change', (e) => {
+      if (e.target.value) {
+        const contentElm = this.$root.querySelector('.price-input .content')
+        contentElm.removeAttribute('data-err')
+      }
       this.setReportState({ price: e.target.value })
     })
 
@@ -169,15 +184,54 @@ export class EditReportModal {
     `)
 
     contentInputForm.querySelector('input').addEventListener('change', (e) => {
+      if (e.target.value) {
+        const contentElm = this.$root.querySelector('.content-input .content')
+        contentElm.removeAttribute('data-err')
+      }
       this.setReportState({ content: e.target.value })
     })
 
     return contentInputForm
   }
 
-  validateForm() {}
+  validateForm() {
+    if (!this.report.category) {
+      const contentElm = this.$root.querySelector('.category-selector .content')
+      contentElm.setAttribute('data-err', '카테고리 정보를 선택해주세요!')
+    }
+
+    if (!this.report.content) {
+      const contentElm = this.$root.querySelector('.content-input .content')
+      contentElm.setAttribute('data-err', '설명을 입력해주세요!')
+    }
+
+    if (!this.report.date) {
+      const contentElm = this.$root.querySelector('.day-selector .content')
+      contentElm.setAttribute('data-err', '날짜를 선택해주세요!')
+    }
+
+    if (!this.report.paymentMethod) {
+      const contentElm = this.$root.querySelector('.payment-selector .content')
+      contentElm.setAttribute('data-err', '결제수단을 선택해주세요!')
+    }
+
+    if (!this.report.price) {
+      const contentElm = this.$root.querySelector('.price-input .content')
+      contentElm.setAttribute('data-err', '금액을 입력해주세요!')
+    }
+
+    return (
+      !this.report.category ||
+      !this.report.content ||
+      !this.report.date ||
+      !this.report.paymentMethod ||
+      !this.report.price
+    )
+  }
 
   async modifyAReport() {
+    if (this.validateForm()) return
+
     const success = await modifyAReportAPI(this.report)
 
     if (!success) {

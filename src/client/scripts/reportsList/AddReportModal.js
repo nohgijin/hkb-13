@@ -65,6 +65,10 @@ export class AddReportModal {
     `)
 
     daySelectForm.querySelector('input').addEventListener('change', (e) => {
+      if (e.target.value) {
+        const contentElm = this.$root.querySelector('.day-selector .content')
+        contentElm.removeAttribute('data-err')
+      }
       this.setReportState({ date: e.target.value })
     })
 
@@ -105,6 +109,12 @@ export class AddReportModal {
     categorySelectForm
       .querySelector('select')
       .addEventListener('change', (e) => {
+        if (e.target.value) {
+          const contentElm = this.$root.querySelector(
+            '.category-selector .content'
+          )
+          contentElm.removeAttribute('data-err')
+        }
         this.setReportState({ category: e.target.value })
       })
 
@@ -141,6 +151,12 @@ export class AddReportModal {
     paymentSelectForm
       .querySelector('select')
       .addEventListener('change', (e) => {
+        if (e.target.value) {
+          const contentElm = this.$root.querySelector(
+            '.payment-selector .content'
+          )
+          contentElm.removeAttribute('data-err')
+        }
         this.setReportState({ paymentMethod: e.target.value })
       })
 
@@ -158,6 +174,10 @@ export class AddReportModal {
     `)
 
     priceInputForm.querySelector('input').addEventListener('change', (e) => {
+      if (e.target.value) {
+        const contentElm = this.$root.querySelector('.price-input .content')
+        contentElm.removeAttribute('data-err')
+      }
       this.setReportState({ price: e.target.value })
     })
 
@@ -175,6 +195,10 @@ export class AddReportModal {
     `)
 
     contentInputForm.querySelector('input').addEventListener('change', (e) => {
+      if (e.target.value) {
+        const contentElm = this.$root.querySelector('.content-input .content')
+        contentElm.removeAttribute('data-err')
+      }
       this.setReportState({ content: e.target.value })
     })
 
@@ -182,6 +206,31 @@ export class AddReportModal {
   }
 
   validateForm() {
+    if (!this.report.category) {
+      const contentElm = this.$root.querySelector('.category-selector .content')
+      contentElm.setAttribute('data-err', '카테고리 정보를 선택해주세요!')
+    }
+
+    if (!this.report.content) {
+      const contentElm = this.$root.querySelector('.content-input .content')
+      contentElm.setAttribute('data-err', '설명을 입력해주세요!')
+    }
+
+    if (!this.report.date) {
+      const contentElm = this.$root.querySelector('.day-selector .content')
+      contentElm.setAttribute('data-err', '날짜를 선택해주세요!')
+    }
+
+    if (!this.report.paymentMethod) {
+      const contentElm = this.$root.querySelector('.payment-selector .content')
+      contentElm.setAttribute('data-err', '결제수단을 선택해주세요!')
+    }
+
+    if (!this.report.price) {
+      const contentElm = this.$root.querySelector('.price-input .content')
+      contentElm.setAttribute('data-err', '금액을 입력해주세요!')
+    }
+
     return (
       !this.report.category ||
       !this.report.content ||
