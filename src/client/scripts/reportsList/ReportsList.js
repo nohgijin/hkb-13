@@ -74,7 +74,7 @@ export class ReportsList {
       const { date } = report
       const reportRowElm = generateElement(reportElm(report))
 
-      reportRowElm.addEventListener('dblclick', (e) => {
+      reportRowElm.querySelector('.edit-btn').addEventListener('click', (e) => {
         this.openEditModal(report)
       })
 
