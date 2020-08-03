@@ -7,8 +7,6 @@
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 9999;
 
-  display: none;
-
   .modal {
     width: 420px;
     position: absolute;
@@ -24,8 +22,9 @@
 
     .icon.close {
       position: absolute;
-      right: 10px;
-      top: 10px;
+      right: 12px;
+      top: 12px;
+      cursor: pointer;
     }
 
     .report-form {
@@ -61,7 +60,7 @@
           color: var(--baemint);
           border-radius: var(--small-radius);
 
-          &.selected {
+          &[selected] {
             color: var(--white);
             background-color: var(--baemint);
           }
@@ -99,6 +98,15 @@
         border: none;
         border-bottom: 1px solid var(--light-gray);
         outline: none;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      input[type='number'] {
+        -moz-appearance: textfield;
       }
 
       .submit-btn {
