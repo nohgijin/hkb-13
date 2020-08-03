@@ -5,6 +5,8 @@ const passport = require('passport')
 const NaverStrategy = require('passport-naver').Strategy
 const { config } = require('../../config/naverPassport')
 
+const { findUser, createUser } = require('../model/login')
+
 passport.use(
   new NaverStrategy(
     {
@@ -12,7 +14,19 @@ passport.use(
       clientSecret: config.CLIENT_SECRET,
       callbackURL: config.CALLBACK_URL,
     },
-    function (accessToken, refreshToken, profile, done) {
+    async function (accessToken, refreshToken, profile, done) {
+      const user = await findUser({
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        site: profile.provider,
+      })
+      if (!user.length) {
+        createUser({
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          site: profile.provider,
+        })
+      }
       return done(false, profile)
     }
   )
@@ -22,14 +36,11 @@ router.get('/login/naver', passport.authenticate('naver'))
 
 router.get('/login/naver/callback', function (req, res, next) {
   passport.authenticate('naver', function (err, user) {
-    console.log('passport.authenticate(naver)실행')
-    console.log(user)
     if (!user) {
-      return res.redirect('http://localhost:3000/2020/7/login')
+      return res.redirect('http://localhost:3000/login')
     }
     req.logIn(user, function (err) {
-      console.log('naver/callback user : ', user)
-      return res.redirect('http://localhost:3000/2020/7/reports')
+      return res.redirect('http://localhost:3000/reports')
     })
   })(req, res)
 })
