@@ -6,7 +6,7 @@ exports.getReportsList = async ({ boardId, month, year }) => {
       `
       SELECT id, DATE_FORMAT(\`date\`, '%Y-%m-%d') date, category, \`content\`, paymentMethod, price, \`type\` FROM report
       WHERE boardId=? AND YEAR(date) = ? AND MONTH(date) = ?
-      ORDER BY date;
+      ORDER BY date DESC;
     `,
       [boardId, year, month]
     )
