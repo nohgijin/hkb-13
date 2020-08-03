@@ -5,6 +5,7 @@
       text-align: center;
       color: var(--blue);
     }
+
     .calendar-expense {
       margin-top: 10px;
       text-align: center;
@@ -87,6 +88,10 @@
 
     .not-expense {
       display: none;
+    }
+
+    .today {
+      color: var(--baemint);
     }
   }
 }
