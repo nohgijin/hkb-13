@@ -95,9 +95,14 @@ export class Calendar {
       </div>`
     )
     const $calendarTable = generateElement(
-      `<table><thead class='day'>
-      <tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>
-      </thead><tbody></tbody></table>`
+      `<table>
+        <thead class='day'>
+          <tr>
+            <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>`
     )
 
     const $calendarTableBody = $calendarTable.querySelector('tbody')
@@ -105,9 +110,9 @@ export class Calendar {
     let weeksTemplate = ''
     this.weeks.forEach((week) => {
       let weekTemplate = `<tr>`
-      week.forEach((day) => {
+      week.map((day) => {
         const objDay = new Day(day)
-        this.days.push(objDay)
+        this.days.join(objDay)
         weekTemplate += `<td>${objDay.getTemplate()}</td>`
       })
       weekTemplate += `</tr>`
