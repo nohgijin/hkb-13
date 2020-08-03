@@ -1,4 +1,4 @@
-export const removeAReportAPI = async ({ reportId }) => {
+export const removeAReportAPI = async (reportId) => {
   const resposne = await fetch(`/api/board/1/report/${reportId}`, {
     method: 'DELETE',
     headers: {

@@ -6,6 +6,8 @@ import { hkbModel } from '@/client/models/hkbModel'
 import { dateParser } from '@/client/utils/parsers'
 import { generateElement } from '@/client/utils/htmlGenerator'
 
+import { removeAReportAPI } from '@/client/apis'
+
 export class ReportsList {
   constructor() {
     this.$root = generateElement(`<main class="reports-page"></main>`)
@@ -22,10 +24,10 @@ export class ReportsList {
     }`
   }
 
-  generateAddReportBtnElm(report) {
+  generateAddReportBtnElm() {
     const addReportBtnElm = generateElement(`<button>추가</button>`)
-    addReportBtnElm.addEventListener('click', (e) => {
-      this.openAddModal(report)
+    addReportBtnElm.addEventListener('click', () => {
+      this.openAddModal()
     })
     return addReportBtnElm
   }
@@ -63,6 +65,18 @@ export class ReportsList {
     this.$formModal = null
   }
 
+  async deleteReport(reportId) {
+    if (!confirm('정말로 삭제하시겠습니까?')) return
+
+    const success = await removeAReportAPI(reportId)
+
+    if (!success) {
+      alert('삭제 실패!')
+    } else {
+      console.log(success)
+    }
+  }
+
   render({ page, data: reportsList }) {
     if (page !== '/reports' || !reportsList) return
 
@@ -77,6 +91,11 @@ export class ReportsList {
       reportRowElm.querySelector('.edit-btn').addEventListener('click', (e) => {
         this.openEditModal(report)
       })
+      reportRowElm
+        .querySelector('.delete-btn')
+        .addEventListener('click', (e) => {
+          this.deleteReport(report.id)
+        })
 
       if (prevDate === date && prevReportElm) {
         const reportsBodyElm = prevReportElm.querySelector('.report-body')
@@ -100,7 +119,7 @@ export class ReportsList {
     })
 
     this.$root.innerHTML = ''
-    this.$root.append(this.generateAddReportBtnElm(reportsList[0]))
+    this.$root.append(this.generateAddReportBtnElm())
     this.$root.append(listElm)
   }
 }
