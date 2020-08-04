@@ -1,16 +1,17 @@
 export const getReportsListAPI = async (params) => {
   const { year, month } = params
 
-  const resposne = await fetch(`/api/board/1/${year}/${month}/report`, {
+  const response = await fetch(`/api/board/1/${year}/${month}/report`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
 
-  if (!resposne.ok) return null
+  if (!response.ok) return null
+  if(response.redirected) location.href = response.url
 
-  const { reportsList } = await resposne.json()
+  const { reportsList } = await response.json()
 
   return reportsList
 }

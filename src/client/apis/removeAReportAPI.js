@@ -1,14 +1,15 @@
 export const removeAReportAPI = async (reportId) => {
-  const resposne = await fetch(`/api/board/1/report/${reportId}`, {
+  const response = await fetch(`/api/board/1/report/${reportId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   })
 
-  if (!resposne.ok) return null
+  if (!response.ok) return null
+  if (response.redirected) location.href = response.url
 
-  const { success } = await resposne.json()
+  const { success } = await response.json()
 
   return success
 }
