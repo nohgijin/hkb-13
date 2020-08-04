@@ -3,9 +3,9 @@ const { connection } = require('../model/connection')
 exports.findUser = async ({ name, email, site }) => {
   try {
     const [rows] = await connection.execute(
-      `SELECT * FROM user WHERE name='${name}' AND email='${email}' AND site='${site}'`
+      `SELECT user.*,board.id as board_id FROM user INNER JOIN board ON user.id = board.userId  WHERE name='${name}' AND email='${email}' AND site='${site}'`
     )
-    return rows
+    return rows[0]
   } catch (err) {
     throw err
   }
