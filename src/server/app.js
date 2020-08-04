@@ -8,7 +8,12 @@ const passport = require('passport')
 const logger = require('morgan')
 const app = express()
 
-const { reportRouter, calendarRouter, loginRouter } = require('./router')
+const {
+  reportRouter,
+  calendarRouter,
+  loginRouter,
+  logoutRouter,
+} = require('./router')
 const { sessionConfig } = require('../config/session')
 
 app.use(logger('dev'))
@@ -28,6 +33,7 @@ app.use(passport.session())
 app.use(reportRouter)
 app.use(calendarRouter)
 app.use(loginRouter)
+app.use(logoutRouter)
 
 app.use(function (req, res, next) {
   res.sendFile(appRoot.resolve('/dist/index.html'))
