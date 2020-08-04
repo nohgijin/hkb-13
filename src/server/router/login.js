@@ -31,6 +31,7 @@ passport.use(
       clientID: naverConfig.CLIENT_ID,
       clientSecret: naverConfig.CLIENT_SECRET,
       callbackURL: naverConfig.CALLBACK_URL,
+      authType: 'reauthenticate',
     },
     async function (accessToken, refreshToken, profile, done) {
       const user = await findUser({
@@ -73,6 +74,7 @@ passport.use(
       clientID: googleConfig.CLIENT_ID,
       clientSecret: googleConfig.CLIENT_SECRET,
       callbackURL: googleConfig.CALLBACK_URL,
+      authType: 'reauthenticate',
     },
     async function (accessToken, refreshToken, profile, done) {
       const user = await findUser({
@@ -139,7 +141,10 @@ passport.use(
   )
 )
 
-router.get('/login/github', passport.authenticate('github'))
+router.get(
+  '/login/github',
+  passport.authenticate('github', { authType: 'reauthenticate' })
+)
 
 router.get(
   '/login/github/callback',
