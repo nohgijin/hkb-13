@@ -13,8 +13,8 @@ export class NavigationBar {
   }
 
   setDate(year, month) {
-    this.$root.querySelector('.year').innerText = `${year}년`
-    this.$root.querySelector('.month').innerText = `${month}월`
+    this.$root.querySelector('.year').innerText = `${year}`
+    this.$root.querySelector('.month').innerText = `${month}`
 
     hkbModel.setData({ year, month })
   }
@@ -66,14 +66,15 @@ export class NavigationBar {
 
   render() {
     const [year, month] = hkbModel.getDate()
+    const pathname = location.pathname
 
     const monthSelector = generateElement(`
       <div class="month-selector">
         <button class="left">
           <i class="icon">arrowtriangle_left_fill</i>
         </button>
-        <div class="year">${year}년</div>
-        <div class="month">${month}월</div>
+        <div class="year">${year}</div>
+        <div class="month">${month}</div>
         <button class="right">
           <i class="icon">arrowtriangle_right_fill</i>
         </button>
@@ -82,10 +83,21 @@ export class NavigationBar {
 
     const pageSelector = generateElement(`
       <div class="page-selector">
-        <button class="reports-page-btn selected">내역</button>
-        <button class="calendar-page-btn">달력</button>
-        <button class="statistics-page-btn">통계</button>
-      </div>
+        <button class="reports-page-btn ${
+          pathname === '/reports' ? 'selected' : ''
+        }"><i class="icon">square_list${
+      pathname === '/reports' ? '_fill' : ''
+    }</i>Histories</button>
+        <button class="calendar-page-btn ${
+          pathname === '/calendar' ? 'selected' : ''
+        }"><i class="icon">calendar_circle${
+      pathname === '/calendar' ? '_fill' : ''
+    }</i>Calendar</button>
+        <button class="statistics-page-btn ${
+          pathname === '/statistics' ? 'selected' : ''
+        }"><i class="icon">chart_pie${
+      pathname === '/statistics' ? '_fill' : ''
+    }</i>Statistics</button>
     `)
 
     this.$root.innerHTML = ''

@@ -8,7 +8,16 @@
     background-color: var(--white);
 
     .year {
-      margin-right: 8px;
+      position: relative;
+      margin-right: 12px;
+
+      &::after {
+        content: '.';
+        display: block;
+        position: absolute;
+        right: -8px;
+        bottom: 0;
+      }
     }
     .left,
     .right {
@@ -20,38 +29,34 @@
     position: sticky;
     top: 0;
     display: flex;
-    padding: 0 250px;
+    justify-content: center;
     height: 50px;
     background: #3498db;
     border-radius: 0;
+    box-shadow: var(--todo-shadow);
 
     button {
       color: var(--white);
       font-size: 14px;
-      flex: 1;
+      width: 213px;
       height: 100%;
-      border-radius: var(--large-radius);
-      transition: transform 200ms;
+      transition: all 200ms;
+
+      .icon {
+        margin-right: 4px;
+      }
 
       &:not(.selected):hover {
-        transform: scale(1.05);
+        transform: scale(1.2);
+        font-weight: 600;
       }
 
       &.selected {
         position: relative;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
-
-        &::after {
-          content: '';
-          display: block;
-          position: absolute;
-          height: 4px;
-          background-color: white;
-          bottom: 0px;
-          left: 50px;
-          right: 50px;
-        }
+        color: var(--blue);
+        background-color: var(--white);
       }
     }
   }
