@@ -11,9 +11,6 @@
 
       .daily-reports {
         margin-bottom: 20px;
-        // padding: var(--padding);
-        // background-color: var(--white);
-        // border-radius: var(--medium-radius);
 
         .report-header {
           display: flex;
@@ -64,7 +61,7 @@
               position: absolute;
               left: 0;
               top: 0;
-              right: 0;
+              right: 11px;
               bottom: 0;
               backdrop-filter: blur(1px);
               justify-content: flex-end;
@@ -73,7 +70,7 @@
               display: none;
 
               .edit-btn {
-                margin-right: 13px;
+                margin-right: 8px;
                 font-size: 14px;
                 background: white;
                 padding: 3px 7px;
@@ -83,7 +80,6 @@
               }
 
               .delete-btn {
-                margin-right: 13px;
                 font-size: 14px;
                 color: white;
                 background: var(--red);

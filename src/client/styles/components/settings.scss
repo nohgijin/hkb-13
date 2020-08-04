@@ -1,0 +1,114 @@
+.settings-page {
+  width: var(--width);
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .profiles {
+    .profile-header {
+      font-size: 14px;
+      color: var(--light-gray);
+      margin-bottom: 8px;
+    }
+
+    .profile-body {
+      background: var(--white);
+      box-shadow: var(--todo-shadow);
+      border-radius: var(--medium-radius);
+      padding: var(--padding);
+      display: flex;
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        margin-right: 12px;
+
+        .icon {
+          font-size: 60px;
+          color: var(--gray);
+        }
+      }
+
+      .profile-content {
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: 26px;
+
+        .name {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .settings {
+    .categories-list {
+      display: flex;
+      justify-content: space-between;
+      // flex-direction: column;
+      margin-top: 20px;
+
+      .income-categories-list,
+      .expense-categories-list {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .list-header {
+          font-size: 14px;
+          color: var(--light-gray);
+          margin-bottom: 8px;
+        }
+
+        .list-body {
+          flex: 1;
+          background: var(--white);
+          box-shadow: var(--todo-shadow);
+          border-radius: var(--medium-radius);
+          padding: var(--padding);
+
+          .row {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+
+            &:hover,
+            &:focus {
+              background-color: var(--light-blue);
+            }
+          }
+        }
+      }
+
+      .income-categories-list {
+        margin-right: 10px;
+      }
+      .expense-categories-list {
+        margin-left: 10px;
+      }
+    }
+    .payments-list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+
+      .list-header {
+        font-size: 14px;
+        color: var(--light-gray);
+        margin-bottom: 8px;
+      }
+
+      .list-body {
+        flex: 1;
+        background: var(--white);
+        box-shadow: var(--todo-shadow);
+        border-radius: var(--medium-radius);
+        padding: var(--padding);
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@
 @import './components/svgs.scss';
 @import './components/calendar.scss';
 @import './components/notFound.scss';
+@import './components/settings.scss';
 
 :root {
   --width: 640px;
@@ -60,7 +61,7 @@
 }
 
 body {
-  background-color: var(--light-blue);
+  background-color: var(--super-light-blue);
   color: var(--alt-black);
 }
 
