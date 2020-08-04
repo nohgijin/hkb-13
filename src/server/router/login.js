@@ -12,6 +12,19 @@ const { githubConfig } = require('../../config/githubPassport')
 
 const { findUser, createUser } = require('../model/login')
 
+passport.serializeUser((profile, done) => {
+  done(null, profile)
+})
+
+passport.deserializeUser(async (profile, done) => {
+  const user = await findUser({
+    name: profile.name,
+    email: profile.email,
+    site: profile.site,
+  })
+  done(null, user)
+})
+
 passport.use(
   new NaverStrategy(
     {
@@ -33,7 +46,11 @@ passport.use(
           image: profile._json.profile_image ? profile._json.profile_image : '',
         })
       }
-      return done(false, profile)
+      return done(false, {
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        site: profile.provider,
+      })
     }
   )
 )
@@ -58,7 +75,6 @@ passport.use(
       callbackURL: googleConfig.CALLBACK_URL,
     },
     async function (accessToken, refreshToken, profile, done) {
-      console.log(profile)
       const user = await findUser({
         name: profile.displayName,
         email: profile.emails[0].value,
@@ -69,19 +85,17 @@ passport.use(
           name: profile.displayName,
           email: profile.emails[0].value,
           site: profile.provider,
-          image: profile.photos[0].value
-            ? profile.photos[0].value
-            : '',
+          image: profile.photos[0].value ? profile.photos[0].value : '',
         })
       }
-      return done(false, profile)
+      return done(false, {
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        site: profile.provider,
+      })
     }
   )
 )
-
-passport.serializeUser(function (user, done) {
-  done(null, user)
-})
 
 router.get(
   '/login/google',
@@ -116,7 +130,11 @@ passport.use(
           image: profile.photos.value,
         })
       }
-      return done(false, profile)
+      return done(false, {
+        name: profile.displayName,
+        email: profile._json.email ? profile._json.email : '',
+        site: profile.provider,
+      })
     }
   )
 )
