@@ -73,7 +73,7 @@ export class ReportsList {
     if (!success) {
       alert('삭제 실패!')
     } else {
-      console.log(success)
+      hkbModel.reload()
     }
   }
 

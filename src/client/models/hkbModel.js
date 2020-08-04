@@ -39,6 +39,10 @@ class Model extends Observable {
     this.getData()
   }
 
+  reload() {
+    this.getData()
+  }
+
   async getData() {
     const { year, month, page } = this.data
 
