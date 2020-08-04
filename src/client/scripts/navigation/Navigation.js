@@ -82,6 +82,7 @@ export class NavigationBar {
 
     const pageSelector = generateElement(`
       <div class="page-selector">
+        <a href="/logout"> 로그아웃 </a>  
         <button class="reports-page-btn selected">내역</button>
         <button class="calendar-page-btn">달력</button>
         <button class="statistics-page-btn">통계</button>

@@ -1,16 +1,18 @@
+
 export const getCalendarAPI = async (params) => {
   const { year, month } = params
 
-  const resposne = await fetch(`/api/board/1/${year}/${month}/calendar`, {
+  const response = await fetch(`/api/board/1/${year}/${month}/calendar`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
 
-  if (!resposne.ok) return null
+  if (!response.ok) return null
+  if(response.redirected) location.href = response.url
 
-  const { calendar } = await resposne.json()
+  const { calendar } = await response.json()
 
   return calendar
 }

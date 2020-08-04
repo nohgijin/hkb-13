@@ -1,7 +1,7 @@
 const { getCalendar } = require('../model/calendar')
 
 exports.getCalendarController = async (req, res) => {
-  const boardId = parseInt(req.params.boardId)
+  const boardId = req.user.board_id
   const month = parseInt(req.params.month)
   const year = parseInt(req.params.year)
 

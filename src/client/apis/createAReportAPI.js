@@ -1,5 +1,5 @@
 export const createAReportAPI = async (report) => {
-  const resposne = await fetch(`/api/board/1/report`, {
+  const response = await fetch(`/api/board/1/report`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -7,9 +7,10 @@ export const createAReportAPI = async (report) => {
     body: JSON.stringify(report),
   })
 
-  if (!resposne.ok) return null
+  if (!response.ok) return null
+  if(response.redirected) location.href = response.url
 
-  const { createdReportId } = await resposne.json()
+  const { createdReportId } = await response.json()
 
   return createdReportId
 }
