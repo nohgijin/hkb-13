@@ -5,7 +5,7 @@ exports.findUser = async ({ name, email, site }) => {
     const [rows] = await connection.execute(
       `SELECT user.*,board.id as board_id FROM user INNER JOIN board ON user.id = board.userId  WHERE name='${name}' AND email='${email}' AND site='${site}'`
     )
-    return rows[0]
+    return rows.length ? rows[0] : null
   } catch (err) {
     throw err
   }

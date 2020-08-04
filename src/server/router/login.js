@@ -34,20 +34,20 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       const user = await findUser({
-        name: profile.displayName,
+        name: profile._json.nickname,
         email: profile.emails[0].value,
         site: profile.provider,
       })
-      if (!user.length) {
-        createUser({
-          name: profile.displayName,
+      if (!user) {
+        await createUser({
+          name: profile._json.nickname,
           email: profile.emails[0].value,
           site: profile.provider,
           image: profile._json.profile_image ? profile._json.profile_image : '',
         })
       }
       return done(false, {
-        name: profile.displayName,
+        name: profile._json.nickname,
         email: profile.emails[0].value,
         site: profile.provider,
       })
@@ -76,20 +76,20 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       const user = await findUser({
-        name: profile.displayName,
+        name: profile._json.name,
         email: profile.emails[0].value,
         site: profile.provider,
       })
-      if (!user.length) {
-        createUser({
-          name: profile.displayName,
+      if (!user) {
+        await createUser({
+          name: profile._json.name,
           email: profile.emails[0].value,
           site: profile.provider,
           image: profile.photos[0].value ? profile.photos[0].value : '',
         })
       }
       return done(false, {
-        name: profile.displayName,
+        name: profile._json.name,
         email: profile.emails[0].value,
         site: profile.provider,
       })
@@ -118,20 +118,20 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       const user = await findUser({
-        name: profile.displayName,
+        name: profile.username,
         email: profile._json.email ? profile._json.email : '',
         site: profile.provider,
       })
-      if (!user.length) {
-        createUser({
-          name: profile.displayName,
+      if (!user) {
+        await createUser({
+          name: profile.username,
           email: profile._json.email ? profile._json.email : '',
           site: profile.provider,
           image: profile.photos.value,
         })
       }
       return done(false, {
-        name: profile.displayName,
+        name: profile.username,
         email: profile._json.email ? profile._json.email : '',
         site: profile.provider,
       })
