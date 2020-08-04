@@ -1,0 +1,128 @@
+.statistics-page {
+  .pie {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: transparent;
+
+    position: relative;
+
+    // pieChart 애니메이션을 위한 wrapper
+    .left-animator-wrap,
+    .right-animator-wrap {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+      background-color: transparent;
+
+      .animator {
+        transition: transform 400ms;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: white;
+        z-index: 100;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .left-animator-wrap {
+      margin-right: 50%;
+      transform-origin: right;
+
+      .animator {
+        border-radius: 100% 0% 0% 100% / 50%;
+        transform-origin: right;
+
+        animation: leftSemiCircleRotate 800ms forwards;
+      }
+    }
+
+    .right-animator-wrap {
+      margin-left: 50%;
+      transform-origin: left;
+
+      .animator {
+        border-radius: 0 100% 100% 0 / 50%;
+        transform-origin: left;
+
+        animation: rightSemiCircleRotate 400ms forwards;
+      }
+    }
+
+    @keyframes leftSemiCircleRotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      49% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(180deg);
+      }
+    }
+
+    @keyframes rightSemiCircleRotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(180deg);
+      }
+    }
+
+    // 실제 보이는 차트
+    .wrap {
+      width: 50%;
+      height: 100%;
+      margin-left: 50%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+      transform-origin: left;
+
+      .data {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        border-radius: 0 100% 100% 0 / 50%;
+        background-color: inherit;
+        transform-origin: left;
+
+        &.color-0 {
+          background-color: red;
+        }
+        &.color-1 {
+          background-color: orange;
+        }
+        &.color-2 {
+          background-color: yellow;
+        }
+        &.color-3 {
+          background-color: green;
+        }
+        &.color-4 {
+          background-color: blue;
+        }
+        &.color-5 {
+          background-color: navy;
+        }
+        &.color-6 {
+          background-color: purple;
+        }
+      }
+    }
+  }
+}

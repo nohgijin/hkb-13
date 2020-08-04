@@ -1,6 +1,7 @@
 import { Login } from './login/Login'
 import { ReportsList } from './reportsList/ReportsList'
 import { Calendar } from './calendar/Calendar'
+import { Statistics } from './statistics/Statistics'
 import { NavigationBar } from './navigation/Navigation'
 import { NotFound } from './notFound/notFound'
 
@@ -33,6 +34,7 @@ const routePage = () => {
   // render statistics page
   else if (pathname === `/statistics`) {
     app.append(new NavigationBar().$root)
+    app.append(new Statistics().$root)
     return
   } else {
     // render notFound page
