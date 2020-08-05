@@ -25,7 +25,7 @@ class Model extends Observable {
     const now = new Date()
     this.data = {
       year: now.getFullYear(),
-      month: now.getMonth(),
+      month: now.getMonth() + 1 || 0,
       page: '',
     }
   }
