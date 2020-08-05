@@ -1,7 +1,7 @@
 export class Line {
-  constructor( $canvas,data) {
+  constructor($canvas, data) {
     this.data = data
-    this.cvs =  $canvas
+    this.cvs = $canvas
     this.ctx = this.cvs.getContext('2d')
     this.radius = 3
 
@@ -37,17 +37,14 @@ export class Line {
   }
 
   draw() {
-    this.ctx.beginPath()
+    var vertices = []
     for (let i in this.data) {
       const val = this.data[i].price
       const y = this.graphLeftBottom[1] - (val / this.max) * this.graphHeight
       const x = this.oneDayWidth * i + this.graphLeftBottom[0]
-      this.ctx.lineTo(x, y)
+      vertices.push({ x, y })
     }
-    this.ctx.strokeStyle = '#10b3ad'
-
-    this.ctx.stroke()
-    this.ctx.closePath()
+    this.startAnimate(vertices)
 
     for (let i in this.data) {
       const val = this.data[i].price
@@ -156,5 +153,52 @@ export class Line {
       sum += d.price
     })
     return sum / this.data.length
+  }
+
+  // calc waypoints traveling along vertices
+  calcWaypoints(vertices) {
+    var waypoints = []
+    for (var i = 1; i < vertices.length; i++) {
+      var pt0 = vertices[i - 1]
+      var pt1 = vertices[i]
+      var dx = pt1.x - pt0.x
+      var dy = pt1.y - pt0.y
+      for (var j = 0; j < 9; j++) {
+        var x = pt0.x + (dx * j) / 9
+        var y = pt0.y + (dy * j) / 9
+        waypoints.push({ x: x, y: y })
+      }
+    }
+    return waypoints
+  }
+
+  startAnimate(vertices) {
+    // calculate incremental points along the path
+    var points = this.calcWaypoints(vertices)
+
+    // variable to hold how many frames have elapsed in the animation
+    // t represents each waypoint along the path and is incremented in the animation loop
+    var t = 1
+
+    const ctx = this.ctx
+
+    // start the animation
+    animate()
+
+    // incrementally draw additional line segments along the path
+    function animate() {
+      if (t < points.length - 1) {
+        requestAnimationFrame(animate)
+      }
+      // draw a line segment from the last waypoint
+      // to the current waypoint
+      ctx.beginPath()
+      ctx.moveTo(points[t - 1].x, points[t - 1].y)
+      ctx.lineTo(points[t].x, points[t].y)
+      ctx.strokeStyle = '#10b3ad'
+      ctx.stroke()
+      // increment "t" to get the next waypoint
+      t++
+    }
   }
 }
