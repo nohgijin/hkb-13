@@ -6,4 +6,65 @@
   #naverIdLogin {
     margin-bottom: 6px;
   }
+
+  .login-buttons {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+
+    $github-dark: rgb(54, 54, 54);
+    $github: rgb(68, 68, 68);
+
+    .btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+
+      .icon {
+        width: 52px;
+        height: 52px;
+        font-size: 32px;
+        line-height: 52px;
+      }
+
+      .content {
+        margin-left: 20px;
+      }
+    }
+
+    .btn-google {
+      background-color: white;
+      color: rgb(117, 117, 117);
+      border: 1px solid #ddd;
+
+      .icon {
+        border-right: 1px solid #ddd;
+        filter: saturate(1.2);
+        background: conic-gradient(
+          from 0deg at 41% 50%,
+          #d95140 53deg,
+          #5185ec 53deg 127deg,
+          #58a55c 127deg 233deg,
+          #f2be42 233deg 313deg,
+          #d95140 313deg 360deg
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .btn-github {
+      background-color: $github;
+      border: 1px solid $github-dark;
+      color: white;
+
+      .icon {
+        border-right: 1px solid $github-dark;
+      }
+    }
+  }
 }
