@@ -1,5 +1,5 @@
 import { generateElement } from '@/client/utils/htmlGenerator'
-const { naverConfig } = require('../../../config/naverPassport')
+const { naverConfig } = require('@/config/naverPassport')
 export class Login {
   constructor() {
     this.$root = generateElement(`
