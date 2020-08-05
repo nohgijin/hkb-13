@@ -2,7 +2,7 @@ import { generateElement } from '@/client/utils/htmlGenerator'
 import { html } from '@/client/utils/lit'
 
 export const getPieChartElm = (data) => {
-  const svgElm = generateElement(html`<div class="pie"></div>`)
+  const pieChartElm = generateElement(html`<div class="pie-chart"></div>`)
   const leftAnimator = generateElement(
     html`<div class="left-animator-wrap">
       <div class="animator"></div>
@@ -14,8 +14,8 @@ export const getPieChartElm = (data) => {
     </div>`
   )
 
-  svgElm.append(leftAnimator)
-  svgElm.append(rightAnimator)
+  pieChartElm.append(leftAnimator)
+  pieChartElm.append(rightAnimator)
 
   const generateArc = (acc, data, idx) => {
     const wrap = generateElement(html`<div class="wrap"></div>`)
@@ -35,7 +35,7 @@ export const getPieChartElm = (data) => {
   data.reduce((acc, data, idx) => {
     if (data.percent <= 0.5) {
       const arcElm = generateArc(acc, data, idx)
-      svgElm.append(arcElm)
+      pieChartElm.append(arcElm)
     } else {
       const percent = data.percent
       const arcElm = generateArc(acc, { ...data, percent: 0.5 }, idx)
@@ -45,12 +45,12 @@ export const getPieChartElm = (data) => {
         idx
       )
 
-      svgElm.append(arcElm)
-      svgElm.append(arcElm2)
+      pieChartElm.append(arcElm)
+      pieChartElm.append(arcElm2)
     }
 
     return acc + data.percent
   }, 0)
 
-  return svgElm
+  return pieChartElm
 }

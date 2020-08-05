@@ -1,7 +1,16 @@
 .statistics-page {
-  .pie {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: var(--width);
+  padding: var(--padding);
+  border-radius: var(--medium-radius);
+  box-shadow: var(--todo-shadow);
+  background-color: var(--white);
+
+  .pie-chart {
     width: 300px;
     height: 300px;
+    margin: 0 auto;
     border-radius: 50%;
     background: transparent;
 
@@ -39,7 +48,7 @@
         border-radius: 100% 0% 0% 100% / 50%;
         transform-origin: right;
 
-        animation: leftSemiCircleRotate 800ms forwards;
+        animation: leftSemiCircleRotate linear 800ms forwards;
       }
     }
 
@@ -51,7 +60,7 @@
         border-radius: 0 100% 100% 0 / 50%;
         transform-origin: left;
 
-        animation: rightSemiCircleRotate 400ms forwards;
+        animation: rightSemiCircleRotate linear 400ms forwards;
       }
     }
 
@@ -60,7 +69,7 @@
         transform: rotate(0deg);
       }
 
-      49% {
+      50% {
         transform: rotate(0deg);
       }
 
@@ -102,26 +111,117 @@
         transform-origin: left;
 
         &.color-0 {
-          background-color: red;
+          background-color: rgb(163, 216, 213);
         }
         &.color-1 {
-          background-color: orange;
+          background-color: rgb(89, 179, 173);
         }
         &.color-2 {
-          background-color: yellow;
+          background-color: rgb(84, 169, 180);
         }
         &.color-3 {
-          background-color: green;
+          background-color: rgb(73, 143, 178);
         }
         &.color-4 {
-          background-color: blue;
+          background-color: rgb(61, 116, 177);
         }
         &.color-5 {
-          background-color: navy;
+          background-color: rgb(59, 89, 158);
         }
         &.color-6 {
-          background-color: purple;
+          background-color: var(--navy);
         }
+      }
+    }
+  }
+
+  .bar-chart {
+    margin-top: 60px;
+
+    .row {
+      display: flex;
+      align-items: center;
+      height: 50px;
+
+      .name {
+        width: 100px;
+      }
+
+      .percent {
+        width: 60px;
+      }
+
+      .chart {
+        flex: 1;
+        display: flex;
+        align-items: center;
+
+        .bar {
+          background-color: black;
+          height: 30px;
+        }
+      }
+
+      &.color-0 {
+        .percent {
+          color: rgb(163, 216, 213);
+        }
+        .chart .bar {
+          background-color: rgb(163, 216, 213);
+        }
+      }
+      &.color-1 {
+        .percent {
+          color: rgb(89, 179, 173);
+        }
+        .chart .bar {
+          background-color: rgb(89, 179, 173);
+        }
+      }
+      &.color-2 {
+        .percent {
+          color: rgb(84, 169, 180);
+        }
+        .chart .bar {
+          background-color: rgb(84, 169, 180);
+        }
+      }
+      &.color-3 {
+        .percent {
+          color: rgb(73, 143, 178);
+        }
+        .chart .bar {
+          background-color: rgb(73, 143, 178);
+        }
+      }
+      &.color-4 {
+        .percent {
+          color: rgb(61, 116, 177);
+        }
+        .chart .bar {
+          background-color: rgb(61, 116, 177);
+        }
+      }
+      &.color-5 {
+        .percent {
+          color: rgb(59, 89, 158);
+        }
+        .chart .bar {
+          background-color: rgb(59, 89, 158);
+        }
+      }
+      &.color-6 {
+        .percent {
+          color: var(--navy);
+        }
+        .chart .bar {
+          background-color: var(--navy);
+        }
+      }
+
+      .price {
+        width: 100px;
+        text-align: right;
       }
     }
   }
