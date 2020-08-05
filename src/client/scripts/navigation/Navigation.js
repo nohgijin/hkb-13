@@ -83,6 +83,7 @@ export class NavigationBar {
 
     const pageSelector = generateElement(`
       <div class="page-selector">
+        <a href="/logout"> 로그아웃 </a>  
         <button class="reports-page-btn ${
           pathname === '/reports' ? 'selected' : ''
         }"><i class="icon">square_list${
@@ -98,6 +99,7 @@ export class NavigationBar {
         }"><i class="icon">chart_pie${
       pathname === '/statistics' ? '_fill' : ''
     }</i>Statistics</button>
+
     `)
 
     this.$root.innerHTML = ''

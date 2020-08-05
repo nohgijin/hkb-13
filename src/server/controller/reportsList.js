@@ -6,7 +6,7 @@ const {
 } = require('../model/reportsList')
 
 exports.getReportsListController = async (req, res) => {
-  const boardId = parseInt(req.params.boardId)
+  const boardId = req.user.board_id
   const year = parseInt(req.params.year)
   const month = parseInt(req.params.month)
 
@@ -21,7 +21,7 @@ exports.getReportsListController = async (req, res) => {
 }
 
 exports.createAReportController = async (req, res) => {
-  const boardId = parseInt(req.params.boardId)
+  const boardId = req.user.board_id
   const { content, category, paymentMethod, price, type, date } = req.body
 
   if (!boardId) {
@@ -43,7 +43,7 @@ exports.createAReportController = async (req, res) => {
 }
 
 exports.modifyAReportController = async (req, res) => {
-  const boardId = parseInt(req.params.boardId)
+  const boardId = req.user.board_id
   const reportId = parseInt(req.params.reportId)
   const { content, category, paymentMethod, price, type, date } = req.body
 
@@ -67,7 +67,7 @@ exports.modifyAReportController = async (req, res) => {
 }
 
 exports.removeAReportController = async (req, res) => {
-  const boardId = parseInt(req.params.boardId)
+  const boardId = req.user.board_id
   const reportId = parseInt(req.params.reportId)
 
   if (!boardId || !reportId) {
