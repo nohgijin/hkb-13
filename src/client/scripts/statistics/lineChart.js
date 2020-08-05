@@ -1,8 +1,7 @@
-class Line {
-  constructor(data, classname) {
+export class Line {
+  constructor( $canvas,data) {
     this.data = data
-    this.classname = classname
-    this.cvs = document.querySelector(`.${classname}`)
+    this.cvs =  $canvas
     this.ctx = this.cvs.getContext('2d')
     this.radius = 3
 
@@ -159,39 +158,3 @@ class Line {
     return sum / this.data.length
   }
 }
-
-new Line(
-  [
-    { date: '2020.06.01', price: 0 },
-    { date: '2020.06.02', price: 10000 },
-    { date: '2020.06.03', price: 210000 },
-    { date: '2020.06.04', price: 210000 },
-    { date: '2020.06.05', price: 310000 },
-    { date: '2020.06.06', price: 500000 },
-    { date: '2020.06.07', price: 600000 },
-    { date: '2020.06.08', price: 700000 },
-    { date: '2020.06.09', price: 600000 },
-    { date: '2020.06.10', price: 600000 },
-    { date: '2020.06.11', price: 600000 },
-    { date: '2020.06.12', price: 400000 },
-    { date: '2020.06.13', price: 600000 },
-    { date: '2020.06.14', price: 2300000 },
-    { date: '2020.06.15', price: 600000 },
-    { date: '2020.06.16', price: 600000 },
-    { date: '2020.06.17', price: 600000 },
-    { date: '2020.06.18', price: 600000 },
-    { date: '2020.06.19', price: 600000 },
-    { date: '2020.06.20', price: 600000 },
-    { date: '2020.06.21', price: 600000 },
-    { date: '2020.06.22', price: 600000 },
-    { date: '2020.06.23', price: 600000 },
-    { date: '2020.06.24', price: 600000 },
-    { date: '2020.06.25', price: 600000 },
-    { date: '2020.06.26', price: 600000 },
-    { date: '2020.06.27', price: 600000 },
-    { date: '2020.06.28', price: 600000 },
-    { date: '2020.06.29', price: 600000 },
-    { date: '2020.06.30', price: 600000 },
-  ],
-  'canvas'
-)
