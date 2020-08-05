@@ -24,7 +24,7 @@ app.use(
   session({
     secret: sessionConfig.SECRET_KEY,
     resave: false,
-    saveUnintitialized: true,
+    saveUninitialized: true,
   })
 )
 app.use(passport.initialize())

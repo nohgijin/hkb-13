@@ -1,19 +1,22 @@
 import { generateElement } from '@/client/utils/htmlGenerator'
-const { naverConfig } = require('@/config/naverPassport')
+import { html } from '@/client/utils/lit'
+const { naverConfig } = require('../../../config/naverPassport')
 export class Login {
   constructor() {
-    this.$root = generateElement(`
+    this.$root = generateElement(html`
       <main class="login-page">
         <h1>돈을 아끼자!</h1>
-        <div id="naverIdLogin"></div>
-        <a href='/login/google' class="btn btn-block btn-social btn-lg btn-google">
-          <span class="fa fa-google"></span>
-          Sign in with Google
-        </a>
-        <a href='/login/github' class="btn btn-block btn-social btn-lg btn-github">
-        <span class="fa fa-github"></span>
-        Sign in with GitHub
-      </a>
+        <div class="login-buttons">
+          <div id="naverIdLogin"></div>
+          <a href="/login/google" class="btn btn-google">
+            <i class="icon">logo_google</i>
+            <span class="content">Sign in with Google</span>
+          </a>
+          <a href="/login/github" class="btn btn-github">
+            <i class="icon">logo_github</i>
+            <span class="content">Sign in with GitHub</span>
+          </a>
+        </div>
       </main>
     `)
   }
