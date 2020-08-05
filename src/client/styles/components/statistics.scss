@@ -7,10 +7,68 @@
   box-shadow: var(--todo-shadow);
   background-color: var(--white);
 
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    .type-selector {
+      display: flex;
+
+      .categorical-expense {
+        cursor: pointer;
+        display: flex;
+        margin-right: 10px;
+        align-items: center;
+
+        .type {
+          position: relative;
+          top: 0.04em;
+        }
+      }
+
+      .daily-expense {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        .type {
+          position: relative;
+          top: 0.04em;
+        }
+      }
+
+      .box {
+        margin-right: 4px;
+        width: 13px;
+        height: 13px;
+        border-radius: 4px;
+        border: 1px solid var(--light-gray);
+
+        &.selected {
+          background-color: var(--blue);
+          border-color: var(--blue);
+        }
+      }
+    }
+
+    .total {
+      display: flex;
+
+      .name {
+        margin-right: 10px;
+      }
+
+      .price {
+        color: var(--blue);
+      }
+    }
+  }
+
   .pie-chart {
     width: 300px;
     height: 300px;
     margin: 0 auto;
+    margin-top: 40px;
     border-radius: 50%;
     background: transparent;
 
@@ -48,7 +106,7 @@
         border-radius: 100% 0% 0% 100% / 50%;
         transform-origin: right;
 
-        animation: leftSemiCircleRotate linear 800ms forwards;
+        animation: leftSemiCircleRotate linear 400ms forwards;
       }
     }
 
@@ -60,7 +118,7 @@
         border-radius: 0 100% 100% 0 / 50%;
         transform-origin: left;
 
-        animation: rightSemiCircleRotate linear 400ms forwards;
+        animation: rightSemiCircleRotate linear 200ms forwards;
       }
     }
 
@@ -155,10 +213,23 @@
         flex: 1;
         display: flex;
         align-items: center;
+        overflow: hidden;
 
         .bar {
           background-color: black;
           height: 30px;
+
+          transform: translateX(-100%);
+          animation: barChartAnimation 400ms ease-in forwards;
+
+          @keyframes barChartAnimation {
+            from {
+              transform: translateX(-100%);
+            }
+            to {
+              transform: translateX(0);
+            }
+          }
         }
       }
 

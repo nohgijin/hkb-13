@@ -46,12 +46,25 @@ class Model extends Observable {
   async getData() {
     const { year, month, page } = this.data
 
+    const categoryStatisticsData = [
+      { category: '쇼핑/뷰티', price: 837000 },
+      { category: '식비', price: 302000 },
+      { category: '생활', price: 137800 },
+      { category: '교통', price: 83800 },
+      { category: '문화/여가', price: 36800 },
+      { category: '의료/건강', price: 12300 },
+      { category: '미분류', price: 5400 },
+    ]
+
     if (page === '/reports') {
       const reportsList = await getReportsListAPI({ year, month })
       this.notify({ year, month, page, data: reportsList })
     } else if (page === '/calendar') {
       const calendar = await getCalendarAPI({ year, month })
       this.notify({ year, month, page, data: calendar })
+    } else if (page === '/statistics') {
+      await setTimeout(() => {}, 400)
+      this.notify({ year, month, page, data: categoryStatisticsData })
     }
   }
 }

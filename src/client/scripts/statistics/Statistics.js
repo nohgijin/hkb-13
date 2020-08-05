@@ -4,39 +4,95 @@ import { hkbModel } from '@/client/models/hkbModel'
 
 import { getPieChartElm } from './pieChart'
 import { getBarChartElm } from './barChart'
+import { parseToLocalMoneyString } from '@/client/utils/parsers'
 
 export class Statistics {
   constructor() {
     this.$root = generateElement(html`<main class="statistics-page"></main>`)
 
-    this.render()
-    // hkbModel.subscribe(this.render.bind(this))
+    // 'categorical' | 'daily'
+    this.viewType = 'categorical'
+    this.categoryStatisticsData = []
+    this.totalPrice = 0
+    hkbModel.subscribe(this.setData.bind(this))
   }
 
-  render() {
-    const categoryStatisticsData = [
-      { category: '쇼핑/뷰티', price: 837000 },
-      { category: '식비', price: 302000 },
-      { category: '생활', price: 137800 },
-      { category: '교통', price: 83800 },
-      { category: '문화/여가', price: 36800 },
-      { category: '의료/건강', price: 12300 },
-      { category: '미분류', price: 5400 },
-    ]
-
+  setData({ data: categoryStatisticsData }) {
     const totalPrice = categoryStatisticsData.reduce(
       (acc, cur) => acc + cur.price,
       0
     )
-    categoryStatisticsData.forEach((row) => {
-      const percent = (row.price / totalPrice).toFixed(2)
+
+    this.totalPrice = totalPrice
+    this.categoryStatisticsData = categoryStatisticsData
+    this.render()
+  }
+
+  generateHeader() {
+    const isCategorical = this.viewType === 'categorical'
+    const statisticsHeaderElm = generateElement(html`
+      <div class="header">
+        <div class="type-selector">
+          <div class="categorical-expense">
+            <div class="box ${isCategorical ? 'selected' : ''}"></div>
+            <div class="type">카테고리별 지출</div>
+          </div>
+          <div class="daily-expense">
+            <div class="box ${isCategorical ? '' : 'selected'}"></div>
+            <div class="type">일별 지출</div>
+          </div>
+        </div>
+        <div class="total">
+          <div class="name">이번 달 지출 금액</div>
+          <div class="price">${parseToLocalMoneyString(this.totalPrice)}원</div>
+        </div>
+      </div>
+    `)
+
+    const categoricalExpenseBtn = statisticsHeaderElm.querySelector(
+      '.categorical-expense'
+    )
+    const dailyExpenseBtn = statisticsHeaderElm.querySelector('.daily-expense')
+    categoricalExpenseBtn.addEventListener('click', (e) => {
+      this.viewType = 'categorical'
+      this.render()
+    })
+    dailyExpenseBtn.addEventListener('click', (e) => {
+      this.viewType = 'daily'
+      this.render()
+    })
+
+    return statisticsHeaderElm
+  }
+
+  generateCategoricalExpense() {
+    this.categoryStatisticsData.forEach((row) => {
+      const percent = (row.price / this.totalPrice).toFixed(2)
       row.percent = parseFloat(percent)
     })
 
-    const pieChartElm = getPieChartElm(categoryStatisticsData)
-    const barChartElm = getBarChartElm(categoryStatisticsData)
+    const fragmentElm = document.createDocumentFragment()
+    const pieChartElm = getPieChartElm(this.categoryStatisticsData)
+    const barChartElm = getBarChartElm(this.categoryStatisticsData)
 
-    this.$root.append(pieChartElm)
-    this.$root.append(barChartElm)
+    fragmentElm.append(pieChartElm)
+    fragmentElm.append(barChartElm)
+
+    return fragmentElm
+  }
+
+  render() {
+    this.$root.innerHTML = ''
+
+    const statisticsHeaderElm = this.generateHeader()
+    this.$root.append(statisticsHeaderElm)
+
+    if (this.viewType === 'categorical') {
+      const categoricalExpense = this.generateCategoricalExpense()
+      this.$root.append(categoricalExpense)
+    }
+
+    if (this.viewType === 'daily') {
+    }
   }
 }
