@@ -1,5 +1,6 @@
 import { generateElement } from '@/client/utils/htmlGenerator'
 import { createAReportAPI } from '@/client/apis'
+import { hkbModel } from '@/client/models/hkbModel'
 
 export class AddReportModal {
   constructor(closeModal) {
@@ -248,6 +249,7 @@ export class AddReportModal {
       alert('생성 실패!')
     } else {
       this.closeModal()
+      hkbModel.reload()
     }
   }
 

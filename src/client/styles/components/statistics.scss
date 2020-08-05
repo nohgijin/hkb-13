@@ -1,0 +1,299 @@
+.statistics-page {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: var(--width);
+  padding: var(--padding);
+  border-radius: var(--medium-radius);
+  box-shadow: var(--todo-shadow);
+  background-color: var(--white);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    .type-selector {
+      display: flex;
+
+      .categorical-expense {
+        cursor: pointer;
+        display: flex;
+        margin-right: 10px;
+        align-items: center;
+
+        .type {
+          position: relative;
+          top: 0.04em;
+        }
+      }
+
+      .daily-expense {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        .type {
+          position: relative;
+          top: 0.04em;
+        }
+      }
+
+      .box {
+        margin-right: 4px;
+        width: 13px;
+        height: 13px;
+        border-radius: 4px;
+        border: 1px solid var(--light-gray);
+
+        &.selected {
+          background-color: var(--blue);
+          border-color: var(--blue);
+        }
+      }
+    }
+
+    .total {
+      display: flex;
+
+      .name {
+        margin-right: 10px;
+      }
+
+      .price {
+        color: var(--blue);
+      }
+    }
+  }
+
+  .pie-chart {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 40px;
+    border-radius: 50%;
+    background: transparent;
+
+    position: relative;
+
+    // pieChart 애니메이션을 위한 wrapper
+    .left-animator-wrap,
+    .right-animator-wrap {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+      background-color: transparent;
+
+      .animator {
+        transition: transform 400ms;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: white;
+        z-index: 100;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .left-animator-wrap {
+      margin-right: 50%;
+      transform-origin: right;
+
+      .animator {
+        border-radius: 100% 0% 0% 100% / 50%;
+        transform-origin: right;
+
+        animation: leftSemiCircleRotate linear 400ms forwards;
+      }
+    }
+
+    .right-animator-wrap {
+      margin-left: 50%;
+      transform-origin: left;
+
+      .animator {
+        border-radius: 0 100% 100% 0 / 50%;
+        transform-origin: left;
+
+        animation: rightSemiCircleRotate linear 200ms forwards;
+      }
+    }
+
+    @keyframes leftSemiCircleRotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      50% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(180deg);
+      }
+    }
+
+    @keyframes rightSemiCircleRotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(180deg);
+      }
+    }
+
+    // 실제 보이는 차트
+    .wrap {
+      width: 50%;
+      height: 100%;
+      margin-left: 50%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+      transform-origin: left;
+
+      .data {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        border-radius: 0 100% 100% 0 / 50%;
+        background-color: inherit;
+        transform-origin: left;
+
+        &.color-0 {
+          background-color: rgb(163, 216, 213);
+        }
+        &.color-1 {
+          background-color: rgb(89, 179, 173);
+        }
+        &.color-2 {
+          background-color: rgb(84, 169, 180);
+        }
+        &.color-3 {
+          background-color: rgb(73, 143, 178);
+        }
+        &.color-4 {
+          background-color: rgb(61, 116, 177);
+        }
+        &.color-5 {
+          background-color: rgb(59, 89, 158);
+        }
+        &.color-6 {
+          background-color: var(--navy);
+        }
+      }
+    }
+  }
+
+  .bar-chart {
+    margin-top: 60px;
+
+    .row {
+      display: flex;
+      align-items: center;
+      height: 50px;
+
+      .name {
+        width: 100px;
+      }
+
+      .percent {
+        width: 60px;
+      }
+
+      .chart {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+
+        .bar {
+          background-color: black;
+          height: 30px;
+
+          transform: translateX(-100%);
+          animation: barChartAnimation 400ms ease-in forwards;
+
+          @keyframes barChartAnimation {
+            from {
+              transform: translateX(-100%);
+            }
+            to {
+              transform: translateX(0);
+            }
+          }
+        }
+      }
+
+      &.color-0 {
+        .percent {
+          color: rgb(163, 216, 213);
+        }
+        .chart .bar {
+          background-color: rgb(163, 216, 213);
+        }
+      }
+      &.color-1 {
+        .percent {
+          color: rgb(89, 179, 173);
+        }
+        .chart .bar {
+          background-color: rgb(89, 179, 173);
+        }
+      }
+      &.color-2 {
+        .percent {
+          color: rgb(84, 169, 180);
+        }
+        .chart .bar {
+          background-color: rgb(84, 169, 180);
+        }
+      }
+      &.color-3 {
+        .percent {
+          color: rgb(73, 143, 178);
+        }
+        .chart .bar {
+          background-color: rgb(73, 143, 178);
+        }
+      }
+      &.color-4 {
+        .percent {
+          color: rgb(61, 116, 177);
+        }
+        .chart .bar {
+          background-color: rgb(61, 116, 177);
+        }
+      }
+      &.color-5 {
+        .percent {
+          color: rgb(59, 89, 158);
+        }
+        .chart .bar {
+          background-color: rgb(59, 89, 158);
+        }
+      }
+      &.color-6 {
+        .percent {
+          color: var(--navy);
+        }
+        .chart .bar {
+          background-color: var(--navy);
+        }
+      }
+
+      .price {
+        width: 100px;
+        text-align: right;
+      }
+    }
+  }
+}
