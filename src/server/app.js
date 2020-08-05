@@ -1,7 +1,5 @@
-const createError = require('http-errors')
 const express = require('express')
 const session = require('express-session')
-const path = require('path')
 const appRoot = require('app-root-path')
 const passport = require('passport')
 
@@ -13,6 +11,7 @@ const {
   calendarRouter,
   loginRouter,
   logoutRouter,
+  statisticsRouter,
 } = require('./router')
 const { sessionConfig } = require('../config/session')
 
@@ -32,6 +31,8 @@ app.use(passport.session())
 
 app.use(reportRouter)
 app.use(calendarRouter)
+app.use(statisticsRouter)
+
 app.use(loginRouter)
 app.use(logoutRouter)
 
