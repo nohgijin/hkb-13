@@ -77,129 +77,174 @@
   }
 
   .pie-chart {
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     margin-top: 40px;
-    border-radius: 50%;
-    background: transparent;
 
-    position: relative;
+    .legend {
+      .row {
+        height: 40px;
+        position: relative;
+        line-height: 40px;
 
-    // pieChart 애니메이션을 위한 wrapper
-    .left-animator-wrap,
-    .right-animator-wrap {
-      width: 50%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      overflow: hidden;
-      background-color: transparent;
+        &::after {
+          content: '';
+          width: 16px;
+          height: 16px;
+          position: absolute;
+          left: -26px;
+          top: 11px;
+          border-radius: 4px;
+        }
 
-      .animator {
-        transition: transform 400ms;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: white;
-        z-index: 100;
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
-    }
-
-    .left-animator-wrap {
-      margin-right: 50%;
-      transform-origin: right;
-
-      .animator {
-        border-radius: 100% 0% 0% 100% / 50%;
-        transform-origin: right;
-
-        animation: leftSemiCircleRotate linear 400ms forwards;
-      }
-    }
-
-    .right-animator-wrap {
-      margin-left: 50%;
-      transform-origin: left;
-
-      .animator {
-        border-radius: 0 100% 100% 0 / 50%;
-        transform-origin: left;
-
-        animation: rightSemiCircleRotate linear 200ms forwards;
-      }
-    }
-
-    @keyframes leftSemiCircleRotate {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      50% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(180deg);
-      }
-    }
-
-    @keyframes rightSemiCircleRotate {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(180deg);
-      }
-    }
-
-    // 실제 보이는 차트
-    .wrap {
-      width: 50%;
-      height: 100%;
-      margin-left: 50%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      overflow: hidden;
-      transform-origin: left;
-
-      .data {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-
-        border-radius: 0 100% 100% 0 / 50%;
-        background-color: inherit;
-        transform-origin: left;
-
-        &.color-0 {
+        &.color-0::after {
           background-color: rgb(163, 216, 213);
         }
-        &.color-1 {
+        &.color-1::after {
           background-color: rgb(89, 179, 173);
         }
-        &.color-2 {
+        &.color-2::after {
           background-color: rgb(84, 169, 180);
         }
-        &.color-3 {
+        &.color-3::after {
           background-color: rgb(73, 143, 178);
         }
-        &.color-4 {
+        &.color-4::after {
           background-color: rgb(61, 116, 177);
         }
-        &.color-5 {
+        &.color-5::after {
           background-color: rgb(59, 89, 158);
         }
-        &.color-6 {
+        &.color-6::after {
           background-color: var(--navy);
+        }
+      }
+    }
+
+    .pie {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: transparent;
+
+      position: relative;
+
+      // pieChart 애니메이션을 위한 wrapper
+      .left-animator-wrap,
+      .right-animator-wrap {
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        background-color: transparent;
+
+        .animator {
+          transition: transform 400ms;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background: white;
+          z-index: 100;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+
+      .left-animator-wrap {
+        margin-right: 50%;
+        transform-origin: right;
+
+        .animator {
+          border-radius: 100% 0% 0% 100% / 50%;
+          transform-origin: right;
+
+          animation: leftSemiCircleRotate linear 400ms forwards;
+        }
+      }
+
+      .right-animator-wrap {
+        margin-left: 50%;
+        transform-origin: left;
+
+        .animator {
+          border-radius: 0 100% 100% 0 / 50%;
+          transform-origin: left;
+
+          animation: rightSemiCircleRotate linear 200ms forwards;
+        }
+      }
+
+      @keyframes leftSemiCircleRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        50% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(180deg);
+        }
+      }
+
+      @keyframes rightSemiCircleRotate {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(180deg);
+        }
+      }
+
+      // 실제 보이는 차트
+      .wrap {
+        width: 50%;
+        height: 100%;
+        margin-left: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        transform-origin: left;
+
+        .data {
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+
+          border-radius: 0 100% 100% 0 / 50%;
+          background-color: inherit;
+          transform-origin: left;
+
+          &.color-0 {
+            background-color: rgb(163, 216, 213);
+          }
+          &.color-1 {
+            background-color: rgb(89, 179, 173);
+          }
+          &.color-2 {
+            background-color: rgb(84, 169, 180);
+          }
+          &.color-3 {
+            background-color: rgb(73, 143, 178);
+          }
+          &.color-4 {
+            background-color: rgb(61, 116, 177);
+          }
+          &.color-5 {
+            background-color: rgb(59, 89, 158);
+          }
+          &.color-6 {
+            background-color: var(--navy);
+          }
         }
       }
     }
