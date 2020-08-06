@@ -107,6 +107,5 @@ export class Statistics {
       this.$root.append(canvas)
       new Line(canvas, this.dailyStatisticsData)
     }
-    
   }
 }

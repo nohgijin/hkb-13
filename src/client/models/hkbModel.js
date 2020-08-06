@@ -3,6 +3,7 @@ import {
   getCalendarAPI,
   getDailyStatisticsDataAPI,
   getCategoryStatisticsDataAPI,
+  getUserAPI,
 } from '@/client/apis'
 
 import { Month } from '@/client/scripts/calendar/Month'
@@ -68,6 +69,9 @@ class Model extends Observable {
         month,
       })
 
+      const user = await getUserAPI()
+      console.log(user)
+
       // 꺾은선 그래프에서 사용하는 데이터
       const daily = new Month(year, month, dailyStatisticsData)
         .getDaily()
@@ -75,7 +79,6 @@ class Model extends Observable {
           date: `${data.month}.${data.date}`,
           price: data.expense != '' ? parseInt(data.expense) : 0,
         }))
-
 
       this.notify({
         year,
@@ -85,7 +88,7 @@ class Model extends Observable {
           ...data,
           price: parseInt(data.price),
         })),
-        daily
+        daily,
       })
     }
   }
