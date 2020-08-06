@@ -70,6 +70,7 @@ export class NavigationBar {
 
     const monthSelector = generateElement(`
       <div class="month-selector">
+        <a href="/logout" class="logout" > 로그아웃 </a>  
         <button class="left">
           <i class="icon">arrowtriangle_left_fill</i>
         </button>
@@ -83,7 +84,6 @@ export class NavigationBar {
 
     const pageSelector = generateElement(`
       <div class="page-selector">
-        <a href="/logout"> 로그아웃 </a>  
         <button class="reports-page-btn ${
           pathname === '/reports' ? 'selected' : ''
         }"><i class="icon">square_list${

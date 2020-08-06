@@ -23,6 +23,16 @@
     .right {
       margin: 12px;
     }
+
+    .logout {
+      position: absolute;
+      right: 20px;
+      top: 0;
+      line-height: 60px;
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--red);
+    }
   }
 
   .page-selector {
