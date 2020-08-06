@@ -4,9 +4,9 @@ exports.getCalendar = async ({ boardId, month, year }) => {
   try {
     const [rows] = await connection.execute(
       `
-      SELECT id, DATE_FORMAT(\`date\`, '%d') date, category, \`content\`, paymentMethod, price, \`type\` FROM report
+      SELECT DATE_FORMAT(\`date\`, '%d') date, sum(price) as price, \`type\` FROM report
       WHERE boardId=? AND YEAR(date) = ? AND MONTH(date) = ?
-      ORDER BY date;
+      GROUP BY date, type;
     `,
       [boardId, year, month]
     )
