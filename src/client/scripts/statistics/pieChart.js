@@ -2,7 +2,9 @@ import { generateElement } from '@/client/utils/htmlGenerator'
 import { html } from '@/client/utils/lit'
 
 export const getPieChartElm = (data) => {
-  const pieChartElm = generateElement(html`<div class="pie-chart"></div>`)
+  const pieChartWrap = generateElement(html`<div class="pie-chart"></div>`)
+  const pieChartElm = generateElement(html`<div class="pie"></div>`)
+
   const leftAnimator = generateElement(
     html`<div class="left-animator-wrap">
       <div class="animator"></div>
@@ -16,6 +18,23 @@ export const getPieChartElm = (data) => {
 
   pieChartElm.append(leftAnimator)
   pieChartElm.append(rightAnimator)
+
+  const generateLegend = () => {
+    const legendElm = generateElement(html`
+      <div class="legend">
+        <ul>
+          ${data
+            .map(
+              (d, i) =>
+                html`<li class="row color-${i.toString()}">${d.category}</li>`
+            )
+            .join('')}
+        </ul>
+      </div>
+    `)
+
+    return legendElm
+  }
 
   const generateArc = (acc, data, idx) => {
     const wrap = generateElement(html`<div class="wrap"></div>`)
@@ -52,5 +71,8 @@ export const getPieChartElm = (data) => {
     return acc + data.percent
   }, 0)
 
-  return pieChartElm
+  pieChartWrap.append(generateLegend())
+  pieChartWrap.append(pieChartElm)
+
+  return pieChartWrap
 }
