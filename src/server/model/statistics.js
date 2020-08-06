@@ -21,7 +21,7 @@ exports.getdailyStatisticsData = async ({ boardId, month, year }) => {
   try {
     const [rows] = await connection.execute(
       `
-      SELECT DATE_FORMAT(\`date\`, '%Y-%m-%d') date, type, SUM(price) price FROM report
+      SELECT DATE_FORMAT(\`date\`, '%d') date, type, SUM(price) price FROM report
       WHERE boardId=? AND YEAR(date)=? AND MONTH(date)=? AND type='expense'
       GROUP BY date, type ORDER BY date;
     `,

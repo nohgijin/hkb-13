@@ -15,11 +15,13 @@ export class Statistics {
     // 'categorical' | 'daily'
     this.viewType = 'categorical'
     this.categoryStatisticsData = []
+    this.dailyStatisticsData = []
     this.totalPrice = 0
     hkbModel.subscribe(this.setData.bind(this))
   }
 
-  setData({ data: categoryStatisticsData }) {
+  setData({ data: categoryStatisticsData, daily }) {
+    if(!daily) return
     const totalPrice = categoryStatisticsData.reduce(
       (acc, cur) => acc + cur.price,
       0
@@ -27,6 +29,8 @@ export class Statistics {
 
     this.totalPrice = totalPrice
     this.categoryStatisticsData = categoryStatisticsData
+    
+    this.dailyStatisticsData = daily
     this.render()
   }
 
@@ -101,38 +105,7 @@ export class Statistics {
         height="400"
       ></canvas> `)
       this.$root.append(canvas)
-      new Line(canvas, [
-        { date: '2020.06.01', price: 0 },
-        { date: '2020.06.02', price: 10000 },
-        { date: '2020.06.03', price: 210000 },
-        { date: '2020.06.04', price: 210000 },
-        { date: '2020.06.05', price: 310000 },
-        { date: '2020.06.06', price: 500000 },
-        { date: '2020.06.07', price: 600000 },
-        { date: '2020.06.08', price: 700000 },
-        { date: '2020.06.09', price: 600000 },
-        { date: '2020.06.10', price: 600000 },
-        { date: '2020.06.11', price: 600000 },
-        { date: '2020.06.12', price: 400000 },
-        { date: '2020.06.13', price: 600000 },
-        { date: '2020.06.14', price: 2300000 },
-        { date: '2020.06.15', price: 600000 },
-        { date: '2020.06.16', price: 600000 },
-        { date: '2020.06.17', price: 600000 },
-        { date: '2020.06.18', price: 600000 },
-        { date: '2020.06.19', price: 600000 },
-        { date: '2020.06.20', price: 600000 },
-        { date: '2020.06.21', price: 600000 },
-        { date: '2020.06.22', price: 600000 },
-        { date: '2020.06.23', price: 600000 },
-        { date: '2020.06.24', price: 600000 },
-        { date: '2020.06.25', price: 600000 },
-        { date: '2020.06.26', price: 600000 },
-        { date: '2020.06.27', price: 600000 },
-        { date: '2020.06.28', price: 600000 },
-        { date: '2020.06.29', price: 600000 },
-        { date: '2020.06.30', price: 600000 },
-      ])
+      new Line(canvas, this.dailyStatisticsData)
     }
   }
 }
