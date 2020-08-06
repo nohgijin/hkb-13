@@ -179,7 +179,7 @@ export class EditReportModal {
       <div class="content-input row">
         <div class="name">내용</div>
         <div class="content">
-          <input type="text" value=${content} />
+          <input type="text" value="${content}" />
         </div>
       </div>
     `)
