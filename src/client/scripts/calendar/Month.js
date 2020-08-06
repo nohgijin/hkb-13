@@ -40,8 +40,8 @@ class Month {
     return this.weeks
   }
 
-  getDaily(){
-    return [].concat(...this.weeks)
+  getDaily() {
+    return this.weeks.flat()
   }
 
   getFirstWeek() {
