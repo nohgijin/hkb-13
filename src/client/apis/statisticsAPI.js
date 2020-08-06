@@ -32,7 +32,7 @@ export const getDailyStatisticsDataAPI = async (params) => {
   if (!response.ok) return null
   if (response.redirected) location.href = response.url
 
-  const { categoryStatisticsData } = await response.json()
+  const { dailyStatisticsData } = await response.json()
 
-  return categoryStatisticsData
+  return dailyStatisticsData
 }

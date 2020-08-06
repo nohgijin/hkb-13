@@ -12,6 +12,7 @@ const {
   loginRouter,
   logoutRouter,
   statisticsRouter,
+  userRouter,
 } = require('./router')
 const { sessionConfig } = require('../config/session')
 
@@ -29,6 +30,7 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use(userRouter)
 app.use(reportRouter)
 app.use(calendarRouter)
 app.use(statisticsRouter)

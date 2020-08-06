@@ -6,6 +6,8 @@ import { getPieChartElm } from './pieChart'
 import { getBarChartElm } from './barChart'
 import { parseToLocalMoneyString } from '@/client/utils/parsers'
 
+import { Line } from './lineChart'
+
 export class Statistics {
   constructor() {
     this.$root = generateElement(html`<main class="statistics-page"></main>`)
@@ -13,18 +15,25 @@ export class Statistics {
     // 'categorical' | 'daily'
     this.viewType = 'categorical'
     this.categoryStatisticsData = []
+    this.dailyStatisticsData = []
     this.totalPrice = 0
+    this.avgPrice = 0
     hkbModel.subscribe(this.setData.bind(this))
   }
 
-  setData({ data: categoryStatisticsData }) {
+  setData({ data: categoryStatisticsData, daily }) {
+    if (!daily) return
     const totalPrice = categoryStatisticsData.reduce(
       (acc, cur) => acc + cur.price,
       0
     )
+    const avgPrice = totalPrice / daily.length
 
     this.totalPrice = totalPrice
+    this.avgPrice = avgPrice.toFixed(0)
     this.categoryStatisticsData = categoryStatisticsData
+
+    this.dailyStatisticsData = daily
     this.render()
   }
 
@@ -42,9 +51,19 @@ export class Statistics {
             <div class="type">일별 지출</div>
           </div>
         </div>
-        <div class="total">
-          <div class="name">이번 달 지출 금액</div>
-          <div class="price">${parseToLocalMoneyString(this.totalPrice)}원</div>
+        <div class="all-price">
+          <div class="total">
+            <div class="name">이번 달 지출 금액</div>
+            <div class="price">
+              ${parseToLocalMoneyString(this.totalPrice)}원
+            </div>
+          </div>
+          <div class="average">
+            <span class="name">이번 달 일평균</span>
+            <span class="price">
+              ${parseToLocalMoneyString(this.avgPrice)}원
+            </span>
+          </div>
         </div>
       </div>
     `)
@@ -93,6 +112,13 @@ export class Statistics {
     }
 
     if (this.viewType === 'daily') {
+      const canvas = generateElement(html`<canvas
+        class="canvas"
+        width="600"
+        height="400"
+      ></canvas> `)
+      this.$root.append(canvas)
+      new Line(canvas, this.dailyStatisticsData)
     }
   }
 }

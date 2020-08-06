@@ -62,6 +62,18 @@
         color: var(--blue);
       }
     }
+
+    .average {
+      font-size: 12px;
+      text-align: right;
+      .name {
+        margin-right: 10px;
+      }
+
+      .price {
+        color: var(--blue);
+      }
+    }
   }
 
   .pie-chart {
