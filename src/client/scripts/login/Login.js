@@ -6,7 +6,7 @@ export class Login {
     this.$root = generateElement(html`
       <main class="login-page">
         <div class="wrapper">
-          <h1>돈을 아끼자!</h1>
+          <h1>우아한 가계부</h1>
           <div class="login-buttons">
             <a href="/login/google" class="btn btn-google">
               <i class="icon">logo_google</i>
