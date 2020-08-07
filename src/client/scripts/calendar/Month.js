@@ -72,7 +72,7 @@ class Month {
     let totalIncome = 0
     this.weeks.forEach((week) => {
       week.forEach((day) => {
-        if (day.income !== '') totalIncome += day.income
+        if (day.income !== '') totalIncome += parseInt(day.income)
       })
     })
     return parseInt(totalIncome)
@@ -82,7 +82,7 @@ class Month {
     let totalExpense = 0
     this.weeks.forEach((week) => {
       week.forEach((day) => {
-        if (day.expense !== '') totalExpense += day.expense
+        if (day.expense !== '') totalExpense += parseInt(day.expense)
       })
     })
     return parseInt(totalExpense)
