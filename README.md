@@ -136,4 +136,3 @@ Then, you can access to your server http://localhost:3000/
     |   |   |   ...  // 데이터베이스 작업 처리
     |   |   |
     |   |   |-- router
-    |   |   |
