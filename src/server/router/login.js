@@ -28,10 +28,10 @@ router.get('/login/naver', passport.authenticate('naver'))
 router.get('/login/naver/callback', function (req, res, next) {
   passport.authenticate('naver', function (err, user) {
     if (!user) {
-      return res.redirect('http://localhost:3000/login')
+      return res.redirect('http://13.125.215.184:3000/login')
     }
     req.logIn(user, function (err) {
-      return res.redirect('http://localhost:3000/reports')
+      return res.redirect('http://13.125.215.184:3000/reports')
     })
   })(req, res)
 })

@@ -58,12 +58,6 @@ export class Statistics {
               ${parseToLocalMoneyString(this.totalPrice)}원
             </div>
           </div>
-          <div class="average">
-            <span class="name">이번 달 일평균</span>
-            <span class="price">
-              ${parseToLocalMoneyString(this.avgPrice)}원
-            </span>
-          </div>
         </div>
       </div>
     `)
@@ -112,6 +106,15 @@ export class Statistics {
     }
 
     if (this.viewType === 'daily') {
+      const parent = this.$root.querySelector('.all-price')
+      parent.appendChild(
+        generateElement(html`
+        <div class="average">
+          <span class="name">이번 달 일평균</span>
+          <span class="price">${parseToLocalMoneyString(this.avgPrice)}원</span>
+        </div>
+        `)
+      )
       const canvas = generateElement(html`<canvas
         class="canvas"
         width="600"
