@@ -7,14 +7,13 @@
 ## Project description
 월간 소비 및 지출에 대한 report를 작성하고, 내역 및 월별/카테고리별 통계를 확인할 수 있는 개인 가계부 서비스.
 
-### Observable
-
-### Client Routing
-
-### Passport
-
-### Oauth
-
+## Requirements
+- Observable
+- Client Routing
+- Passport
+- Oauth
+- Automatic deploy
+- Data visualization
 
 ## 🧞Quick Start
 ### 1. Clone & Install Packages
@@ -37,7 +36,29 @@ const config = {
 module.exports = { config }
 ```
 
-### 3. NPM scripts
+### 3. Configuration passport
+Follow `githubPassport.example.js` to `config` folder
+```js
+const githubConfig = {
+  CLIENT_ID: '',
+  CLIENT_SECRET: '',
+  CALLBACK_URL: 'http://13.125.215.184:3000/login/github/callback',
+}
+module.exports = { githubConfig }
+```
+
+Follow `googlePassport.example.js` to `config` folder
+```js
+const googleConfig = {
+  CLIENT_ID: '',
+  CLIENT_SECRET: '',
+  CALLBACK_URL: 'http://localhost:3000/login/google/callback',
+}
+
+module.exports = { googleConfig }
+```
+
+### 4. NPM scripts
 start both server and client
 ```bash
 npm start
@@ -68,6 +89,7 @@ Then, you can access to your server http://localhost:3000/
 
 **Backend**
 - ![title](https://img.shields.io/badge/-Node.js-339933?&logo=Node.js&logoColor=white)
+- ![title](https://img.shields.io/badge/-Passport-4479A1?&logo=Passport&logoColor=white)
 - ![title](https://img.shields.io/badge/-Express-191919?&logo=Node.js&logoColor=white)
 - ![title](https://img.shields.io/badge/-MySQL-4479A1?&logo=MySQL&logoColor=white)
 
@@ -95,7 +117,10 @@ Then, you can access to your server http://localhost:3000/
     |
     |-- src
     |   |-- client  // Frontend
-    |   |
+    |   |   |-- api // Client API 관련 파일 모음
+    |   |   |
+    |   |   |-- models // observer 패턴 모델 파일
+    |   |   |
     |   |   |-- scripts
     |   |   |   |-- calendar
     |   |   |   |   ...  // 캘린더 파일 모음
@@ -107,10 +132,13 @@ Then, you can access to your server http://localhost:3000/
     |   |   |   |   ...  // 오류 파일
     |   |   |   |
     |   |   |   |-- reportsList  
-    |   |   |   |   ...  // 거래내역, 통계 파일 모음
+    |   |   |   |   ...  // 거래내역 파일 모음
     |   |   |   |
     |   |   |   |-- store
     |   |   |   |   ...  // 옵저버 패턴 파일 모음
+    |   |   |   |
+    |   |   |   |-- statistics
+    |   |   |   |   ...  // 통계 파일 모음
     |   |   |   |
     |   |   |
     |   |   |-- styles
@@ -118,6 +146,7 @@ Then, you can access to your server http://localhost:3000/
     |   |   |   |-- components
     |   |   |   |   ...  // 컴포넌트별 스타일
     |   |   |   |
+    |   |   |
     |   |   |-- utils
     |   |   |   ...  // 공통 사용 함수 모음
     |   |   |
@@ -125,7 +154,7 @@ Then, you can access to your server http://localhost:3000/
     |   |   |   ...  // html 파일
     |   |   |    
     |   |
-    |   |-- config
+    |   |-- config // database, passport config 파일 모음
     |   |
     |   |-- server  // Backend
     |   |   |
