@@ -40,8 +40,8 @@ class Month {
     return this.weeks
   }
 
-  getDaily(){
-    return [].concat(...this.weeks)
+  getDaily() {
+    return this.weeks.flat()
   }
 
   getFirstWeek() {
@@ -75,7 +75,7 @@ class Month {
         if (day.income !== '') totalIncome += day.income
       })
     })
-    return totalIncome
+    return parseInt(totalIncome)
   }
 
   getTotalExpense() {
@@ -85,7 +85,7 @@ class Month {
         if (day.expense !== '') totalExpense += day.expense
       })
     })
-    return totalExpense
+    return parseInt(totalExpense)
   }
 }
 

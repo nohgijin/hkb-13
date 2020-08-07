@@ -30,11 +30,8 @@ export class Line {
     this.yLineLeftTop = [this.xGap - 20, this.yGap]
     this.yLineLeftBottom = [this.xGap - 20, this.cvsHeight - this.yGap]
 
-    this.maxPrice = Math.max.apply(
-      null,
-      this.data.map((d) => d.price)
-    )
-
+    this.maxPrice = Math.max(...(null, this.data.map((d) => d.price)))
+    
     this.drawX()
     this.drawY()
     this.draw()
