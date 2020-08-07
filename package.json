@@ -8,7 +8,7 @@
     "start": "npm-run-all --parallel start:client start:server",
     "start:client": "webpack --watch",
     "start:server": "nodemon src/server/app.js",
-    "build:": "webpack --mode=production --config webpack.config.js"
+    "build": "webpack --mode=production --config webpack.config.js"
   },
   "repository": {
     "type": "git",
