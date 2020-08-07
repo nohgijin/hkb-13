@@ -3,6 +3,5 @@ dist/*
 
 **/config/index.js
 **/config/session.js
-**/config/naverPassport.js
 **/config/googlePassport.js
 **/config/githubPassport.js

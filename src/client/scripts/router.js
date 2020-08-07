@@ -15,7 +15,6 @@ const routePage = () => {
   if (pathname === `/login`) {
     const login = new Login()
     app.append(login.$root)
-    login.loadNaverBtn()
     return
   }
 
