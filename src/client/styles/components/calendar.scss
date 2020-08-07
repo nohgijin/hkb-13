@@ -1,22 +1,38 @@
 .app {
   .calendar-page {
-    .calendar-income {
+    .calendar-section {
+      width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: var(--medium-radius);
+      box-shadow: var(--todo-shadow);
+      padding: var(--padding);
       margin-top: 20px;
-      text-align: center;
-      color: var(--blue);
     }
 
-    .calendar-expense {
-      margin-top: 10px;
-      text-align: center;
-      color: var(--red);
-    }
+    .type-checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
 
+      .calendar-income {
+        text-align: center;
+        color: var(--blue);
+        margin: 0 10px;
+      }
+
+      .calendar-expense {
+        text-align: center;
+        color: var(--red);
+        margin: 0 10px;
+      }
+    }
     table {
       border-collapse: collapse;
       width: 700px;
       margin: 0 auto;
-      margin-top: 10px;
+      margin-top: 40px;
       background-color: var(--white);
     }
 

@@ -64,13 +64,13 @@
           width: 49%;
           // flex: 1;
           height: $row-height;
-          border: 1px solid var(--baemint);
-          color: var(--baemint);
+          border: 1px solid#3498db;
+          color: #3498db;
           border-radius: var(--small-radius);
 
           &[selected] {
             color: var(--white);
-            background-color: var(--baemint);
+            background-color: #3498db;
           }
         }
       }
@@ -116,7 +116,7 @@
         margin-top: 20px;
         color: var(--white);
         text-align: center;
-        background-color: var(--baemint);
+        background-color: #3498db;
         border-radius: var(--small-radius);
       }
     }

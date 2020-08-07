@@ -1,9 +1,9 @@
 import { Month } from './Month'
 import { Day } from './Day'
-import {} from '../../styles/components/calendar.scss'
 import { generateElement } from '@/client/utils/htmlGenerator'
 import { comma } from '@/client/utils/comma'
 import { hkbModel } from '@/client/models/hkbModel'
+import { html } from '@/client/utils/lit'
 
 export class Calendar {
   constructor() {
@@ -119,11 +119,16 @@ export class Calendar {
       weeksTemplate += weekTemplate
     })
 
+    const $typeCheckboxes = generateElement(
+      html`<div class="type-checkbox"></div>`
+    )
+    $typeCheckboxes.appendChild($calendarIncome)
+    $typeCheckboxes.appendChild($calendarExpense)
+
     $calendarTableBody.innerHTML = weeksTemplate
 
     $calendarTable.appendChild($calendarTableBody)
-    $calendar.appendChild($calendarIncome)
-    $calendar.appendChild($calendarExpense)
+    $calendar.appendChild($typeCheckboxes)
     $calendar.appendChild($calendarTable)
 
     this.$root.innerHTML = ''

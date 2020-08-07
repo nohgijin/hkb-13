@@ -134,7 +134,7 @@ export class AddReportModal {
 
     const paymentSelectForm = generateElement(`
       <div class="payment-selector row">
-        <div class="name">결제수단</div>
+        <div class="name">은행/카드</div>
         <div class="content">
           <select name="category-select" id="">
             <option value='' selected>선택하세요</option>
@@ -224,7 +224,7 @@ export class AddReportModal {
 
     if (!this.report.paymentMethod) {
       const contentElm = this.$root.querySelector('.payment-selector .content')
-      contentElm.setAttribute('data-err', '결제수단을 선택해주세요!')
+      contentElm.setAttribute('data-err', '은행/카드를 선택해주세요!')
     }
 
     if (!this.report.price) {
