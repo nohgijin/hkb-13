@@ -106,7 +106,7 @@ Then, you can access to your server http://localhost:3000/
 ### Documentations
 - [API Document](https://github.com/woowa-techcamp-2020/hkb-13/issues/2)
 - [Postman API Document](https://documenter.getpostman.com/view/8220125/T1Dv6ZKB?version=latest)
-
+- [DB SCHEME](https://github.com/woowa-techcamp-2020/hkb-13/issues/1)
 
 ------
 
