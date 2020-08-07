@@ -11,6 +11,10 @@ const routePage = () => {
   const app = document.querySelector('.app')
   app.innerHTML = ''
 
+  if (pathname === '/') {
+    location.href = '/login'
+  }
+
   // render login page
   if (pathname === `/login`) {
     const login = new Login()
